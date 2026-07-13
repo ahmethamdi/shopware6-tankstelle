@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
+
+{#
+  TP24 placeholder logo.
+  Admin'e gerçek logo yüklenip sw-logo-desktop'a atanınca bu override'ı silebilir
+  (veya aşağıdaki koşul zaten config varsa core'a düşer) — o zaman core logo.html.twig devreye girer.
+  Asset: app/storefront/src/assets/logo/tp24-logo.svg (theme.json asset klasöründen serve edilir).
+#}
+{% block layout_header_logo_image %}
+    {% if theme_config('sw-logo-desktop') and 'demostore-logo' not in theme_config('sw-logo-desktop') %}
+        {# Admin'de gerçek logo atanmışsa (demo değilse) core davranışını kullan #}
+        {{ parent() }}
+    {% else %}
+        <img src="{{ asset('bundles/tankstellenpartner24theme/logo/tp24-logo.svg') }}"
+             alt="{{ 'header.logoLink'|trans|striptags }}"
+             class="img-fluid header-logo-main-img tp24-logo"
+             width="360" height="72">
+    {% endif %}
+{% endblock %}

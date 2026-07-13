@@ -17,8 +17,12 @@ $vapor-color-bg:           #F8FAFC !default; // sayfa arka planı (spec light)
 $vapor-color-accent:       #FFD52E !default; // sarı accent (spec — badge/rozet)
 $vapor-color-success:      #1FB16B !default;
 $vapor-color-sale:         #FF4D4D !default;
-$vapor-font-base:     "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$vapor-font-headline: "Space Grotesk", "Inter", system-ui, sans-serif !default;
+// TP24 branding fontu: Gotham. Ticari/lisanslı olduğundan geçici olarak
+// Montserrat (geometrik, Gotham'a en yakın ücretsiz Google Fonts alternatifi) kullanılıyor.
+// Gerçek Gotham .woff2 dosyaları gelince: base.scss'teki @font-face bloğunu doldur,
+// aşağıdaki iki değişkende "Montserrat" → "Gotham" yap, base.scss'teki Google Fonts @import'u sil.
+$vapor-font-base:     "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$vapor-font-headline: "Montserrat", system-ui, -apple-system, sans-serif !default;
 
 // --- Bootstrap tema renkleri ---
 $primary:    $sw-color-brand-primary;

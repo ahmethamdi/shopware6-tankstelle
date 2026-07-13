@@ -33,7 +33,7 @@
             <div class="vapor-footer-col-content" role="listitem">
                 {% if theme_config('vapor-footer-logo') %}
                     <div class="vapor-footer-logo">
-                        <img src="{{ theme_config('vapor-footer-logo') }}" alt="Vapor Handels GmbH" loading="lazy">
+                        <img src="{{ theme_config('vapor-footer-logo') }}" alt="Tankstellenpartner 24" loading="lazy">
                     </div>
                 {% endif %}
                 {% if theme_config('vapor-footer-blurb') %}
@@ -220,11 +220,11 @@
     </div>
 {% endblock %}
 
-{# --- Alt bar: core service menü + VAT + copyright + 18+ uyarısı --- #}
+{# --- Alt bar: core service menü + VAT + copyright + B2B uyarısı --- #}
 {% block layout_footer_copyright %}
     <div class="footer-copyright vapor-footer-copyright">
         <span class="vapor-footer-age">
-            18+ Nur für Erwachsene — Der Verkauf erfolgt ausschließlich an Gewerbetreibende.
+            Der Verkauf erfolgt ausschließlich an Gewerbetreibende (B2B).
         </span>
         <span class="vapor-footer-copyright-text">
             {{ parent() }}

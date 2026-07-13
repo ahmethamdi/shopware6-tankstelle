@@ -16,10 +16,9 @@
 {# Custom-Field-Name zentral. Falls Mikes technischer Name abweicht, NUR hier ändern. #}
 {% set vaporExtUrl = product.translated.customFields.external_product_link|default(product.customFields.external_product_link|default(null)) %}
 
-{# "Beliebt" rozeti — kartın sol üstüne #}
+{# "Beliebt" rozeti — kartın sol üstüne (18+ yaş rozeti akaryakıt B2B'de kaldırıldı) #}
 {% block component_product_box_badges %}
     <span class="vapor-card-badge">Beliebt</span>
-    <span class="vapor-card-age">18+</span>
     {{ parent() }}
 {% endblock %}
 

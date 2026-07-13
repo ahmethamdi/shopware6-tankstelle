@@ -10,7 +10,6 @@
     {% set pUrl = path('frontend.detail.page', { productId: product.id }) %}
     <a href="{{ pUrl }}" class="vapor-pcard">
         {% if badge %}<span class="vapor-pcard__badge">{{ badge }}</span>{% endif %}
-        <span class="vapor-pcard__age">18+</span>
         <div class="vapor-pcard__img">
             {% if pCover %}
                 {% sw_thumbnails 'vapor-pcard-img' with {

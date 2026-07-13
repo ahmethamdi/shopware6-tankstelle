@@ -5,8 +5,23 @@ Vapor Theme — Base styles
 Renk/font değişkenleri overrides.scss + theme.json config'ten gelir.
 */
 
-// Google Fonts (Inter + Space Grotesk)
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+// TP24 branding fontu: Gotham (geçici alternatif Montserrat — Gotham'a en yakın geometrik sans).
+// Gerçek Gotham gelince: bu @import'u sil, aşağıdaki @font-face bloğunu doldur.
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+
+/* Gerçek Gotham .woff2 dosyaları geldiğinde bu bloğu aç ve dosyaları
+   app/storefront/src/assets/fonts/ altına koy (theme.json asset klasörü):
+@font-face {
+    font-family: "Gotham";
+    src: url("#{$app-css-relative-asset-path}/fonts/Gotham-Medium.woff2") format("woff2");
+    font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: "Gotham";
+    src: url("#{$app-css-relative-asset-path}/fonts/Gotham-Bold.woff2") format("woff2");
+    font-weight: 700; font-style: normal; font-display: swap;
+}
+*/
 
 // CSS custom property'leri (JS/inline kullanım için de erişilebilir)
 :root {
@@ -16,6 +31,10 @@ Renk/font değişkenleri overrides.scss + theme.json config'ten gelir.
     --vapor-bg: #{$vapor-color-bg};
     --vapor-sale: #{$vapor-color-sale};
     --vapor-radius: #{$border-radius};
+    // Shopware core'un yeni (6.6+) font CSS-değişkenlerini de marka fontuna çek
+    // (aksi halde core bazı yerlerde 'Inter'e düşüyor).
+    --sw-font-family-base: #{$vapor-font-base};
+    --sw-font-family-headline: #{$vapor-font-headline};
 }
 
 // --- Genel ---
@@ -4074,9 +4093,9 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     width: 16px; height: 16px; color: #fff; margin-bottom: 10px;
 }
 
-// B2B CTA banner başlığı (beyaz + Space Grotesk)
+// B2B CTA banner başlığı (beyaz + headline font)
 .vapor-b2b__title {
-    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    font-family: $vapor-font-headline;
     font-weight: 700; font-size: 1.7rem; line-height: 1.2; margin: 0 0 0.8rem; color: #fff;
 }
 

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" width="360" height="72" role="img" aria-label="Tankstellenpartner 24">
+  <defs>
+    <linearGradient id="tp24drop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E1523D"/>
+      <stop offset="1" stop-color="#C13A28"/>
+    </linearGradient>
+  </defs>
+
+  <!-- İkon: yakıt damlası + pompa -->
+  <g transform="translate(4 4)">
+    <!-- Damla gövdesi -->
+    <path d="M32 2 C32 2 58 30 58 46 A26 26 0 1 1 6 46 C6 30 32 2 32 2 Z" fill="url(#tp24drop)"/>
+    <!-- Pompa tabancası (beyaz) -->
+    <g fill="#fff">
+      <!-- pompa gövdesi -->
+      <rect x="20" y="30" width="16" height="24" rx="3"/>
+      <!-- pompa üst kolu -->
+      <path d="M36 33 h6 a4 4 0 0 1 4 4 v9 a3 3 0 0 1-6 0 v-7 h-4 z"/>
+      <!-- ekran/çizgi -->
+      <rect x="23.5" y="34" width="9" height="6" rx="1.5" fill="#1B3A5C"/>
+    </g>
+  </g>
+
+  <!-- Kelime markası -->
+  <g transform="translate(78 0)">
+    <text x="0" y="34" font-family="Montserrat, system-ui, sans-serif" font-weight="700" font-size="26" fill="#1B3A5C" letter-spacing="-0.5">Tankstellen</text>
+    <text x="0" y="62" font-family="Montserrat, system-ui, sans-serif" font-weight="600" font-size="26" fill="#1B3A5C" letter-spacing="-0.5">partner</text>
+    <!-- 24 rozet -->
+    <g transform="translate(168 38)">
+      <rect x="0" y="0" width="52" height="30" rx="8" fill="#E1523D"/>
+      <text x="26" y="23" text-anchor="middle" font-family="Montserrat, system-ui, sans-serif" font-weight="800" font-size="22" fill="#fff">24</text>
+    </g>
+  </g>
+</svg>

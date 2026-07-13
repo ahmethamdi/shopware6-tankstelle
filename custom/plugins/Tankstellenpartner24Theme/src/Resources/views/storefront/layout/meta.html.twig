@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{#
+  TP24 placeholder favicon.
+  Admin'e gerçek favicon yüklenip sw-logo-favicon'a atanınca (demo değilse) core'a düşer.
+  Asset: app/storefront/src/assets/logo/tp24-favicon.svg
+#}
+{% block layout_head_favicon %}
+    {% if theme_config('sw-logo-favicon') and 'favicon.png' not in theme_config('sw-logo-favicon') %}
+        {{ parent() }}
+    {% else %}
+        <link rel="icon" type="image/svg+xml" href="{{ asset('bundles/tankstellenpartner24theme/logo/tp24-favicon.svg') }}">
+    {% endif %}
+{% endblock %}
