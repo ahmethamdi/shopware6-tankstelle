@@ -61,14 +61,16 @@ Build (JS+SCSS birlikte): `bash bin/build-storefront.sh` (Vapor'daki gibi).
 - Shopware 6.7 kurulu + çalışıyor (252 tablo, admin/shopware).
 - TP24 teması **kurulu + aktif + Storefront'a atanmış + compile'lı**.
 - Anasayfa + admin **HTTP 200**, turuncu renkler doğrulandı (CSS'te #E1523D 311 kez, mavi 0).
-- Git repo bağlı, ilk commit push'lu (`main`).
+- Git repo bağlı, push'lu (`main`).
+- **Font:** Montserrat (Gotham geçici alternatifi). 3 katmanda: overrides.scss + theme.json `vapor-font-*` + core `sw-font-family-base/headline`. Gerçek Gotham için base.scss'te hazır @font-face yorum bloğu var.
+- **Logo + favicon:** marka renklerinde SVG placeholder (damla + pompa). `bundles/tankstellenpartner24theme/logo/` → header (`layout/header/logo.html.twig`) + favicon (`layout/meta.html.twig`). Admin'e gerçek logo yüklenince otomatik ona düşer.
+- **İçerik TP24 akaryakıt B2B'ye uyarlandı:** 18+ yaş kapısı tamamen kaldırıldı (age gate + ürün kartı rozetleri + footer). ~50 theme.json value çevrildi (Kraftstoffe & AdBlue, Schmierstoffe, Autopflege, Technik & Zubehör, Merchandise & POS). VaporShop/ELFBAR/LOST MARY/Pods/Aromen → nötr akaryakıt kategorileri. E-posta → info@tankstellenpartner24.de.
 
-## ⏭️ Sıradaki işler (senin yapacakların)
+## ⏭️ Sıradaki işler (yarın devam)
 
-- [ ] **Gotham fontu** ekle (branding fontu) — Vapor'da font `overrides.scss`/`base.scss`'te tanımlı.
-- [ ] **Logo** (damla + pompa ikonu) + favicon.
-- [ ] Anasayfa içeriğini TP24'e göre doldur (panel: Admin → Themes → Tankstellenpartner24Theme).
-- [ ] Vapor'a özgü metinleri (e-sigara / Almanca içerikler) TP24'e uyarla.
+- [ ] **Kategori tekrarlarını çeşitlendir** (kozmetik): birkaç theme.json alanı aynı jenerik isme düştü (2× "Shop & Convenience", 2× "Autopflege", 2× "Merchandise & POS"). Demo daha çeşitli görünsün istersen farklılaştır.
+- [ ] **Ana navigasyon menüsü + kategori sayfaları:** hâlâ eski demo katalog kategorilerinden geliyor (tema değil, **admin → Katalog** işi). Gerçek TP24 kategori ağacını kur.
+- [ ] **Gerçek logo & Gotham fontu** gelince bağla (placeholder'lar yerine).
 - [ ] Gerekirse VioRepresentativeLogin kur (B2B temsilci girişi istenirse).
 
 ## 📝 Vapor referansı
