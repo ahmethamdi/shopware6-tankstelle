@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/layout/header/actions/cart-widget.html.twig' %}
+
+{# Tankstellenpartner24Theme: sepet ikonunun köşesine BELİRGİN adet rozeti (toplam adet).
+   Böylece header € tutarının kaç üründen geldiği bir bakışta anlaşılır.
+   frontend.checkout.info bu template'i döndürür → +/− sonrası rozet de tazelenir. #}
+{% block layout_header_actions_cart_widget %}
+    {% set vaporCartCount = 0 %}
+    {% for lineItem in page.cart.lineItems %}
+        {% set vaporCartCount = vaporCartCount + lineItem.quantity %}
+    {% endfor %}
+
+    <span class="header-cart-icon vapor-cart-icon-wrap">
+        {% sw_icon 'bag' %}
+        {% if vaporCartCount > 0 %}
+            <span class="vapor-cart-count" aria-hidden="true">{{ vaporCartCount > 99 ? '99+' : vaporCartCount }}</span>
+        {% endif %}
+    </span>
+
+    {% if page.cart.lineItems|length > 0 %}
+        <span class="badge bg-primary header-cart-badge visually-hidden">{{ page.cart.lineItems|length }}</span>
+    {% endif %}
+
+    <span class="header-cart-total d-none d-sm-inline-block ms-sm-2">
+        {{ page.cart.price.positionPrice|currency }}
+    </span>
+
+    <span class="visually-hidden" id="cart-widget-aria-label">
+        {{ 'checkout.cartScreenReaderUpdate'|trans({
+                '%count%': page.cart.lineItems|length,
+                '%total%': page.cart.price.positionPrice|currency,
+            })|sw_sanitize }}
+    </span>
+{% endblock %}

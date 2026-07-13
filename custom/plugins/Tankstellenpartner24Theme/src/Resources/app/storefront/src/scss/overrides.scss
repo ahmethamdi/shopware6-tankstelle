@@ -1,0 +1,50 @@
+/*
+Vapor Theme — Variable overrides
+==================================================
+Bootstrap / Shopware Storefront SCSS değişkenlerini override eder.
+!default flag'leri nedeniyle bu dosya @Storefront'tan ÖNCE yüklenir (theme.json style sırası).
+
+theme.json'daki config alanları derleme sırasında aynı isimli SCSS değişkenleri
+olarak enjekte edilir: $sw-color-brand-primary, $sw-color-brand-secondary, vb.
+Burada onlara fallback default veriyoruz ki admin'de değer girilmese de derleme bozulmasın.
+*/
+
+// --- Vapor marka renkleri (admin config fallback'leri) ---
+$sw-color-brand-primary:   #D64535 !default; // mavi — ana marka (spec)
+$sw-color-brand-secondary: #D93A3A !default; // açık mavi — ikincil (spec)
+$vapor-color-ink:          #1F2937 !default; // koyu metin (spec dark)
+$vapor-color-bg:           #F8FAFC !default; // sayfa arka planı (spec light)
+$vapor-color-accent:       #FFD52E !default; // sarı accent (spec — badge/rozet)
+$vapor-color-success:      #1FB16B !default;
+$vapor-color-sale:         #FF4D4D !default;
+$vapor-font-base:     "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$vapor-font-headline: "Space Grotesk", "Inter", system-ui, sans-serif !default;
+
+// --- Bootstrap tema renkleri ---
+$primary:    $sw-color-brand-primary;
+$secondary:  $sw-color-brand-secondary;
+$success:    $vapor-color-success;
+$danger:     $vapor-color-sale;
+$dark:       $vapor-color-ink;
+$body-color: $vapor-color-ink;
+$body-bg:    $vapor-color-bg;
+
+// --- Tipografi ---
+$font-family-base:     $vapor-font-base;
+$headings-font-family: $vapor-font-headline;
+$headings-font-weight: 700;
+$font-weight-bold:     600;
+
+// --- Köşe yumuşaklığı / modern his ---
+$border-radius:    .625rem;  // 10px
+$border-radius-sm: .375rem;
+$border-radius-lg: 1rem;
+
+// --- Butonlar ---
+$btn-font-weight: 600;
+$btn-padding-y:   .75rem;
+$btn-padding-x:   1.5rem;
+
+// --- Linkler ---
+$link-decoration:       none;
+$link-hover-decoration: underline;

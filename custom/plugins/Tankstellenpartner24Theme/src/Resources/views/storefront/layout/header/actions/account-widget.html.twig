@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/layout/header/actions/account-widget.html.twig' %}
+
+{% block layout_header_actions_account_widget_dropdown_button %}
+    {% set vaporCustomer = context.customer %}
+    {% set vaporLoggedIn = vaporCustomer and not vaporCustomer.guest %}
+    {% set vaporInitials = '' %}
+    {% if vaporLoggedIn %}
+        {% set vaporInitials = (vaporCustomer.firstName|slice(0, 1) ~ vaporCustomer.lastName|slice(0, 1))|upper %}
+    {% endif %}
+
+    <button class="btn account-menu-btn header-actions-btn{% if vaporLoggedIn %} vapor-account-btn--avatar{% endif %}"
+            type="button"
+            id="accountWidget"
+            data-account-menu="true"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            aria-label="{{ 'account.myAccount'|trans|striptags }}"
+            title="{% if vaporLoggedIn %}{{ vaporCustomer.firstName }} {{ vaporCustomer.lastName }}{% else %}{{ 'account.myAccount'|trans|striptags }}{% endif %}">
+        {% if vaporLoggedIn %}
+            <span class="vapor-account-avatar" aria-hidden="true">{{ vaporInitials }}</span>
+        {% else %}
+            {% sw_icon 'avatar' %}
+        {% endif %}
+    </button>
+{% endblock %}

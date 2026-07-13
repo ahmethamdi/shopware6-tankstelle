@@ -1,0 +1,41 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{# =====================================================================
+   Tankstellenpartner24Theme — Sepete ekle aksiyonu: mockup'taki yuvarlak "+" buton.
+   Satın alınabilirse "+" ile sepete ekler, değilse detay sayfasına "+" link.
+   ===================================================================== #}
+
+{# Buy butonunun içeriğini sadece "+" ikonu yap (B2B: Kunde ODER Vertriebler) #}
+{% block component_product_box_action_buy_button %}
+    {% if context.customer or context.extension('vioAgent') %}
+        <div class="vapor-add-wrap">
+            <button class="btn btn-buy vapor-add-btn" aria-label="{{ 'listing.boxAddProduct'|trans|striptags }}">
+                <span class="vapor-add-plus" aria-hidden="true">+</span>
+            </button>
+        </div>
+    {% else %}
+        {# Nicht eingeloggt → "+" führt zum Login #}
+        <div class="vapor-add-wrap">
+            <a href="{{ path('frontend.account.login.page') }}" class="btn vapor-add-btn is-login" aria-label="Anmelden">
+                <span class="vapor-add-plus" aria-hidden="true">{% sw_icon 'lock-closed' %}</span>
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{# Buy edilemeyenler (varyant/childCount) için de detay sayfasına "+" link (B2B: Kunde ODER Vertriebler) #}
+{% block component_product_box_action_detail %}
+    <div class="vapor-add-wrap">
+        {% if context.customer or context.extension('vioAgent') %}
+            <a href="{{ seoUrl('frontend.detail.page', {productId: product.id}) }}"
+               class="btn vapor-add-btn"
+               aria-label="{{ 'listing.boxProductDetails'|trans|striptags }}">
+                <span class="vapor-add-plus" aria-hidden="true">+</span>
+            </a>
+        {% else %}
+            <a href="{{ path('frontend.account.login.page') }}" class="btn vapor-add-btn is-login" aria-label="Anmelden">
+                <span class="vapor-add-plus" aria-hidden="true">{% sw_icon 'lock-closed' %}</span>
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}

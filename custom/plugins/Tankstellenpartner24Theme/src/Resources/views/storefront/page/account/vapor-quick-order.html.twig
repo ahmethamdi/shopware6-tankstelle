@@ -1,0 +1,45 @@
+{% sw_extends '@Storefront/storefront/page/account/_page.html.twig' %}
+
+{# =====================================================================
+   Tankstellenpartner24Theme — "Schnellbestellung": B2B hızlı sipariş.
+   Müşteri ürün numaralarını (SKU) + adet girip tek seferde sepete ekler.
+   POST → QuickOrderController::add → productNumber'dan ürün bulur, sepete ekler.
+   ===================================================================== #}
+{% block page_account_main_content %}
+    <div class="account-welcome">
+        <h1>Schnellbestellung</h1>
+        <p>Geben Sie Artikelnummern und Mengen ein und legen Sie alles mit einem Klick in den Warenkorb.</p>
+    </div>
+
+    <form action="{{ path('frontend.account.vapor.quick-order.add') }}" method="post" class="vapor-quick">
+        <div class="vapor-quick__head">
+            <span class="vapor-quick__col-sku">Artikelnummer (SKU)</span>
+            <span class="vapor-quick__col-qty">Menge</span>
+        </div>
+
+        <div class="vapor-quick__rows" data-vapor-quick-rows>
+            {% for i in 0..7 %}
+                <div class="vapor-quick__row">
+                    <input type="text"
+                           name="lines[{{ i }}][sku]"
+                           class="form-control vapor-quick__sku"
+                           placeholder="z. B. SW-12345"
+                           autocomplete="off">
+                    <input type="number"
+                           name="lines[{{ i }}][qty]"
+                           class="form-control vapor-quick__qty"
+                           min="1" value="1" inputmode="numeric">
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="vapor-quick__foot">
+            <button type="button" class="btn btn-light btn-sm vapor-quick__addrow" data-vapor-quick-addrow>
+                {% sw_icon 'plus' %} <span>Weitere Zeile</span>
+            </button>
+            <button type="submit" class="btn btn-primary vapor-quick__submit">
+                {% sw_icon 'bag-product' %} <span>In den Warenkorb</span>
+            </button>
+        </div>
+    </form>
+{% endblock %}

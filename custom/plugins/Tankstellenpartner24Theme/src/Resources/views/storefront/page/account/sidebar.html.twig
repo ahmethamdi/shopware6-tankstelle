@@ -1,0 +1,96 @@
+{# TP24: VioRepresentativeLogin bu kurulumda YOK → core'u extend et.
+   (Vapor'da Vio agent modu için '@VioRepresentativeLogin/...' extend ediliyordu.
+   Vio kurulursa bu satırı '@VioRepresentativeLogin/storefront/page/account/sidebar.html.twig'
+   yaparak agent desteğini geri açabilirsin.) #}
+{% sw_extends '@Storefront/storefront/page/account/sidebar.html.twig' %}
+
+{# =====================================================================
+   Tankstellenpartner24Theme — Hesap sidebar'ı: modern panel (avatar + selam, ikonlu nav,
+   aktif mavi pill, logout). Tüm hesap sayfalarında görünür.
+   Agent modu: 1. satır Vio'yu extend ettiği için agent menüsü+çıkış Vio'dan
+   gelir; normal müşteride Vio {{ parent() }} ile core'a düşer, alttaki
+   bloklarımız oraya enjekte olur (Tankstellenpartner24Theme menüsü). [_page.html.twig de
+   agent için sidebar kolonunu çiziyor; account-menu.html.twig header'da
+   agent için 'Anmelden' bloğunu gizliyor.]
+   ===================================================================== #}
+
+{% block page_account_sidebar_header %}
+    {% if not headerWidget %}
+        <div class="card-header account-aside-header vapor-acc-aside__head">
+            <span class="vapor-acc-aside__avatar">
+                {{ context.customer.firstName|first|upper }}{{ context.customer.lastName|first|upper }}
+            </span>
+            <span class="vapor-acc-aside__hi">
+                <small>{{ 'account.greetings'|trans|sw_sanitize }}</small>
+                <b>{{ context.customer.firstName }} {{ context.customer.lastName }}</b>
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block page_account_sidebar_link_home %}
+    <a href="{{ path('frontend.account.home.page') }}"
+       title="{{ 'account.overviewLink'|trans|striptags }}"
+       class="list-group-item list-group-item-action account-aside-item vapor-acc-aside__item{% if activeRoute is same as('frontend.account.home.page') %} is-active{% endif %}"
+       {% if activeRoute is same as('frontend.account.home.page') %} aria-current="page"{% endif %}>
+        <span class="vapor-acc-aside__ico">{% sw_icon 'home' %}</span>
+        {{ 'account.overviewLink'|trans|sw_sanitize }}
+    </a>
+{% endblock %}
+
+{% block page_account_sidebar_link_profile %}
+    <a href="{{ path('frontend.account.profile.page') }}"
+       title="{{ 'account.profileLink'|trans|striptags }}"
+       class="list-group-item list-group-item-action account-aside-item vapor-acc-aside__item{% if activeRoute is same as('frontend.account.profile.page') %} is-active{% endif %}"
+       {% if activeRoute is same as('frontend.account.profile.page') %} aria-current="page"{% endif %}>
+        <span class="vapor-acc-aside__ico">{% sw_icon 'avatar' %}</span>
+        {{ 'account.profileLink'|trans|sw_sanitize }}
+    </a>
+{% endblock %}
+
+{% block page_account_sidebar_link_address %}
+    <a href="{{ path('frontend.account.address.page') }}"
+       title="{{ 'account.addressLink'|trans|striptags }}"
+       class="list-group-item list-group-item-action account-aside-item vapor-acc-aside__item{% if activeRoute starts with('frontend.account.address') %} is-active{% endif %}"
+       {% if activeRoute starts with('frontend.account.address.page') %} aria-current="page"{% endif %}>
+        <span class="vapor-acc-aside__ico">{% sw_icon 'map' %}</span>
+        {{ 'account.addressLink'|trans|sw_sanitize }}
+    </a>
+{% endblock %}
+
+{% block page_account_sidebar_link_orders %}
+    <a href="{{ path('frontend.account.order.page') }}"
+       title="{{ 'account.ordersLink'|trans|striptags }}"
+       class="list-group-item list-group-item-action account-aside-item vapor-acc-aside__item{% if activeRoute is same as('frontend.account.order.page') %} is-active{% endif %}"
+       {% if activeRoute is same as('frontend.account.order.page') %} aria-current="page"{% endif %}>
+        <span class="vapor-acc-aside__ico">{% sw_icon 'bag' %}</span>
+        {{ 'account.ordersLink'|trans|sw_sanitize }}
+    </a>
+
+    {# Tankstellenpartner24Theme: Schnellbestellung (SKU ile hızlı toplu sipariş) #}
+    <a href="{{ path('frontend.account.vapor.quick-order.page') }}"
+       title="Schnellbestellung"
+       class="list-group-item list-group-item-action account-aside-item vapor-acc-aside__item{% if activeRoute is same as('frontend.account.vapor.quick-order.page') %} is-active{% endif %}"
+       {% if activeRoute is same as('frontend.account.vapor.quick-order.page') %} aria-current="page"{% endif %}>
+        <span class="vapor-acc-aside__ico">{% sw_icon 'rocket' %}</span>
+        Schnellbestellung
+    </a>
+
+    {# Tankstellenpartner24Theme: En çok alınan ürünler (B2B hızlı tekrar sipariş) #}
+    <a href="{{ path('frontend.account.vapor.top-products.page') }}"
+       title="Meine Top-Produkte"
+       class="list-group-item list-group-item-action account-aside-item vapor-acc-aside__item{% if activeRoute is same as('frontend.account.vapor.top-products.page') %} is-active{% endif %}"
+       {% if activeRoute is same as('frontend.account.vapor.top-products.page') %} aria-current="page"{% endif %}>
+        <span class="vapor-acc-aside__ico">{% sw_icon 'chart-sales' %}</span>
+        Meine Top-Produkte
+    </a>
+
+    {# Tankstellenpartner24Theme: Rechnungen & Dokumente (faturalar/belgeler tek liste) #}
+    <a href="{{ path('frontend.account.vapor.documents.page') }}"
+       title="Rechnungen &amp; Dokumente"
+       class="list-group-item list-group-item-action account-aside-item vapor-acc-aside__item{% if activeRoute is same as('frontend.account.vapor.documents.page') %} is-active{% endif %}"
+       {% if activeRoute is same as('frontend.account.vapor.documents.page') %} aria-current="page"{% endif %}>
+        <span class="vapor-acc-aside__ico">{% sw_icon 'file' %}</span>
+        Rechnungen &amp; Dokumente
+    </a>
+{% endblock %}

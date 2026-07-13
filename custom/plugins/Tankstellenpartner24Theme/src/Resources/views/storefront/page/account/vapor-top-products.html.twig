@@ -1,0 +1,74 @@
+{% sw_extends '@Storefront/storefront/page/account/_page.html.twig' %}
+
+{# =====================================================================
+   Tankstellenpartner24Theme — "Meine Top-Produkte": müşterinin en çok aldığı ürünler.
+   B2B hızlı tekrar sipariş. vaporTopProducts = [{product, totalQuantity, orderCount}]
+   B2B login-gate: fiyat/sepet sadece girişli (zaten bu sayfa login-required).
+   ===================================================================== #}
+{% block page_account_main_content %}
+    {% set vaporLoggedIn = context.customer or context.extension('vioAgent') %}
+    <div class="account-welcome">
+        <h1>Meine Top-Produkte</h1>
+        <p>Ihre am häufigsten bestellten Artikel – mit einem Klick erneut in den Warenkorb.</p>
+    </div>
+
+    {% if vaporTopProducts is empty %}
+        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+            type: 'info',
+            content: 'Sie haben noch keine Produkte bestellt. Sobald Sie bestellen, erscheinen hier Ihre Favoriten.'
+        } %}
+    {% else %}
+        <div class="vapor-topprod">
+            {% for item in vaporTopProducts %}
+                {% set product = item.product %}
+                {% set pName = product.translated.name ?? product.name %}
+                {% set pBrand = product.manufacturer ? (product.manufacturer.translated.name ?? product.manufacturer.name) : '' %}
+                {% set pCover = product.cover.media ?? null %}
+                {% set pPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
+                {% set pUrl = path('frontend.detail.page', { productId: product.id }) %}
+
+                <div class="vapor-topprod__row">
+                    <a href="{{ pUrl }}" class="vapor-topprod__media">
+                        {% if pCover %}
+                            <img src="{{ pCover.url }}" alt="{{ pName }}" loading="lazy">
+                        {% else %}
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                        {% endif %}
+                    </a>
+
+                    <div class="vapor-topprod__info">
+                        {% if pBrand %}<span class="vapor-topprod__brand">{{ pBrand }}</span>{% endif %}
+                        <a href="{{ pUrl }}" class="vapor-topprod__name">{{ pName }}</a>
+                        <div class="vapor-topprod__stats">
+                            <span class="vapor-topprod__stat">{{ 'Bisher %qty%× bestellt'|replace({'%qty%': item.totalQuantity}) }}</span>
+                            <span class="vapor-topprod__stat vapor-topprod__stat--muted">in {{ item.orderCount }} Bestellung{{ item.orderCount > 1 ? 'en' : '' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="vapor-topprod__price">
+                        {% if vaporLoggedIn %}
+                            {{ pPrice.unitPrice|currency }}
+                            <small>inkl. MwSt.</small>
+                        {% endif %}
+                    </div>
+
+                    <div class="vapor-topprod__action">
+                        <form action="{{ path('frontend.checkout.line-item.add') }}" method="post" data-add-to-cart="true">
+                            <input type="hidden" name="redirectTo" value="frontend.cart.offcanvas">
+                            <input type="hidden" name="lineItems[{{ product.id }}][id]" value="{{ product.id }}">
+                            <input type="hidden" name="lineItems[{{ product.id }}][referencedId]" value="{{ product.id }}">
+                            <input type="hidden" name="lineItems[{{ product.id }}][type]" value="product">
+                            <input type="hidden" name="lineItems[{{ product.id }}][stackable]" value="1">
+                            <input type="hidden" name="lineItems[{{ product.id }}][removable]" value="1">
+                            <input type="hidden" name="lineItems[{{ product.id }}][quantity]" value="{{ product.minPurchase ?: 1 }}">
+                            <button type="submit" class="btn btn-primary btn-sm vapor-topprod__btn">
+                                {% sw_icon 'bag-product' %}
+                                <span>In den Warenkorb</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}

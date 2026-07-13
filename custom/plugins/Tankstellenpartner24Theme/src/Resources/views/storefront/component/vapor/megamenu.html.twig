@@ -1,0 +1,77 @@
+{# =====================================================================
+   Tankstellenpartner24Theme — Mega menü (sol kategori ağacı + hover'da açılan panel)
+   DİNAMİK: kategoriler canlı navigasyondan gelir (vaporNavTree =
+   page.extensions.vaporNavTree.tree, subscriber → NavigationLoader).
+   Her ana kategorinin gerçek alt kategorileri + SEO URL'leri kullanılır.
+   Sağ promo alanı theme_config'ten (Mega-Menü Bilder bloğu, loop.index).
+   Parametreler:
+     vaporNavTree (zorunlu) — TreeItem listesi (category + children)
+     activeId (opsiyonel) — aktif kategori vurgusu
+   ===================================================================== #}
+<nav class="vapor-mega" data-vapor-mega aria-label="Kategorien">
+    <ul class="vapor-mega__list">
+        {% for treeItem in vaporNavTree|default([]) %}
+            {% set cat = treeItem.category %}
+            {% set megaIdx = loop.index %}
+            {% set catName = cat.translated.name %}
+            {% set catUrl = cat.type == 'folder' ? '#' : (cat.seoUrl ?: seoUrl('frontend.navigation.page', { navigationId: cat.id })) %}
+            {% set children = treeItem.children|default([]) %}
+            {% set hasChildren = children|length > 0 %}
+            {% set isActive = (activeId is defined and activeId == cat.id) %}
+            <li class="vapor-mega__item{{ hasChildren ? ' has-children' : '' }}">
+                <a class="vapor-mega__link{{ isActive ? ' is-active' : '' }}" href="{{ catUrl }}">
+                    <span class="vapor-mega__name">{{ catName }}</span>
+                    {% if hasChildren %}<span class="vapor-mega__caret" aria-hidden="true">›</span>{% endif %}
+                </a>
+
+                {% if hasChildren %}
+                    <div class="vapor-mega__panel">
+                        <div class="vapor-mega__panel-head">
+                            <span class="vapor-mega__heading">{{ catName }}</span>
+                            <a href="{{ catUrl }}" class="vapor-mega__all">Alle anzeigen →</a>
+                        </div>
+                        <div class="vapor-mega__body">
+                            {# Sol: gerçek alt kategoriler (canlı navigasyondan).
+                               Alt kategorinin KENDİ alt kategorileri varsa (3. seviye),
+                               alt kategori adı GRUP BAŞLIĞI olur, altında çocukları listelenir. #}
+                            {# Bazı ana kategorilerde alt-alt kategoriler tek tek ÜRÜN gibi (Raucherbedarf:
+                               Tabakpfeifen/Feuerzeuge/Grinder altında düzinelerce model) → mega menüyü şişirir.
+                               Bu kategorilerde 3. seviyeyi GİZLE, sadece marka/kategori (2. seviye) göster. #}
+                            {% set hideSubcats = catName in ['Raucherbedarf'] %}
+                            {# Pods & Akkuträger çok yoğun (40+ marka) → 8 kolon #}
+                            {% set gridWide = catName in ['Pods & Akkuträger'] %}
+                            <div class="vapor-mega__grid{{ gridWide ? ' vapor-mega__grid--8' : '' }}">
+                                {% for childItem in children %}
+                                    {% set child = childItem.category %}
+                                    {% set childUrl = child.type == 'folder' ? '#' : (child.seoUrl ?: seoUrl('frontend.navigation.page', { navigationId: child.id })) %}
+                                    {% set grandChildren = hideSubcats ? [] : (childItem.children|default([])) %}
+                                    {% if grandChildren|length > 0 %}
+                                        {# 3 seviye: alt kategori = grup başlığı + alt-alt kategoriler.
+                                           Çok uzun grup (>10 alt kat, örn. Shisha 200 Gramm) → alt liste 2 kolona bölünür.
+                                           Bu grup TÜM panel genişliğini kaplasın diye is-wide (span-all). #}
+                                        {% set isBigGroup = grandChildren|length > 10 %}
+                                        <div class="vapor-mega__group{{ isBigGroup ? ' vapor-mega__group--wide' : '' }}">
+                                            <a href="{{ childUrl }}" class="vapor-mega__grouptitle">{{ child.translated.name }}</a>
+                                            <ul class="vapor-mega__sublist{{ isBigGroup ? ' vapor-mega__sublist--cols' : '' }}">
+                                                {% for gcItem in grandChildren %}
+                                                    {% set gc = gcItem.category %}
+                                                    {% set gcUrl = gc.type == 'folder' ? '#' : (gc.seoUrl ?: seoUrl('frontend.navigation.page', { navigationId: gc.id })) %}
+                                                    <li><a href="{{ gcUrl }}" class="vapor-mega__subcell">{{ gc.translated.name }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    {% else %}
+                                        {# 2 seviye: alt kategorinin çocuğu yok → düz link #}
+                                        <a href="{{ childUrl }}" class="vapor-mega__cell">{{ child.translated.name }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            {# Promo görsel alanı KALDIRILDI (kullanıcı: yoğun menüde görsele gerek yok,
+                               tüm genişlik kategorilere) #}
+                        </div>
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</nav>

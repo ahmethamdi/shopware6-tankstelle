@@ -1,0 +1,18 @@
+{
+  "name": "tankstellenpartner24/theme",
+  "description": "Theme skeleton plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Tankstellenpartner24Theme\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Tankstellenpartner24Theme\\Tankstellenpartner24Theme",
+    "label": {
+      "de-DE": "Tankstellenpartner 24 Theme",
+      "en-GB": "Tankstellenpartner 24 Theme"
+    }
+  }
+}
