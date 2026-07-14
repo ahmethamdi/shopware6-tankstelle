@@ -1420,7 +1420,7 @@ $vapor-radius: 12px;
         min-width: 0;
         display: flex;
         flex-direction: column;
-        gap: $tp-space-7; // bölümler arası nefes
+        gap: $tp-space-5; // bölümler arası nefes (daha sıkı ritim)
     }
 
     // Sidebar hâlâ config'ten açılırsa (opsiyonel) 2 kolona düş
@@ -1668,6 +1668,70 @@ $vapor-radius: 12px;
         b { font-size: .82rem; font-weight: 700; color: $vapor-color-ink; }
         small { font-size: .72rem; color: rgba($vapor-color-ink, 0.5); }
     }
+
+    // --- Sidebar'ı uzatan ek bloklar ---
+
+    // (a) Mini ürün listesi (Neu eingetroffen)
+    &__mini { margin: 1rem; padding-top: 1rem; border-top: 1px solid rgba($tp-ink, 0.07); }
+    &__mini-head {
+        font-family: $vapor-font-headline; font-weight: 700; font-size: .82rem;
+        text-transform: uppercase; letter-spacing: .04em; color: $tp-navy;
+        margin-bottom: .8rem;
+        display: flex; align-items: center; gap: $tp-space-2;
+        &::before { content: ""; width: 4px; height: 1em; background: $tp-primary; border-radius: 2px; }
+    }
+    &__mini-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
+    &__mini-item {
+        display: flex; align-items: center; gap: .7rem;
+        padding: .5rem; border-radius: $tp-radius; text-decoration: none;
+        transition: background $tp-transition;
+        &:hover { background: $tp-primary-soft; text-decoration: none;
+            .vapor-sidebar__mini-txt b { color: $tp-primary; } }
+    }
+    &__mini-img {
+        flex: 0 0 auto; width: 48px; height: 48px; border-radius: $tp-radius-sm;
+        background: #fff; border: 1px solid $tp-line; overflow: hidden;
+        display: grid; place-items: center; color: rgba($tp-navy, 0.25); padding: 3px;
+        img { width: 100%; height: 100%; object-fit: contain; }
+        svg { width: 18px; height: 18px; }
+    }
+    &__mini-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; line-height: 1.25;
+        b { font-size: .78rem; font-weight: 600; color: $tp-ink;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+            transition: color $tp-transition; }
+    }
+    &__mini-price { font-size: .8rem; font-weight: 700; color: $tp-primary;
+        &.is-login { color: $tp-muted; font-weight: 600; display: inline-flex; align-items: center; gap: 3px;
+            .icon { width: 12px; height: 12px; } .icon svg { color: $tp-muted; } }
+    }
+
+    // (b) İkinci promo görsel — img gerçek oranıyla dursun (sabit yükseklik yok)
+    &__promo--2 {
+        display: block; height: auto; padding: 0; overflow: hidden;
+        background: none; border-color: $tp-line;
+        img { display: block; width: 100%; height: auto; }
+        &[href] { transition: box-shadow $tp-transition, transform $tp-transition;
+            &:hover { box-shadow: $tp-shadow-md; transform: translateY(-2px); } }
+    }
+
+    // (c) B2B destek/iletişim kartı
+    &__support {
+        margin: 1rem; padding: 1rem;
+        display: flex; align-items: flex-start; gap: .75rem;
+        background: $tp-navy-soft; border: 1px solid $tp-line; border-radius: $tp-radius;
+    }
+    &__support-ico {
+        flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+        background: rgba($tp-primary, 0.12); display: grid; place-items: center;
+        .icon { width: 20px; height: 20px; } .icon svg { color: $tp-primary; }
+    }
+    &__support-txt { display: flex; flex-direction: column; line-height: 1.35; min-width: 0;
+        b { font-size: .82rem; font-weight: 700; color: $tp-navy; }
+    }
+    &__support-phone { font-size: .92rem; font-weight: 700; color: $tp-primary; text-decoration: none;
+        &:hover { text-decoration: underline; }
+    }
+    &__support-txt small { font-size: .72rem; color: $tp-muted; }
 }
 
 // Sağ kolon promo görsel kutuları (mockup'ta marka ikonları+banner sonrası 2 geniş kutu)
@@ -1712,7 +1776,7 @@ $vapor-radius: 12px;
 // --- Bölüm başlığı ---
 .vapor-section-head {
     display: flex; align-items: center; justify-content: space-between;
-    margin: $tp-space-6 0 $tp-space-5;
+    margin: 0 0 $tp-space-4;
     &__title {
         font-family: $vapor-font-headline; font-weight: 800; font-size: 1.5rem; margin: 0;
         color: $tp-navy; letter-spacing: -.01em;

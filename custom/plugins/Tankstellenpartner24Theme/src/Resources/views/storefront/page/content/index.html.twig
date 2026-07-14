@@ -158,6 +158,60 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
+
+                        {# --- Sidebar'ı uzatan ek bloklar (uzun anasayfada yarım kalmasın) --- #}
+
+                        {# (a) Mini "Neuheiten" ürün listesi — canlı ürünler, kompakt, B2B gate #}
+                        {% set sbNeu = page.extensions.vaporNeu.products ?? [] %}
+                        {% if sbNeu|length %}
+                            <div class="vapor-sidebar__mini">
+                                <div class="vapor-sidebar__mini-head">{{ theme_config('vapor-sidebar-mini-title') ?: 'Neu eingetroffen' }}</div>
+                                <ul class="vapor-sidebar__mini-list">
+                                    {% for product in sbNeu|slice(0, 3) %}
+                                        {% set mpName = product.translated.name ?? product.name %}
+                                        {% set mpCover = product.cover.media ?? null %}
+                                        {% set mpPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
+                                        {% set mpUrl = path('frontend.detail.page', { productId: product.id }) %}
+                                        <li>
+                                            <a href="{{ mpUrl }}" class="vapor-sidebar__mini-item">
+                                                <span class="vapor-sidebar__mini-img">
+                                                    {% if mpCover %}{% sw_thumbnails 'vapor-mini-img' with { media: mpCover, sizes: { default: '80px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                </span>
+                                                <span class="vapor-sidebar__mini-txt">
+                                                    <b>{{ mpName }}</b>
+                                                    {% if vaporLoggedIn %}
+                                                        <span class="vapor-sidebar__mini-price">{{ mpPrice.unitPrice|currency }}</span>
+                                                    {% else %}
+                                                        <span class="vapor-sidebar__mini-price is-login">{% sw_icon 'lock-closed' %} Login</span>
+                                                    {% endif %}
+                                                </span>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        {# (b) İkinci promo görsel kutusu (panelden) — boşsa gizli #}
+                        {% if theme_config('vapor-sidebar-promo2-img') %}
+                            {% set sbPromo2Link = theme_config('vapor-sidebar-promo2-link') %}
+                            {% set sbPromo2Tag = sbPromo2Link ? 'a' : 'div' %}
+                            <{{ sbPromo2Tag }} class="vapor-sidebar__promo vapor-sidebar__promo--2"{% if sbPromo2Link %} href="{{ sbPromo2Link }}"{% endif %}>
+                                <img src="{{ theme_config('vapor-sidebar-promo2-img') }}" alt="" loading="lazy">
+                            </{{ sbPromo2Tag }}>
+                        {% endif %}
+
+                        {# (c) B2B destek/iletişim kartı — telefon + saat (footer config'inden) #}
+                        {% if theme_config('vapor-footer-phone') or theme_config('vapor-footer-hours') %}
+                            <div class="vapor-sidebar__support">
+                                <span class="vapor-sidebar__support-ico">{% sw_icon 'headset' %}</span>
+                                <div class="vapor-sidebar__support-txt">
+                                    <b>{{ theme_config('vapor-sidebar-support-title') ?: 'Persönlicher B2B-Support' }}</b>
+                                    {% if theme_config('vapor-footer-phone') %}<a href="tel:{{ theme_config('vapor-footer-phone')|replace({' ': '', '(': '', ')': '', '-': ''}) }}" class="vapor-sidebar__support-phone">{{ theme_config('vapor-footer-phone') }}</a>{% endif %}
+                                    {% if theme_config('vapor-footer-hours') %}<small>{{ theme_config('vapor-footer-hours') }}</small>{% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
                     </aside>
                 {% endblock %}
                 {% endif %}

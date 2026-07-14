@@ -3476,6 +3476,62 @@
                 "scss": false,
                 "tab": "vaporTabSidebar"
             },
+            "vapor-sidebar-mini-title": {
+                "label": {
+                    "de-DE": "Mini-Produktliste: Titel",
+                    "en-GB": "Mini product list: title",
+                    "tr-TR": "Mini ürün listesi: başlık"
+                },
+                "type": "text",
+                "value": "Neu eingetroffen",
+                "editable": true,
+                "block": "vaporSidebar",
+                "order": 360,
+                "scss": false,
+                "tab": "vaporTabSidebar"
+            },
+            "vapor-sidebar-promo2-img": {
+                "label": {
+                    "de-DE": "Promo-Bild 2 (unten)",
+                    "en-GB": "Promo image 2 (bottom)",
+                    "tr-TR": "Promo görsel 2 (alt)"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporSidebar",
+                "order": 361,
+                "scss": false,
+                "tab": "vaporTabSidebar"
+            },
+            "vapor-sidebar-promo2-link": {
+                "label": {
+                    "de-DE": "Promo-Bild 2: Link",
+                    "en-GB": "Promo image 2: link",
+                    "tr-TR": "Promo görsel 2: link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporSidebar",
+                "order": 362,
+                "scss": false,
+                "tab": "vaporTabSidebar"
+            },
+            "vapor-sidebar-support-title": {
+                "label": {
+                    "de-DE": "Support-Karte: Titel",
+                    "en-GB": "Support card: title",
+                    "tr-TR": "Destek kartı: başlık"
+                },
+                "type": "text",
+                "value": "Persönlicher B2B-Support",
+                "editable": true,
+                "block": "vaporSidebar",
+                "order": 363,
+                "scss": false,
+                "tab": "vaporTabSidebar"
+            },
             "vapor-usp-1-title": {
                 "label": {
                     "de-DE": "USP 1 Titel",
