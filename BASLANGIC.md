@@ -31,6 +31,18 @@ nohup env PHP_CLI_SERVER_WORKERS=16 \
 > `public/dev-router.php` statik CSS/JS servis eder (yoksa /theme/*.css 404 → çıplak HTML).
 > Bu dosya `.gitignore`'da (dev-only), repoda yok — Vapor'dan kopyalandı, dursun.
 
+### Ağ paylaşımı (LAN — aynı Wi-Fi'daki cihazlar görsün)
+LAN IP: **192.168.1.37** (değişebilir → `ipconfig getifaddr en0`). `0.0.0.0`'da dinlet + APP_URL LAN IP:
+```bash
+nohup env PHP_CLI_SERVER_WORKERS=16 \
+  DATABASE_URL="mysql://root@127.0.0.1:3307/shopware_tp24" \
+  APP_URL="http://192.168.1.37:18600" APP_ENV=prod \
+  php -d memory_limit=1G -S 0.0.0.0:18600 -t public public/dev-router.php \
+  > /tmp/tp24-server-lan.log 2>&1 &
+```
+> LAN IP Shopware sales_channel_domain'e eklendi (`http://192.168.1.37:18600`) → yoksa HTTP 400.
+> `127.0.0.1:18600` domain'i de duruyor. Erişim: **http://192.168.1.37:18600** (18+ yaş kapısı çıkar).
+
 ### Her tema/config değişikliğinden SONRA (Vapor'daki gibi ŞART)
 ```bash
 export DATABASE_URL="mysql://root@127.0.0.1:3307/shopware_tp24" APP_URL="http://127.0.0.1:18600" APP_ENV=prod
@@ -67,26 +79,29 @@ Doğru yön: e-sigara içeriği + TP24 markası (turuncu) + **Vapor'dan görsel 
 - Shopware 6.7 kurulu + çalışıyor. Anasayfa + admin **HTTP 200**. Git push'lu (`main`).
 - **Font:** Montserrat (Gotham geçici alternatifi). overrides.scss + theme.json `vapor-font-*` + core `sw-font-family-base/headline`.
 - **Logo:** Kullanıcı gerçek logoyu admin `sw-logo-desktop`'a yükledi (damla+pompa+TANKSTELLEN PARTNER 24). Yedek: SVG placeholder `bundles/tankstellenpartner24theme/logo/tp24-logo.svg` (gerçeğe sadık). Renkler: turuncu `#E1523D` + lacivert `#13365A` + mavi `#005984`.
-- **REDESIGN (modern B2B/kurumsal, Vapor'dan ayrı) — 8 commit push'lu:**
+- **REDESIGN (modern B2B/kurumsal, Vapor'dan ayrı) — 15 commit ("Redesign N/N"), main'de:**
   - Tasarım sistemi: `overrides.scss`'te TP24 token'ları (`$tp-*`: renk/spacing/gölge/radius). base.scss `:root`'ta CSS değişkenleri.
-  - **Header** (`layout/header/header.html.twig` + `.tp-header`): lacivert USP üst şeridi + logo + geniş açık arama + temiz aksiyon ikonları + turuncu "Jetzt registrieren" CTA. Navbar sade kısayol (mega menü KALDIRILDI, kategoriler sidebar'da).
+  - **Header** (`layout/header/header.html.twig` + `.tp-header`): **TAM GENİŞLİK** — arka planlar (USP şeridi + navbar) edge-to-edge, İÇERİK container'da (`$tp-container-max`, sayfa gövdesiyle hizalı). Turuncu bant kaldırıldı → beyaz header. `.header-main > .container` full-width, iç container'lar container-width. Logo 60px, header 104px.
   - **Hero** (`.vapor-hero`): lacivert gradient zemin + turuncu vurgu/CTA + eyebrow rozeti.
-  - **Sidebar** korundu (çok menü için, kullanıcı isteği): modern lacivert başlık + kategori mega menü.
-  - Kartlar/deals/promo hep token diline çekildi (deals siyah→lacivert, promo mor→lacivert).
-  - **3 YENİ panel-driven bölüm** (sıralama motoruna eklendi — `index.html.twig` `vaporSecDefs`):
-    1. **pills** (order 5): yuvarlak-ikonlu kategori kısayol şeridi (`.vapor-pills`)
-    2. **bento** (order 15): 1 büyük+4 kart bento grid + 6 kısayol kartı (`.vapor-bento`/`.vapor-shortcuts`, theme.json `vapor-bento-*` demo dolu)
-    3. **catslider** (order 18): "Nach Kategorie einkaufen" büyük+3 mozaik görselli kayan kategori kartları (`.vapor-catslider`/`.vapor-catcard`)
+  - **Sidebar** (korundu + UZATILDI): kategori mega menü + promo + CTA + USP + **NEU EINGETROFFEN** mini ürün listesi (canlı) + **B2B-Support** kartı (tel/saat) + **IHRE VORTEILE** alt alta 3 kompakt kart (`.vapor-sidebar__vt-card`).
+  - Kartlar/deals/promo/**footer** hep token diline çekildi (footer açık-gri Vapor → kurumsal lacivert; newsletter lime→turuncu).
+  - **Bölümler** (`index.html.twig` `vaporSecDefs` sıralama motoru, hepsi panel-driven):
+    - pills(5), bento(15) [marka kısayol şeridi KALDIRILDI], catslider(18)
+    - **promoduo(19)**: sol lacivert promo kart + sağda 2'li Neuheiten slider (`.vapor-promoduo`)
+    - **Deals des Tages(50)**: GERÇEK ürün kartları + günlük rotasyon (day-of-year 'z' ofset) + gece yarısına sayan ortak sayaç (`data-vapor-daily-countdown`, 00:00'da JS reload) + yatay scroll + turuncu "Deal des Tages" ribbon.
+    - neu(70), bestseller(90), b2b(110). **Section boşluk** sıkılaştırıldı ($tp-space-5).
+  - **Slider okları**: `sw_icon 'chevron-*'` (public/theme'de yok, boş görünüyordu) → inline SVG chevron. Genel `data-vapor-slide` prev/next JS handler (main.js).
+  - **KALDIRILAN** (kullanıcı isteği): Top-Marken marka şeridi + kampanya banner ('POWERED BY ELFBAR') + Angebote slider + alt Top-Marken logo slider (hepsi `-show=false` veya Twig'den çıkarıldı).
 - **Kategori ağacı KURULDU** (9 ana + 39 alt, vapor-handel.de yapısı) → sidebar/pill/menü/catslider dolu.
 - **14 demo ürün** eklendi (ELFBAR/LOST MARY/AL FAKHER vb.) → Neuheiten/Bestseller/Deals dolu.
 - Katalog kurma scriptleri: `scratchpad/build-cats.php`, `build-products.php` (idempotent, DB'ye yazar).
+- **Ağ paylaşımı hazır**: LAN IP `192.168.1.37:18600` sales_channel_domain'e eklendi, `0.0.0.0`'da dinletince ağdakiler görür (bkz. yukarı "Ağ paylaşımı").
 
 ## ⏭️ Sıradaki işler (kaldığımız yer)
 
-- [ ] **YENİ BÖLÜM 4:** sol büyük promo kart + sağda 2 ürün slider'ı (referans görselleri kullanıcıda). Ürün verisi artık var.
-- [ ] **Footer redesign** (kurumsal, temiz — token diline çek).
-- [ ] **Mobil uyumluluk** kontrolü (tüm yeni bölümler responsive yazıldı ama test edilmeli).
-- [ ] **Görseller:** bento/catslider/hero/ürün kartları placeholder — admin'den görsel yüklenince dolacak.
+- [ ] **Mobil uyumluluk** tam tur kontrolü (Bölüm 4 + footer test edildi; kalan bölümler responsive yazıldı ama tek tek gözden geçirilmeli).
+- [ ] **Görseller:** bento/catslider/hero/ürün/promoduo-bg/footer-trust placeholder — admin'den yüklenince dolacak.
+- [ ] "ALLE KATEGORIEN" sidebar başlığı turuncu görünüyor (base.scss'te 2 `.vapor-sidebar__head` tanımı var, 2.si -orange- kazanıyor) — istenirse laciverte çekilebilir.
 - [ ] Gerekirse VioRepresentativeLogin (B2B temsilci girişi).
 
 ### Ekran görüntüsü alma (age gate'i geç)
