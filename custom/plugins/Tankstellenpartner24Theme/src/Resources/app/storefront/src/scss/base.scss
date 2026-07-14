@@ -1087,18 +1087,20 @@ $vapor-radius: 12px;
 
 // --- Promo banner ---
 .vapor-campaign {
-    display: flex; align-items: center; gap: 1rem;
-    background: #fff;
-    border: 1px solid rgba($sw-color-brand-primary, 0.12);
-    border-radius: $vapor-radius; padding: 1rem 1.5rem; margin-bottom: 1.5rem;
-    text-decoration: none; transition: box-shadow .15s ease, border-color .15s ease;
-    &:hover { box-shadow: 0 8px 22px rgba($sw-color-brand-primary, 0.18); border-color: rgba($sw-color-brand-primary, 0.3); text-decoration: none; }
+    display: flex; align-items: center; gap: $tp-space-4;
+    background: $tp-surface;
+    border: 1px solid $tp-line;
+    border-left: 4px solid $tp-primary;
+    border-radius: $tp-radius; padding: $tp-space-4 $tp-space-5; margin-bottom: $tp-space-5;
+    box-shadow: $tp-shadow-xs;
+    text-decoration: none; transition: box-shadow $tp-transition, border-color $tp-transition;
+    &:hover { box-shadow: $tp-shadow-md; text-decoration: none; }
     &__brand {
         font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
-        color: #fff; background: linear-gradient(135deg, #7C4DFF, #E040FB);
-        padding: .35rem .7rem; border-radius: 999px; white-space: nowrap;
+        color: #fff; background: $tp-navy;
+        padding: .35rem .7rem; border-radius: $tp-radius-pill; white-space: nowrap;
     }
-    &__text { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.2rem; color: #7C4DFF; }
+    &__text { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.2rem; color: $tp-navy; }
 }
 
 // --- Gövde: sidebar (sol) + içerik (sağ) — container'da (1600), hero altında ---
@@ -1518,23 +1520,24 @@ $vapor-radius: 12px;
     @media (max-width: 767.98px) { grid-template-columns: repeat(2, 1fr); }
 }
 .vapor-cattile {
-    display: flex; align-items: center; gap: .9rem;
-    background: #fff; border: 1px solid rgba($vapor-color-ink, 0.08);
-    border-radius: $vapor-radius; padding: .85rem 1rem; text-decoration: none;
-    color: $vapor-color-ink;
-    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-    &:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba($sw-color-brand-primary, 0.14);
-        border-color: rgba($sw-color-brand-primary, 0.35); text-decoration: none; color: $sw-color-brand-primary;
-        .vapor-cattile__img { background: rgba($sw-color-brand-primary, 0.16); } }
+    display: flex; align-items: center; gap: $tp-space-3;
+    background: $tp-surface; border: 1px solid $tp-line;
+    border-radius: $tp-radius; padding: $tp-space-3 $tp-space-4; text-decoration: none;
+    color: $tp-ink;
+    box-shadow: $tp-shadow-xs;
+    transition: transform $tp-transition, box-shadow $tp-transition, border-color $tp-transition;
+    &:hover { transform: translateY(-3px); box-shadow: $tp-shadow-md;
+        border-color: rgba($tp-primary, 0.35); text-decoration: none; color: $tp-primary;
+        .vapor-cattile__img { background: $tp-primary; color: #fff; } }
     &__img {
-        flex: 0 0 auto; width: 56px; height: 56px; border-radius: 12px;
-        background: rgba($sw-color-brand-primary, 0.1);
-        display: grid; place-items: center; color: rgba($sw-color-brand-primary, 0.55);
-        transition: background .15s ease;
-        overflow: hidden;   // görsel radius dışına taşmasın
-        svg { width: 26px; height: 26px; }
+        flex: 0 0 auto; width: 52px; height: 52px; border-radius: $tp-radius-sm;
+        background: $tp-primary-soft;
+        display: grid; place-items: center; color: $tp-primary;
+        transition: background $tp-transition, color $tp-transition;
+        overflow: hidden;
+        svg { width: 24px; height: 24px; }
     }
-    &__name { font-weight: 700; font-size: .92rem; }
+    &__name { font-weight: 600; font-size: .92rem; }
 }
 
 // =====================================================================
@@ -1910,17 +1913,18 @@ $vapor-radius: 12px;
 // Slider içindeki ürün kartı (Bestseller kartıyla aynı dil)
 .vapor-pcard {
     position: relative; flex: 0 0 auto; width: 230px;
-    background: #fff; border: 1px solid rgba($vapor-color-ink, 0.08);
-    border-radius: $vapor-radius; padding: .9rem;
-    transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+    background: $tp-surface; border: 1px solid $tp-line;
+    border-radius: $tp-radius; padding: $tp-space-3;
+    box-shadow: $tp-shadow-xs;
+    transition: box-shadow $tp-transition, transform $tp-transition, border-color $tp-transition;
     // Kart artık <a> (tüm karta tıklanır) — link görünümünü sıfırla
     text-decoration: none; color: inherit; display: block;
     &:hover { text-decoration: none; color: inherit; }
-    &:hover { box-shadow: 0 10px 28px rgba($sw-color-brand-primary, 0.16); transform: translateY(-4px);
-        border-color: rgba($sw-color-brand-primary, 0.3); }
+    &:hover { box-shadow: $tp-shadow-lg; transform: translateY(-4px);
+        border-color: rgba($tp-primary, 0.35); }
     &__badge { position: absolute; top: .75rem; left: .75rem; z-index: 2;
-        background: $sw-color-brand-primary; color: #fff; font-size: .66rem; font-weight: 700;
-        padding: .25rem .6rem; border-radius: 999px; }
+        background: $tp-primary; color: #fff; font-size: .66rem; font-weight: 700;
+        padding: .25rem .6rem; border-radius: $tp-radius-pill; }
     &__age { position: absolute; top: 2.5rem; left: .75rem; z-index: 2;
         background: $vapor-color-sale; color: #fff; font-size: .62rem; font-weight: 800;
         width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; }
@@ -1940,12 +1944,13 @@ $vapor-radius: 12px;
         color: rgba($vapor-color-ink, 0.5); }
     &__name { font-weight: 700; font-size: .88rem; line-height: 1.3; min-height: 2.3em; margin-bottom: .6rem; }
     &__foot { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
-    &__price { font-weight: 700; font-size: 1.05rem; color: $vapor-color-ink; }
-    &__add { width: 38px; height: 38px; border: none; border-radius: 50%;
-        background: $vapor-color-ink; color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer;
+    &__price { font-weight: 800; font-size: 1.05rem; color: $tp-navy; }
+    &__add { width: 38px; height: 38px; border: none; border-radius: $tp-radius-sm;
+        background: $tp-primary; color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer;
         display: grid; place-items: center;
-        transition: background .15s ease, transform .15s ease;
-        &:hover { background: $sw-color-brand-primary; transform: scale(1.08); } }
+        box-shadow: 0 2px 8px rgba($tp-primary, 0.3);
+        transition: background $tp-transition, transform $tp-transition;
+        &:hover { background: $tp-primary-dark; transform: scale(1.08); } }
 }
 
 // Bestseller grid (gerçek ürünler — subscriber'dan). Kartlar tam genişlikte aksın.
