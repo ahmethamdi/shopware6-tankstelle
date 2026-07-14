@@ -112,9 +112,9 @@ h1, h2, h3, h4, h5, h6,
     display: flex;
     align-items: center;
     gap: $tp-space-5;
-    min-height: 88px;
-    padding-top: $tp-space-3;
-    padding-bottom: $tp-space-3;
+    min-height: 104px;
+    padding-top: $tp-space-4;
+    padding-bottom: $tp-space-4;
 }
 
 .tp-header__burger {
@@ -137,8 +137,8 @@ h1, h2, h3, h4, h5, h6,
     align-items: center;
     .header-logo-main { text-align: left; }
     img, picture { display: block; }
-    .header-logo-main-img { height: 52px; width: auto; max-width: 260px; }
-    @media (max-width: 991px) { .header-logo-main-img { height: 40px; } }
+    .header-logo-main-img { height: 60px; width: auto; max-width: 280px; }
+    @media (max-width: 991px) { .header-logo-main-img { height: 42px; } }
 }
 
 // ---- Ortada geniş açık arama çubuğu ----
@@ -429,10 +429,12 @@ h1, h2, h3, h4, h5, h6,
 // ==================================================
 
 .header-main {
-    // Mavi tam genişlik bant; alttan boşluk YOK, içerik hemen yapışsın
-    background: $sw-color-brand-primary;
-    padding-top: .75rem;
-    padding-bottom: .75rem;
+    // REDESIGN: turuncu bant KALDIRILDI → tam genişlik beyaz header.
+    // USP şeridi (.vapor-info-bar, lacivert) + beyaz .tp-header + lacivert navbar
+    // hepsi bu wrapper'ın edge-to-edge çocukları. Orange bleed yok.
+    background: $tp-surface;
+    padding-top: 0;
+    padding-bottom: 0;
 
     // Header içeriği max 1600 (kullanıcı isteği)
     .container { max-width: 1600px; }
@@ -1201,7 +1203,11 @@ $vapor-radius: 12px;
     &__name { font-size: .82rem; font-weight: 600; line-height: 1.2; }
     &__arrow { position: absolute; top: $tp-space-2; right: $tp-space-3; color: $tp-muted; font-size: 1.1rem;
         transition: color $tp-transition, transform $tp-transition; }
+    // Marka rozeti: logo yoksa baş-harfler (brandnav ile aynı dil)
+    &__initials { font-family: $vapor-font-headline; font-weight: 700; font-size: 1rem; letter-spacing: .01em; }
 }
+// Marka kısayolları başlığı — bento kısayol şeridinin hemen üstünde ferah dursun
+.vapor-shortcuts-head { margin-top: $tp-space-5; margin-bottom: 0; }
 
 /* ---- YENİ: Kategori slider (büyük + 3 küçük mozaik kartlar) ---- */
 .vapor-catslider {
@@ -3540,7 +3546,7 @@ body.vapor-age-gate--open { overflow: hidden !important; touch-action: none; }
     // Cookie banner taşmasını da sınırla
     .cookie-permission-container { max-width: 100%; overflow-x: hidden; }
 
-    .header-main { padding: .6rem 0; }
+    .header-main { padding: 0; }
     .vapor-header-pill { padding: .45rem .6rem; border-radius: 14px; }
 
     // Satır: 3 zon (sol toggle | orta logo | sağ aksiyon), sarma yok, dikey ortalı

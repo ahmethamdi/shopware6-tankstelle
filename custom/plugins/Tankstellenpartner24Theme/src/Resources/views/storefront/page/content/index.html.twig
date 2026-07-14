@@ -282,10 +282,16 @@
                                 </div>
                             {% endif %}
                             {% if bentoShorts|length > 0 %}
+                                {# Marka kısayolları (kategori pill şeridiyle tekrar ETMESİN diye
+                                   ayrı başlık + marka baş-harfi rozeti). Logo yüklenirse img kullanılır. #}
+                                {% set bentoShortsTitle = theme_config('vapor-bento-shorts-title') ?: 'Top-Marken' %}
+                                <div class="vapor-section-head vapor-shortcuts-head">
+                                    <h2 class="vapor-section-head__title">{{ bentoShortsTitle }}</h2>
+                                </div>
                                 <div class="vapor-shortcuts">
                                     {% for sc in bentoShorts %}
-                                        <a href="{{ sc.link ?: '#' }}" class="vapor-shortcut">
-                                            <span class="vapor-shortcut__ico">{% if sc.icon %}<img src="{{ sc.icon }}" alt="" loading="lazy">{% else %}{% sw_icon 'tags' %}{% endif %}</span>
+                                        <a href="{{ sc.link ?: '#' }}" class="vapor-shortcut vapor-shortcut--brand">
+                                            <span class="vapor-shortcut__ico">{% if sc.icon %}<img src="{{ sc.icon }}" alt="{{ sc.name }}" loading="lazy">{% else %}<b class="vapor-shortcut__initials">{{ sc.name|split(' ')|map(w => w|first)|join('')|slice(0, 2)|upper }}</b>{% endif %}</span>
                                             <span class="vapor-shortcut__name">{{ sc.name }}</span>
                                             <span class="vapor-shortcut__arrow" aria-hidden="true">›</span>
                                         </a>

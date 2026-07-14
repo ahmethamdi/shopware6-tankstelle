@@ -6581,6 +6581,19 @@
                 "tab": "vaporTabHome",
                 "scss": false
             },
+            "vapor-bento-shorts-title": {
+                "label": {
+                    "de-DE": "Marken-Shortcuts: Titel",
+                    "en-GB": "Brand shortcuts: title",
+                    "tr-TR": "Marka kısayolları: başlık"
+                },
+                "type": "text",
+                "value": "Top-Marken",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
             "vapor-bento-short-1-name": {
                 "label": {
                     "de-DE": "Shortcut 1 Name",
@@ -6588,7 +6601,7 @@
                     "tr-TR": "Shortcut 1 Name"
                 },
                 "type": "text",
-                "value": "E-Zigaretten & Vapes",
+                "value": "ELFBAR",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6601,7 +6614,7 @@
                     "tr-TR": "Shortcut 1 Link"
                 },
                 "type": "text",
-                "value": "/E-Zigaretten-Vapes/",
+                "value": "/search?search=ELFBAR",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6627,7 +6640,7 @@
                     "tr-TR": "Shortcut 2 Name"
                 },
                 "type": "text",
-                "value": "Pods & Akkuträger",
+                "value": "LOST MARY",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6640,7 +6653,7 @@
                     "tr-TR": "Shortcut 2 Link"
                 },
                 "type": "text",
-                "value": "/Pods-Akkutraeger/",
+                "value": "/search?search=LOST%20MARY",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6666,7 +6679,7 @@
                     "tr-TR": "Shortcut 3 Name"
                 },
                 "type": "text",
-                "value": "Liquids",
+                "value": "AL FAKHER",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6679,7 +6692,7 @@
                     "tr-TR": "Shortcut 3 Link"
                 },
                 "type": "text",
-                "value": "/Liquids/",
+                "value": "/search?search=AL%20FAKHER",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6705,7 +6718,7 @@
                     "tr-TR": "Shortcut 4 Name"
                 },
                 "type": "text",
-                "value": "Aromen",
+                "value": "VOZOL",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6718,7 +6731,7 @@
                     "tr-TR": "Shortcut 4 Link"
                 },
                 "type": "text",
-                "value": "/Aromen/",
+                "value": "/search?search=VOZOL",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6744,7 +6757,7 @@
                     "tr-TR": "Shortcut 5 Name"
                 },
                 "type": "text",
-                "value": "Shisha",
+                "value": "SKE",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6757,7 +6770,7 @@
                     "tr-TR": "Shortcut 5 Link"
                 },
                 "type": "text",
-                "value": "/Shisha/",
+                "value": "/search?search=SKE",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6783,7 +6796,7 @@
                     "tr-TR": "Shortcut 6 Name"
                 },
                 "type": "text",
-                "value": "Aktionen",
+                "value": "ELFLIQ",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
@@ -6796,7 +6809,7 @@
                     "tr-TR": "Shortcut 6 Link"
                 },
                 "type": "text",
-                "value": "/Aktionen/",
+                "value": "/search?search=ELFLIQ",
                 "editable": true,
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
