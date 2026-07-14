@@ -56,22 +56,42 @@ Build (JS+SCSS birlikte): `bash bin/build-storefront.sh` (Vapor'daki gibi).
 
 ---
 
+## ⚠️ ÖNEMLİ KEŞİF (2026-07-14)
+**TP24 AKARYAKIT DEĞİL — Vapor ile AYNI iş: e-sigara/vape B2B toptancısı!**
+Gerçek tankstellenpartner24.de bir e-sigara/vape B2B sitesi (isim yanıltıcı). Menüler
+vapor-handel.de'nin AYNISI. 13 Temmuz'daki "akaryakıt" içerik çevirisi YANLIŞTI, geri alındı.
+Doğru yön: e-sigara içeriği + TP24 markası (turuncu) + **Vapor'dan görsel olarak farklı özgün tasarım**.
+
 ## ✅ Şu an hazır olan
 
-- Shopware 6.7 kurulu + çalışıyor (252 tablo, admin/shopware).
-- TP24 teması **kurulu + aktif + Storefront'a atanmış + compile'lı**.
-- Anasayfa + admin **HTTP 200**, turuncu renkler doğrulandı (CSS'te #E1523D 311 kez, mavi 0).
-- Git repo bağlı, push'lu (`main`).
-- **Font:** Montserrat (Gotham geçici alternatifi). 3 katmanda: overrides.scss + theme.json `vapor-font-*` + core `sw-font-family-base/headline`. Gerçek Gotham için base.scss'te hazır @font-face yorum bloğu var.
-- **Logo + favicon:** marka renklerinde SVG placeholder (damla + pompa). `bundles/tankstellenpartner24theme/logo/` → header (`layout/header/logo.html.twig`) + favicon (`layout/meta.html.twig`). Admin'e gerçek logo yüklenince otomatik ona düşer.
-- **İçerik TP24 akaryakıt B2B'ye uyarlandı:** 18+ yaş kapısı tamamen kaldırıldı (age gate + ürün kartı rozetleri + footer). ~50 theme.json value çevrildi (Kraftstoffe & AdBlue, Schmierstoffe, Autopflege, Technik & Zubehör, Merchandise & POS). VaporShop/ELFBAR/LOST MARY/Pods/Aromen → nötr akaryakıt kategorileri. E-posta → info@tankstellenpartner24.de.
+- Shopware 6.7 kurulu + çalışıyor. Anasayfa + admin **HTTP 200**. Git push'lu (`main`).
+- **Font:** Montserrat (Gotham geçici alternatifi). overrides.scss + theme.json `vapor-font-*` + core `sw-font-family-base/headline`.
+- **Logo:** Kullanıcı gerçek logoyu admin `sw-logo-desktop`'a yükledi (damla+pompa+TANKSTELLEN PARTNER 24). Yedek: SVG placeholder `bundles/tankstellenpartner24theme/logo/tp24-logo.svg` (gerçeğe sadık). Renkler: turuncu `#E1523D` + lacivert `#13365A` + mavi `#005984`.
+- **REDESIGN (modern B2B/kurumsal, Vapor'dan ayrı) — 8 commit push'lu:**
+  - Tasarım sistemi: `overrides.scss`'te TP24 token'ları (`$tp-*`: renk/spacing/gölge/radius). base.scss `:root`'ta CSS değişkenleri.
+  - **Header** (`layout/header/header.html.twig` + `.tp-header`): lacivert USP üst şeridi + logo + geniş açık arama + temiz aksiyon ikonları + turuncu "Jetzt registrieren" CTA. Navbar sade kısayol (mega menü KALDIRILDI, kategoriler sidebar'da).
+  - **Hero** (`.vapor-hero`): lacivert gradient zemin + turuncu vurgu/CTA + eyebrow rozeti.
+  - **Sidebar** korundu (çok menü için, kullanıcı isteği): modern lacivert başlık + kategori mega menü.
+  - Kartlar/deals/promo hep token diline çekildi (deals siyah→lacivert, promo mor→lacivert).
+  - **3 YENİ panel-driven bölüm** (sıralama motoruna eklendi — `index.html.twig` `vaporSecDefs`):
+    1. **pills** (order 5): yuvarlak-ikonlu kategori kısayol şeridi (`.vapor-pills`)
+    2. **bento** (order 15): 1 büyük+4 kart bento grid + 6 kısayol kartı (`.vapor-bento`/`.vapor-shortcuts`, theme.json `vapor-bento-*` demo dolu)
+    3. **catslider** (order 18): "Nach Kategorie einkaufen" büyük+3 mozaik görselli kayan kategori kartları (`.vapor-catslider`/`.vapor-catcard`)
+- **Kategori ağacı KURULDU** (9 ana + 39 alt, vapor-handel.de yapısı) → sidebar/pill/menü/catslider dolu.
+- **14 demo ürün** eklendi (ELFBAR/LOST MARY/AL FAKHER vb.) → Neuheiten/Bestseller/Deals dolu.
+- Katalog kurma scriptleri: `scratchpad/build-cats.php`, `build-products.php` (idempotent, DB'ye yazar).
 
-## ⏭️ Sıradaki işler (yarın devam)
+## ⏭️ Sıradaki işler (kaldığımız yer)
 
-- [ ] **Kategori tekrarlarını çeşitlendir** (kozmetik): birkaç theme.json alanı aynı jenerik isme düştü (2× "Shop & Convenience", 2× "Autopflege", 2× "Merchandise & POS"). Demo daha çeşitli görünsün istersen farklılaştır.
-- [ ] **Ana navigasyon menüsü + kategori sayfaları:** hâlâ eski demo katalog kategorilerinden geliyor (tema değil, **admin → Katalog** işi). Gerçek TP24 kategori ağacını kur.
-- [ ] **Gerçek logo & Gotham fontu** gelince bağla (placeholder'lar yerine).
-- [ ] Gerekirse VioRepresentativeLogin kur (B2B temsilci girişi istenirse).
+- [ ] **YENİ BÖLÜM 4:** sol büyük promo kart + sağda 2 ürün slider'ı (referans görselleri kullanıcıda). Ürün verisi artık var.
+- [ ] **Footer redesign** (kurumsal, temiz — token diline çek).
+- [ ] **Mobil uyumluluk** kontrolü (tüm yeni bölümler responsive yazıldı ama test edilmeli).
+- [ ] **Görseller:** bento/catslider/hero/ürün kartları placeholder — admin'den görsel yüklenince dolacak.
+- [ ] Gerekirse VioRepresentativeLogin (B2B temsilci girişi).
+
+### Ekran görüntüsü alma (age gate'i geç)
+Age gate localStorage anahtarı `vapor_age_verified`. playwright-cli ile:
+`npx --yes --package @playwright/cli@latest playwright-cli open <url>` → `eval "localStorage.setItem('vapor_age_verified','1')"` → `goto <url>` → `screenshot`.
 
 ## 📝 Vapor referansı
 Vapor projesi hâlâ duruyor: `/Applications/XAMPP/xamppfiles/htdocs/Shopware6` (tema `custom/plugins/VaporTheme`).
