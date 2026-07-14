@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82871b204f1e34e249aed8dc2779fb5a",
+    "content-hash": "ecdc33be921aec87ff673813bad02622",
     "packages": [
         {
             "name": "async-aws/core",
@@ -6337,6 +6337,75 @@
             "time": "2026-07-07T07:46:15+00:00"
         },
         {
+            "name": "shopware/paypal-sdk",
+            "version": "v1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shopware/paypal-sdk.git",
+                "reference": "eb107c25eadf35e55ee0ef9da17758256fca28ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shopware/paypal-sdk/zipball/eb107c25eadf35e55ee0ef9da17758256fca28ed",
+                "reference": "eb107c25eadf35e55ee0ef9da17758256fca28ed",
+                "shasum": ""
+            },
+            "require": {
+                "php-http/discovery": "^1.20",
+                "psr/http-client": "^1.0",
+                "psr/http-client-implementation": "^1.0",
+                "psr/http-factory": "^1.1",
+                "psr/simple-cache": "^3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.75",
+                "guzzlehttp/psr7": "^2.7",
+                "kubawerlos/php-cs-fixer-custom-fixers": "^3.24",
+                "monolog/monolog": "^3.9",
+                "php-http/guzzle7-adapter": "^1.1",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan": "^2.1",
+                "phpstan/phpstan-phpunit": "^2.0",
+                "phpstan/phpstan-strict-rules": "^2.0",
+                "phpunit/phpunit": "^11.5",
+                "roave/backward-compatibility-check": "^8.13",
+                "symplify/phpstan-rules": "^14.5",
+                "zircote/swagger-php": "^5.0"
+            },
+            "suggest": {
+                "guzzlehttp/psr7": "HTTP client implementation",
+                "php-http/guzzle7-adapter": "HTTP client implementation"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shopware\\PayPalSDK\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "shopware AG",
+                    "email": "info@shopware.com",
+                    "role": "Owner"
+                },
+                {
+                    "name": "cyl3x",
+                    "email": "cyl3x@posteo.de",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "SDK to communicate with the PayPal API",
+            "support": {
+                "issues": "https://github.com/shopware/paypal-sdk/issues",
+                "source": "https://github.com/shopware/paypal-sdk/tree/v1.7.1"
+            },
+            "time": "2026-06-25T08:33:08+00:00"
+        },
+        {
             "name": "shopware/storefront",
             "version": "v6.7.12.1",
             "source": {
@@ -6578,6 +6647,129 @@
                 "source": "https://github.com/squirrelphp/twig-php-syntax/tree/v1.13"
             },
             "time": "2025-05-03T06:37:30+00:00"
+        },
+        {
+            "name": "swag/paypal",
+            "version": "10.7.0",
+            "dist": {
+                "type": "path",
+                "url": "custom/plugins/SwagPayPal",
+                "reference": "70b6190b9c5da29eed6a2db6b590b1af59394a86"
+            },
+            "require": {
+                "shopware/core": "~6.7.0@dev",
+                "shopware/paypal-sdk": "^1.7.1"
+            },
+            "suggest": {
+                "shopware/administration": "Require '*'. Allows you to to set up the plugin easily",
+                "shopware/storefront": "Require '*'. Enables special payment features like 'Smart Payment Buttons' or 'Express Checkout'"
+            },
+            "type": "shopware-platform-plugin",
+            "extra": {
+                "shopware-plugin-class": "Swag\\PayPal\\SwagPayPal",
+                "copyright": "(c) by shopware AG",
+                "label": {
+                    "de-DE": "PayPal-Produkte für Shopware 6",
+                    "en-GB": "PayPal Products for Shopware 6"
+                },
+                "description": {
+                    "de-DE": "Bieten Sie Ihren Kunden Deutschlands beliebteste Bezahlmöglichkeiten mit nur einer Integration: Das PayPal-Plugin bietet PayPal Checkout, den Expressbutton, Zettle und vieles mehr",
+                    "en-GB": "Get access to over 100 currencies and 200 markets worldwide with the payment module PayPal for your Shopware shop. Experience an easy and comfortable way of payment."
+                },
+                "manufacturerLink": {
+                    "de-DE": "https://store.shopware.com/shopware-ag.html",
+                    "en-GB": "https://store.shopware.com/en/shopware-ag.html"
+                },
+                "supportLink": {
+                    "de-DE": "https://issues.shopware.com/",
+                    "en-GB": "https://issues.shopware.com/"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Swag\\PayPal\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Swag\\PayPal\\Test\\": "tests/"
+                }
+            },
+            "scripts": {
+                "jest": [
+                    "npm run unit-setup --prefix ../../../src/Administration/Resources/app/administration",
+                    "npm run unit --prefix src/Resources/app/administration"
+                ],
+                "jest:watch": [
+                    "npm run unit-setup --prefix ../../../src/Administration/Resources/app/administration",
+                    "npm run unit-watch --prefix src/Resources/app/administration"
+                ],
+                "lint": [
+                    "@ecs-fix",
+                    "@phpstan",
+                    "@phpunit"
+                ],
+                "ecs": [
+                    "../../../vendor/bin/php-cs-fixer fix --dry-run"
+                ],
+                "ecs-fix": [
+                    "../../../vendor/bin/php-cs-fixer fix"
+                ],
+                "init:admin": [
+                    "npm ci --no-audit --prefer-offline --prefix src/Resources/app/administration"
+                ],
+                "lint:admin": [
+                    "npm run lint-fix --prefix src/Resources/app/administration"
+                ],
+                "lint:admin:ci": [
+                    "npm run lint --prefix src/Resources/app/administration"
+                ],
+                "init:storefront": [
+                    "npm ci --no-audit --prefer-offline --prefix src/Resources/app/storefront"
+                ],
+                "lint:storefront": [
+                    "@lint:storefront:ci --fix"
+                ],
+                "lint:storefront:ci": [
+                    "cd src/Resources/app/storefront && if [ -f ../../../../../../../src/Storefront/Resources/app/storefront/eslint.config.js ]; then ../../../../../../../src/Storefront/Resources/app/storefront/node_modules/.bin/eslint --config ../../../../../../../src/Storefront/Resources/app/storefront/eslint.config.js ./src; else ../../../../../../../src/Storefront/Resources/app/storefront/node_modules/.bin/eslint --config ../../../../../../../src/Storefront/Resources/app/storefront/.eslintrc.js ./src; fi",
+                    "cd src/Resources/app/storefront && ../../../../../../../src/Storefront/Resources/app/storefront/node_modules/.bin/stylelint --config ../../../../../../../src/Storefront/Resources/app/storefront/stylelint.config.js ./src/scss"
+                ],
+                "phpunit": [
+                    "../../../vendor/bin/phpunit"
+                ],
+                "phpstan": [
+                    "php bin/phpstan-config-generator.php",
+                    "php ../../../vendor/bin/phpstan analyze"
+                ],
+                "rector": [
+                    "../../../vendor/bin/rector process"
+                ],
+                "rector-dry": [
+                    "../../../vendor/bin/rector process --dry-run"
+                ],
+                "openapi:generate": [
+                    "../../../bin/console swag:paypal:openapi:generate",
+                    "npm run openapi-types --prefix src/Resources/app/administration"
+                ],
+                "bc-check": [
+                    "php ../../../vendor-bin/roave-backward-compatibility-check/bin/verify-version.php",
+                    "@putenv TMPDIR=./..",
+                    "../../../vendor/bin/roave-backward-compatibility-check"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shopware"
+                }
+            ],
+            "description": "PayPal integration for Shopware 6",
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
         },
         {
             "name": "symfony/asset",
@@ -12346,12 +12538,12 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "composer-runtime-api": "^2.0"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

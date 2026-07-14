@@ -22,3 +22,6 @@
 /node_modules/
 **/node_modules/
 /public/dev-router.php
+
+# Composer-managed store plugins (composer.json/lock ile gelir, kaynak repoda tutulmaz)
+/custom/plugins/SwagPayPal/
