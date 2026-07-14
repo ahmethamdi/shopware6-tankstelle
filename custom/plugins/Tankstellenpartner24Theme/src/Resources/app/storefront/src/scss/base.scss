@@ -946,47 +946,57 @@ $vapor-radius: 12px;
     .container-main { padding-top: 0; }
 }
 
-// --- HERO (FULL-SIZE, köşeli, header'a yapışık — boşluk YOK) ---
+// --- HERO (REDESIGN: lacivert zemin + turuncu vurgu, modern B2B) ---
 .vapor-hero {
-    // Mavi zemin + yumuşak radyal "glow lekeleri" (köşelerden parlaklık) — leke/ışık efekti
-    // ÜST KENAR header rengiyle BİREBİR (#E1523D) başlar → header→hero geçişi
-    // görünmez (kesik/çizgi gitti). Aşağı indikçe hafif açılma + derinlik.
-    // Üst glow lekesi de header sınırının ALTINA (22%) kaydırıldı ki üst kenarda
-    // ton farkı yaratıp kesikliği geri getirmesin.
+    // Koyu lacivert kurumsal zemin + turuncu radyal glow + ince noktalı doku hissi
     background:
-        radial-gradient(120% 95% at 85% 22%, rgba(#A9C8F0, 0.5) 0%, rgba(#A9C8F0, 0) 48%),
-        radial-gradient(110% 90% at 12% 95%, rgba(#7FAAE2, 0.45) 0%, rgba(#7FAAE2, 0) 50%),
-        linear-gradient(180deg, #E1523D 0%, #E86B52 38%, #C43333 100%);
+        radial-gradient(90% 120% at 88% 15%, rgba($tp-primary, 0.28) 0%, rgba($tp-primary, 0) 55%),
+        radial-gradient(80% 110% at 10% 100%, rgba(#005984, 0.40) 0%, rgba(#005984, 0) 55%),
+        linear-gradient(160deg, $tp-navy 0%, darken($tp-navy, 5%) 100%);
     color: #fff;
-    border-radius: 0; // KULLANICI: radius YOK
-    margin: 0; // header ile arasında boşluk YOK
+    border-radius: 0;
+    margin: 0;
     overflow: hidden;
+    position: relative;
     display: grid;
-    grid-template-columns: 1.1fr .9fr;
+    grid-template-columns: 1.05fr .95fr;
     align-items: center;
-    gap: 2rem;
-    // full-size: içerik 1600'de ortalı ama mavi zemin tam genişlik
-    padding: 3rem max(1.5rem, calc((100% - 1600px) / 2 + 1.5rem));
-    @media (max-width: 991.98px) { grid-template-columns: 1fr; padding: 2rem 1.5rem; }
+    gap: $tp-space-7;
+    padding: $tp-space-8 #{"max(1.5rem, calc((100% - 1320px) / 2 + 1.5rem))"};
+    @media (max-width: 991.98px) { grid-template-columns: 1fr; padding: $tp-space-7 $tp-space-5; }
 
-    &__content { min-width: 0; }
+    // Üstte turuncu ince aksан çizgi (navbar'la bağ)
+    &::before {
+        content: "";
+        position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        background: $tp-primary;
+    }
+
+    &__content { min-width: 0; position: relative; z-index: 2; }
 
     &__eyebrow {
-        display: inline-flex; align-items: center; gap: .4rem;
-        font-size: .78rem; font-weight: 600; letter-spacing: .03em;
-        background: rgba(#fff, 0.15); color: #fff;
-        padding: .4rem .85rem; border-radius: 999px; margin-bottom: 1.25rem;
+        display: inline-flex; align-items: center; gap: .45rem;
+        font-size: .78rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+        background: rgba($tp-primary, 0.18);
+        color: #fff;
+        border: 1px solid rgba($tp-primary, 0.4);
+        padding: .4rem .9rem; border-radius: $tp-radius-pill; margin-bottom: $tp-space-5;
+        &::before { content: "★"; color: $tp-primary; }
     }
     &__title {
-        font-family: $vapor-font-headline; font-weight: 700;
-        font-size: clamp(1.9rem, 3.5vw, 3rem); line-height: 1.12; color: #fff; margin-bottom: 1rem;
+        font-family: $vapor-font-headline; font-weight: 800;
+        font-size: clamp(2rem, 3.6vw, 3.1rem); line-height: 1.1; color: #fff;
+        margin-bottom: $tp-space-4; letter-spacing: -.01em;
     }
-    &__subtitle { font-size: 1.05rem; line-height: 1.6; color: rgba(#fff, 0.88); margin-bottom: 1.75rem; max-width: 460px; }
+    &__subtitle { font-size: 1.08rem; line-height: 1.6; color: rgba(#fff, 0.82); margin-bottom: $tp-space-6; max-width: 480px; }
     &__cta {
-        display: inline-block; background: #fff; color: $sw-color-brand-primary;
-        font-weight: 600; padding: .85rem 1.75rem; border-radius: $vapor-radius; border: none;
-        transition: transform .15s ease, box-shadow .15s ease;
-        &:hover { color: darken($sw-color-brand-primary, 8%); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.2); }
+        display: inline-flex; align-items: center; gap: .5rem;
+        background: $tp-primary; color: #fff;
+        font-weight: 600; padding: .9rem 1.9rem; border-radius: $tp-radius; border: none;
+        box-shadow: $tp-shadow-brand;
+        transition: transform $tp-transition, box-shadow $tp-transition, background $tp-transition;
+        &::after { content: "→"; font-weight: 700; }
+        &:hover { background: $tp-primary-dark; color: #fff; transform: translateY(-2px); box-shadow: 0 12px 28px rgba($tp-primary, 0.4); text-decoration: none; }
     }
 
     // CTA butonu + yanındaki logolar tek satırda, dikey ortalı
@@ -1018,13 +1028,16 @@ $vapor-radius: 12px;
         }
     }
     &__media-big, &__media-small {
-        background: rgba(#fff, 0.16);
-        border: 1px solid rgba(#fff, 0.3);
-        border-radius: $vapor-radius;
+        background: rgba(#fff, 0.08);
+        border: 1px solid rgba(#fff, 0.16);
+        border-radius: $tp-radius-lg;
+        overflow: hidden;
         display: grid; place-items: center;
-        color: rgba(#fff, 0.7);
-        transition: transform .2s ease, background .2s ease;
-        &:hover { transform: translateY(-4px); background: rgba(#fff, 0.24); }
+        color: rgba(#fff, 0.55);
+        backdrop-filter: blur(2px);
+        transition: transform $tp-transition, background $tp-transition, border-color $tp-transition;
+        &:hover { transform: translateY(-4px); background: rgba(#fff, 0.14); border-color: rgba($tp-primary, 0.5); }
+        img { width: 100%; height: 100%; object-fit: cover; }
     }
     &__media-big { grid-row: 1 / 3; }
 
