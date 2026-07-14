@@ -1895,7 +1895,7 @@
                     "tr-TR": "Metin 5"
                 },
                 "type": "text",
-                "value": "Nur für Gewerbetreibende (B2B)",
+                "value": "Nur für Erwachsene (18+)",
                 "editable": true,
                 "block": "vaporInfobar",
                 "order": 500,
@@ -1909,7 +1909,7 @@
                     "tr-TR": "Üst etiket"
                 },
                 "type": "text",
-                "value": "Ihr starker Partner für die Tankstellen-Branche",
+                "value": "Deutschlands Nr. 1 in der Vape-Branche",
                 "editable": true,
                 "block": "vaporHero",
                 "order": 100,
@@ -1923,7 +1923,7 @@
                     "tr-TR": "Başlık"
                 },
                 "type": "text",
-                "value": "Mehr Sortiment. Mehr Marge.<br>Mehr Tempo für Ihre Tankstelle.",
+                "value": "Mehr Auswahl. Mehr Marge.<br>Mehr Tempo für deinen Handel.",
                 "editable": true,
                 "block": "vaporHero",
                 "order": 200,
@@ -2148,7 +2148,7 @@
                     "tr-TR": "Marka 1 isim"
                 },
                 "type": "text",
-                "value": "Kraftstoffe",
+                "value": "ELFLIQ",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 100,
@@ -2176,7 +2176,7 @@
                     "tr-TR": "Marka 1 link"
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/",
+                "value": "/Liquids/Elfliq-by-Elf-Bar/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 120,
@@ -2190,7 +2190,7 @@
                     "tr-TR": "Marka 2 isim"
                 },
                 "type": "text",
-                "value": "Kraftstoffe & AdBlue",
+                "value": "ELFBAR ELFA",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 200,
@@ -2218,7 +2218,7 @@
                     "tr-TR": "Marka 2 link"
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/",
+                "value": "/Pods-Akkutraeger/Elf-Bar-ELFA/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 220,
@@ -2232,7 +2232,7 @@
                     "tr-TR": "Marka 3 isim"
                 },
                 "type": "text",
-                "value": "Shop & Convenience",
+                "value": "ELFBAR 800",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 300,
@@ -2260,7 +2260,7 @@
                     "tr-TR": "Marka 3 link"
                 },
                 "type": "text",
-                "value": "/Shop-Convenience/",
+                "value": "/E-Zigaretten-Vapes/ELFBAR-800/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 320,
@@ -2274,7 +2274,7 @@
                     "tr-TR": "Marka 4 isim"
                 },
                 "type": "text",
-                "value": "AdBlue",
+                "value": "LOST MARY  Wavi",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 400,
@@ -2302,7 +2302,7 @@
                     "tr-TR": "Marka 4 link"
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/AdBlue/",
+                "value": "/Pods-Akkutraeger/Lost-Mary-WAVI/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 420,
@@ -2316,7 +2316,7 @@
                     "tr-TR": "Marka 5 isim"
                 },
                 "type": "text",
-                "value": "Schmierstoffe",
+                "value": "LOST MARY Nicsalt",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 500,
@@ -2344,7 +2344,7 @@
                     "tr-TR": "Marka 5 link"
                 },
                 "type": "text",
-                "value": "/Technik-Zubehoer/",
+                "value": "/Liquids/Lost-Mary/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 520,
@@ -2358,7 +2358,7 @@
                     "tr-TR": "Marka 6 isim"
                 },
                 "type": "text",
-                "value": "Autopflege",
+                "value": "Shisha",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 600,
@@ -2386,7 +2386,7 @@
                     "tr-TR": "Marka 6 link"
                 },
                 "type": "text",
-                "value": "/Autopflege/",
+                "value": "/Shisha/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 620,
@@ -2400,7 +2400,7 @@
                     "tr-TR": "Marka 7 isim"
                 },
                 "type": "text",
-                "value": "Merchandise & POS",
+                "value": "Feuerzeuge",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 700,
@@ -2428,7 +2428,7 @@
                     "tr-TR": "Marka 7 link"
                 },
                 "type": "text",
-                "value": "/Merchandise-POS/",
+                "value": "/Raucherbedarf/Feuerzeuge/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 720,
@@ -2442,7 +2442,7 @@
                     "tr-TR": "Marka 8 isim"
                 },
                 "type": "text",
-                "value": "Technik & Zubehör",
+                "value": "Al Fakher 30K",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 800,
@@ -2470,7 +2470,7 @@
                     "tr-TR": "Marka 8 link"
                 },
                 "type": "text",
-                "value": "/Autopflege/",
+                "value": "/E-Zigaretten-Vapes/Al-Fakher-Hypermax-Advanced-30K/",
                 "editable": true,
                 "block": "vaporBrands",
                 "order": 820,
@@ -2484,7 +2484,7 @@
                     "tr-TR": "Kategori 1 isim"
                 },
                 "type": "text",
-                "value": "Autopflege",
+                "value": "Einweg Vapes",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 100,
@@ -2512,7 +2512,7 @@
                     "tr-TR": "Kategori 1 link"
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/",
+                "value": "/E-Zigaretten-Vapes/",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 120,
@@ -2526,7 +2526,7 @@
                     "tr-TR": "Kategori 2 isim"
                 },
                 "type": "text",
-                "value": "Kraftstoffe & AdBlue",
+                "value": "Pods & Akkuträger",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 200,
@@ -2554,7 +2554,7 @@
                     "tr-TR": "Kategori 2 link"
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/",
+                "value": "/Pods-Akkutraeger/",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 220,
@@ -2568,7 +2568,7 @@
                     "tr-TR": "Kategori 3 isim"
                 },
                 "type": "text",
-                "value": "Technik & Zubehör",
+                "value": "E-Zigaretten & Zubehör",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 300,
@@ -2596,7 +2596,7 @@
                     "tr-TR": "Kategori 3 link"
                 },
                 "type": "text",
-                "value": "/Technik-Zubehoer/",
+                "value": "/E-Zigaretten-Zubehoer/",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 320,
@@ -2610,7 +2610,7 @@
                     "tr-TR": "Kategori 4 isim"
                 },
                 "type": "text",
-                "value": "Shop & Convenience",
+                "value": "Liquids",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 400,
@@ -2638,7 +2638,7 @@
                     "tr-TR": "Kategori 4 link"
                 },
                 "type": "text",
-                "value": "/Shop-Convenience/",
+                "value": "/Liquids/",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 420,
@@ -2652,7 +2652,7 @@
                     "tr-TR": "Kategori 5 isim"
                 },
                 "type": "text",
-                "value": "Shop & Convenience",
+                "value": "Aromen",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 500,
@@ -2680,7 +2680,7 @@
                     "tr-TR": "Kategori 5 link"
                 },
                 "type": "text",
-                "value": "/Shop-Convenience/",
+                "value": "/Aromen/",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 520,
@@ -2778,7 +2778,7 @@
                     "tr-TR": "Kategori 8 isim"
                 },
                 "type": "text",
-                "value": "Merchandise & POS",
+                "value": "Raucherbedarf",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 800,
@@ -2806,7 +2806,7 @@
                     "tr-TR": "Kategori 8 link"
                 },
                 "type": "text",
-                "value": "/Merchandise-POS/",
+                "value": "/Raucherbedarf/",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 820,
@@ -2820,7 +2820,7 @@
                     "tr-TR": "Kategori 9 isim"
                 },
                 "type": "text",
-                "value": "Autopflege",
+                "value": "Shisha",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 900,
@@ -2848,7 +2848,7 @@
                     "tr-TR": "Kategori 9 link"
                 },
                 "type": "text",
-                "value": "/Autopflege/",
+                "value": "/Shisha/",
                 "editable": true,
                 "block": "vaporCategories",
                 "order": 920,
@@ -2923,7 +2923,7 @@
                     "tr-TR": "Deal 1 ürün adı"
                 },
                 "type": "text",
-                "value": "AdBlue 10L Kanister – Staffelpreis",
+                "value": "LOSTMARY QM600 10+1",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 200,
@@ -2937,7 +2937,7 @@
                     "tr-TR": "Deal 1 marka"
                 },
                 "type": "text",
-                "value": "Top-Angebote",
+                "value": "ELFBAR LOST MARY",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 210,
@@ -2979,7 +2979,7 @@
                     "tr-TR": "Deal 1 link"
                 },
                 "type": "text",
-                "value": "/Top-Angebote/",
+                "value": "/E-Zigaretten-Vapes/ELFBAR-Lost-Mary-QM600/",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 240,
@@ -3007,7 +3007,7 @@
                     "tr-TR": "Deal 2 ürün adı"
                 },
                 "type": "text",
-                "value": "Schmierstoff-Sortiment",
+                "value": "WAVI Prefilled Pods",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 300,
@@ -3021,7 +3021,7 @@
                     "tr-TR": "Deal 2 marka"
                 },
                 "type": "text",
-                "value": "Top-Angebote",
+                "value": "ELFBAR LOST MARY",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 310,
@@ -3063,7 +3063,7 @@
                     "tr-TR": "Deal 2 link"
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/AdBlue/",
+                "value": "/Pods-Akkutraeger/Lost-Mary-WAVI/",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 340,
@@ -3091,7 +3091,7 @@
                     "tr-TR": "Deal 3 ürün adı"
                 },
                 "type": "text",
-                "value": "Schmierstoff-Sortiment",
+                "value": "WAVI Prefilled Pods",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 400,
@@ -3105,7 +3105,7 @@
                     "tr-TR": "Deal 3 marka"
                 },
                 "type": "text",
-                "value": "Top-Angebote",
+                "value": "ELFBAR LOST MARY",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 410,
@@ -3147,7 +3147,7 @@
                     "tr-TR": "Deal 3 link"
                 },
                 "type": "text",
-                "value": "/Technik-Zubehoer/",
+                "value": "/Pods-Akkutraeger/IVG-Air-4in1/",
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 440,
@@ -3245,7 +3245,7 @@
                     "tr-TR": "Marka rozeti"
                 },
                 "type": "text",
-                "value": "Powered by Tankstellenpartner 24",
+                "value": "Powered by ELFBAR",
                 "editable": true,
                 "block": "vaporCampaign",
                 "order": 100,
@@ -3259,7 +3259,7 @@
                     "tr-TR": "Metin"
                 },
                 "type": "text",
-                "value": "−10 % auf das gesamte Autopflege-Sortiment",
+                "value": "−10 % auf alle LOST MARY Produkte",
                 "editable": true,
                 "block": "vaporCampaign",
                 "order": 200,
@@ -3511,7 +3511,7 @@
                     "tr-TR": "Üst etiket"
                 },
                 "type": "text",
-                "value": "★ Werden Sie Tankstellenpartner",
+                "value": "★ Werde Tankstellenpartner",
                 "editable": true,
                 "block": "vaporB2bBanner",
                 "order": 100,
@@ -4350,7 +4350,7 @@
                     "tr-TR": "Top-Marka 1 isim"
                 },
                 "type": "text",
-                "value": "Kraftstoffe",
+                "value": "ELFBAR",
                 "editable": true,
                 "block": "vaporTopMarken",
                 "order": 110,
@@ -4392,7 +4392,7 @@
                     "tr-TR": "Top-Marka 2 isim"
                 },
                 "type": "text",
-                "value": "AdBlue",
+                "value": "LOST MARY",
                 "editable": true,
                 "block": "vaporTopMarken",
                 "order": 210,
@@ -4434,7 +4434,7 @@
                     "tr-TR": "Top-Marka 3 isim"
                 },
                 "type": "text",
-                "value": "Shop",
+                "value": "AL FAKHER",
                 "editable": true,
                 "block": "vaporTopMarken",
                 "order": 310,
@@ -4476,7 +4476,7 @@
                     "tr-TR": "Top-Marka 4 isim"
                 },
                 "type": "text",
-                "value": "Technik",
+                "value": "VAPORESSO",
                 "editable": true,
                 "block": "vaporTopMarken",
                 "order": 410,
@@ -4518,7 +4518,7 @@
                     "tr-TR": "Top-Marka 5 isim"
                 },
                 "type": "text",
-                "value": "Schmierstoffe",
+                "value": "SMOK",
                 "editable": true,
                 "block": "vaporTopMarken",
                 "order": 510,
@@ -4560,7 +4560,7 @@
                     "tr-TR": "Top-Marka 6 isim"
                 },
                 "type": "text",
-                "value": "Merchandise",
+                "value": "ASPIRE",
                 "editable": true,
                 "block": "vaporTopMarken",
                 "order": 610,
@@ -4602,7 +4602,7 @@
                     "tr-TR": "Top-Marka 7 isim"
                 },
                 "type": "text",
-                "value": "Autopflege",
+                "value": "GEEKVAPE",
                 "editable": true,
                 "block": "vaporTopMarken",
                 "order": 710,
@@ -5289,7 +5289,7 @@
                     "tr-TR": "Hakkımızda metni"
                 },
                 "type": "text",
-                "value": "Ihr zuverlässiger B2B-Partner rund um die Tankstelle: Kraftstoffe, Shop-Sortiment, Technik und Zubehör. Großhandelskonditionen, schnelle Lieferung und persönliche Beratung.",
+                "value": "Ihr zuverlässiger B2B-Partner für E-Zigaretten, Liquids und Zubehör. Großhandelskonditionen, schnelle Lieferung und persönliche Beratung für den Fachhandel.",
                 "editable": true,
                 "block": "vaporFooter",
                 "order": 2000,
@@ -5838,7 +5838,7 @@
                     "tr-TR": "Header menüsü. Ad + link gir (örn. Liquids / /Liquids). Hepsi boşsa otomatik kategori menüsü."
                 },
                 "type": "text",
-                "value": "Kraftstoffe & AdBlue",
+                "value": "E-Zigaretten & Vapes",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2430,
@@ -5857,7 +5857,7 @@
                     "tr-TR": "Örn. /Liquids veya tam URL."
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/",
+                "value": "/E-Zigaretten-Vapes/",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2431,
@@ -5871,7 +5871,7 @@
                     "tr-TR": "Menü 2 – ad"
                 },
                 "type": "text",
-                "value": "Kraftstoffe",
+                "value": "Pods",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2432,
@@ -5885,7 +5885,7 @@
                     "tr-TR": "Menü 2 – link"
                 },
                 "type": "text",
-                "value": "/Kraftstoffe-AdBlue/",
+                "value": "/Pods-Akkutraeger/",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2433,
@@ -5899,7 +5899,7 @@
                     "tr-TR": "Menü 3 – ad"
                 },
                 "type": "text",
-                "value": "Shop & Convenience",
+                "value": "Liquids",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2434,
@@ -5913,7 +5913,7 @@
                     "tr-TR": "Menü 3 – link"
                 },
                 "type": "text",
-                "value": "/Shop-Convenience/",
+                "value": "/Liquids/",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2435,
@@ -5927,7 +5927,7 @@
                     "tr-TR": "Menü 4 – ad"
                 },
                 "type": "text",
-                "value": "Shop & Convenience",
+                "value": "Aromen",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2436,
@@ -5941,7 +5941,7 @@
                     "tr-TR": "Menü 4 – link"
                 },
                 "type": "text",
-                "value": "/Shop-Convenience/",
+                "value": "/Aromen/",
                 "editable": true,
                 "block": "vaporHeader",
                 "order": 2437,
@@ -6149,7 +6149,7 @@
                     "tr-TR": "Başlık altı açıklama metni. Boş = gizli."
                 },
                 "type": "text",
-                "value": "Mit den Premium-Verkaufsdisplays von Tankstellenpartner 24 nicht nur sichtbar sein, sondern auch mehr Umsatz generieren!",
+                "value": "Mit den Premium-Verkaufsvitrinen von Tankstellenpartner 24 nicht nur sichtbar sein, sondern auch mehr Umsatz generieren!",
                 "editable": true,
                 "block": "vaporShowcase",
                 "order": 2630,

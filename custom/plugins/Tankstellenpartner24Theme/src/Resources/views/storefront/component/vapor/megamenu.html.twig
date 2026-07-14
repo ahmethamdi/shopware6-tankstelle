@@ -34,12 +34,12 @@
                             {# Sol: gerçek alt kategoriler (canlı navigasyondan).
                                Alt kategorinin KENDİ alt kategorileri varsa (3. seviye),
                                alt kategori adı GRUP BAŞLIĞI olur, altında çocukları listelenir. #}
-                            {# Bazı ana kategorilerde alt-alt kategoriler tek tek ÜRÜN gibi (örn. Merchandise & POS:
-                               düzinelerce model) → mega menüyü şişirir.
+                            {# Bazı ana kategorilerde alt-alt kategoriler tek tek ÜRÜN gibi (Raucherbedarf:
+                               Tabakpfeifen/Feuerzeuge/Grinder altında düzinelerce model) → mega menüyü şişirir.
                                Bu kategorilerde 3. seviyeyi GİZLE, sadece marka/kategori (2. seviye) göster. #}
-                            {% set hideSubcats = catName in ['Merchandise & POS'] %}
-                            {# Kraftstoffe & AdBlue çok yoğun → 8 kolon #}
-                            {% set gridWide = catName in ['Kraftstoffe & AdBlue'] %}
+                            {% set hideSubcats = catName in ['Raucherbedarf'] %}
+                            {# Pods & Akkuträger çok yoğun (40+ marka) → 8 kolon #}
+                            {% set gridWide = catName in ['Pods & Akkuträger'] %}
                             <div class="vapor-mega__grid{{ gridWide ? ' vapor-mega__grid--8' : '' }}">
                                 {% for childItem in children %}
                                     {% set child = childItem.category %}

@@ -1,11 +1,74 @@
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
-{#
-  TP24 = akaryakıt istasyonu B2B tedarikçisi.
-  Vapor'un 18+ yaş kapısı (e-sigara/nikotin mevzuatı) burada geçersiz → kaldırıldı.
-  Blok boş bırakıldı: age-gate HTML basılmaz, JS de tetiklenecek element bulamaz.
-  (E-sigara vb. yaşa bağlı ürün eklenirse blok yeniden doldurulabilir.)
-#}
 {% block base_body_script %}
     {{ parent() }}
+
+    {% block vapor_age_gate %}
+        <div
+            class="vapor-age-gate"
+            id="vapor-age-gate"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="vapor-age-gate-title"
+            aria-describedby="vapor-age-gate-text"
+            data-vapor-age-gate
+            data-redirect-url="https://www.google.com"
+            hidden
+        >
+            <div class="vapor-age-gate__backdrop" aria-hidden="true"></div>
+
+            <div class="vapor-age-gate__card" role="document">
+                <div class="vapor-age-gate__brand">
+                    <span class="vapor-age-gate__badge">18+</span>
+                    <span class="vapor-age-gate__brand-name">Tankstellenpartner 24</span>
+                </div>
+
+                <h2 class="vapor-age-gate__title" id="vapor-age-gate-title">
+                    Bist du über 18 Jahre alt?
+                </h2>
+
+                <p class="vapor-age-gate__text" id="vapor-age-gate-text">
+                    Der Verkauf von E-Zigaretten, E-Liquids und nikotinhaltigen Produkten
+                    ist gesetzlich ausschließlich Personen ab 18 Jahren gestattet
+                    (§ 10 Jugendschutzgesetz). Bitte bestätige, dass du das 18. Lebensjahr
+                    bereits vollendet hast, um diesen Shop zu betreten.
+                </p>
+
+                <div class="vapor-age-gate__actions">
+                    <button
+                        type="button"
+                        class="vapor-age-gate__btn vapor-age-gate__btn--confirm"
+                        data-vapor-age-confirm
+                    >
+                        Ja, ich bin über 18
+                    </button>
+                    <button
+                        type="button"
+                        class="vapor-age-gate__btn vapor-age-gate__btn--deny"
+                        data-vapor-age-deny
+                    >
+                        Nein
+                    </button>
+                </div>
+
+                <p class="vapor-age-gate__legal">
+                    Mit der Bestätigung erklärst du, volljährig zu sein. Falsche Angaben
+                    können rechtliche Folgen haben. Rauchen bzw. Dampfen kann die Gesundheit
+                    gefährden.
+                </p>
+
+                <div
+                    class="vapor-age-gate__blocked"
+                    data-vapor-age-blocked
+                    hidden
+                >
+                    <h3 class="vapor-age-gate__blocked-title">Zugang nicht möglich</h3>
+                    <p class="vapor-age-gate__blocked-text">
+                        Dieser Shop richtet sich ausschließlich an Personen ab 18 Jahren.
+                        Du wirst weitergeleitet …
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
 {% endblock %}
