@@ -1409,9 +1409,24 @@ $vapor-radius: 12px;
 // --- Bölüm başlığı ---
 .vapor-section-head {
     display: flex; align-items: center; justify-content: space-between;
-    margin: 2rem 0 1.25rem;
-    &__title { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.5rem; margin: 0; }
-    &__link { color: $sw-color-brand-primary; font-weight: 600; font-size: .9rem; text-decoration: none; &:hover { text-decoration: underline; } }
+    margin: $tp-space-6 0 $tp-space-5;
+    &__title {
+        font-family: $vapor-font-headline; font-weight: 800; font-size: 1.5rem; margin: 0;
+        color: $tp-navy; letter-spacing: -.01em;
+        display: flex; align-items: center; gap: $tp-space-3;
+        // Başlık önü turuncu aksan çubuğu (modern B2B)
+        &::before {
+            content: ""; width: 5px; height: 1.15em;
+            background: $tp-primary; border-radius: 3px;
+            flex: 0 0 auto;
+        }
+    }
+    &__link {
+        color: $tp-primary; font-weight: 600; font-size: .9rem; text-decoration: none;
+        display: inline-flex; align-items: center; gap: 4px;
+        &::after { content: "→"; }
+        &:hover { color: $tp-primary-dark; text-decoration: none; }
+    }
 }
 // İlk section-head (Bestseller) üstte fazla boşluk olmasın
 .vapor-body__main > .vapor-section-head:first-of-type { margin-top: 0; }
@@ -1423,8 +1438,10 @@ $vapor-radius: 12px;
 }
 // Deal kartı — mockup birebir: koyu dış kart + flip-clock + beyaz iç ürün kartı
 .vapor-deal {
-    background: $vapor-color-ink; border-radius: 18px; overflow: hidden;
-    color: #fff; padding: 1.1rem;
+    background: linear-gradient(160deg, $tp-navy 0%, $tp-navy-dark 100%);
+    border-radius: $tp-radius-lg; overflow: hidden;
+    color: #fff; padding: $tp-space-4;
+    box-shadow: $tp-shadow-md;
 
     // Flip-clock geri sayım: beyaz kutucuklar
     &__timer { display: flex; justify-content: center; gap: .5rem; margin-bottom: 1rem; }
