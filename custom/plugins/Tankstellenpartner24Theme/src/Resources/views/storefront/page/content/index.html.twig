@@ -350,6 +350,55 @@
                     {% endblock %}
                     {% endset %}
 
+                    {# ---- YENİ (Bölüm 4): SOL büyük lacivert promo kart + SAĞ 2 ürün slider ----
+                       Sol kart: panelden eyebrow/başlık/metin/buton + opsiyonel arka plan görseli
+                       (görsel boşsa lacivert gradient zemin). Sağ: Neuheiten ürünlerinden yatay
+                       kayan mini slider (aynı .vapor-pcard makrosu, B2B login-gate korunur). #}
+                    {% set vaporSecHtml_promoduo %}
+                    {% block vapor_home_promoduo %}
+                        {% set pdEyebrow = theme_config('vapor-promoduo-eyebrow') %}
+                        {% set pdTitle   = theme_config('vapor-promoduo-title') %}
+                        {% set pdText    = theme_config('vapor-promoduo-text') %}
+                        {% set pdBtn     = theme_config('vapor-promoduo-btn') %}
+                        {% set pdLink    = theme_config('vapor-promoduo-link') %}
+                        {% set pdBg      = theme_config('vapor-promoduo-bg') %}
+                        {% set pdRightTitle = theme_config('vapor-promoduo-right-title') %}
+                        {% set pdProducts = page.extensions.vaporNeu.products ?? [] %}
+                        {% if pdTitle or pdEyebrow or pdBg or pdProducts|length %}
+                            <div class="vapor-promoduo">
+                                {# --- SOL: büyük promo kart --- #}
+                                {% set pdCardTag = pdLink ? 'a' : 'div' %}
+                                <{{ pdCardTag }} class="vapor-promoduo__card{% if pdBg %} has-bg{% endif %}"{% if pdLink %} href="{{ pdLink }}"{% endif %}>
+                                    {% if pdBg %}<img class="vapor-promoduo__bg" src="{{ pdBg }}" alt="" loading="lazy">{% endif %}
+                                    <div class="vapor-promoduo__card-body">
+                                        {% if pdEyebrow %}<span class="vapor-promoduo__eyebrow">{{ pdEyebrow }}</span>{% endif %}
+                                        {% if pdTitle %}<h2 class="vapor-promoduo__title">{{ pdTitle|raw }}</h2>{% endif %}
+                                        {% if pdText %}<p class="vapor-promoduo__text">{{ pdText }}</p>{% endif %}
+                                        {% if pdBtn %}<span class="vapor-promoduo__btn">{{ pdBtn }} <span aria-hidden="true">→</span></span>{% endif %}
+                                    </div>
+                                </{{ pdCardTag }}>
+
+                                {# --- SAĞ: 2'li ürün slider (Neuheiten) --- #}
+                                <div class="vapor-promoduo__products">
+                                    <div class="vapor-section-head vapor-promoduo__head">
+                                        {% if pdRightTitle %}<h3 class="vapor-section-head__title">{{ pdRightTitle }}</h3>{% endif %}
+                                        <div class="vapor-slider-nav">
+                                            <button type="button" class="vapor-slider-btn" data-vapor-slide="promoduo" data-dir="prev" aria-label="zurück">{% sw_icon 'chevron-left' %}</button>
+                                            <button type="button" class="vapor-slider-btn" data-vapor-slide="promoduo" data-dir="next" aria-label="weiter">{% sw_icon 'chevron-right' %}</button>
+                                        </div>
+                                    </div>
+                                    <div class="vapor-promoduo__slider" data-vapor-slider="promoduo" data-vapor-dragscroll>
+                                        <div class="vapor-promoduo__track">
+                                            {% for product in pdProducts %}
+                                                {{ _self.vaporProductCard(product, vaporLoggedIn, 'Neu') }}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                    {% endset %}
                     {% set vaporSecHtml_campaign %}
                     {% block vapor_home_campaign %}
                         {# Üst tam genişlik (col-12) görsel banner — promo görselleriyle
@@ -664,6 +713,7 @@
                         { key: 'brands',     def: 10,  html: vaporSecHtml_brands },
                         { key: 'bento',      def: 15,  html: vaporSecHtml_bento },
                         { key: 'catslider',  def: 18,  html: vaporSecHtml_catslider },
+                        { key: 'promoduo',   def: 19,  html: vaporSecHtml_promoduo },
                         { key: 'campaign',   def: 20,  html: vaporSecHtml_campaign },
                         { key: 'promo',      def: 30,  html: vaporSecHtml_promo },
                         { key: 'categories', def: 40,  html: vaporSecHtml_categories },

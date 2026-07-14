@@ -1266,6 +1266,97 @@ $vapor-radius: 12px;
     }
 }
 
+// --- Bölüm 4: SOL büyük lacivert promo kart + SAĞ 2'li ürün slider ---
+.vapor-promoduo {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: $tp-space-5;
+    align-items: stretch;
+    @media (max-width: 991.98px) { grid-template-columns: 1fr; }
+
+    // --- SOL: promo kart ---
+    &__card {
+        position: relative;
+        display: flex;
+        min-height: 340px;
+        border-radius: $tp-radius-lg;
+        overflow: hidden;
+        text-decoration: none;
+        background: linear-gradient(150deg, $tp-navy 0%, $tp-navy-dark 60%, darken($tp-navy, 8%) 100%);
+        box-shadow: $tp-shadow-md;
+        transition: transform $tp-transition, box-shadow $tp-transition;
+        // turuncu vurgu köşesi
+        &::after {
+            content: ""; position: absolute; right: -60px; top: -60px;
+            width: 220px; height: 220px; border-radius: 50%;
+            background: radial-gradient(circle, rgba($tp-primary, 0.35) 0%, rgba($tp-primary, 0) 70%);
+            pointer-events: none;
+        }
+        &[href]:hover { transform: translateY(-3px); box-shadow: $tp-shadow-lg; text-decoration: none; }
+        @media (max-width: 991.98px) { min-height: 240px; }
+    }
+    &__bg {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; z-index: 0; opacity: .5;
+    }
+    &.has-bg &__card::before {
+        content: ""; position: absolute; inset: 0; z-index: 1;
+        background: linear-gradient(180deg, rgba($tp-navy, 0.35) 0%, rgba($tp-navy, 0.82) 100%);
+    }
+    &__card-body {
+        position: relative; z-index: 2;
+        display: flex; flex-direction: column; align-items: flex-start;
+        margin-top: auto;
+        padding: $tp-space-6;
+        color: #fff;
+    }
+    &__eyebrow {
+        display: inline-block;
+        font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+        color: #fff; background: $tp-primary;
+        padding: .35rem .8rem; border-radius: $tp-radius-pill;
+        margin-bottom: $tp-space-3;
+    }
+    &__title {
+        font-family: $vapor-font-headline; font-weight: 800;
+        font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.15;
+        color: #fff; margin: 0 0 $tp-space-3;
+    }
+    &__text {
+        font-size: .98rem; line-height: 1.5;
+        color: rgba(#fff, 0.85); margin: 0 0 $tp-space-4; max-width: 34ch;
+    }
+    &__btn {
+        display: inline-flex; align-items: center; gap: .5rem;
+        background: $tp-primary; color: #fff;
+        font-weight: 700; font-size: .92rem;
+        padding: .7rem 1.4rem; border-radius: $tp-radius-pill;
+        box-shadow: $tp-shadow-brand;
+        transition: background $tp-transition, transform $tp-transition;
+        span { transition: transform $tp-transition; }
+    }
+    &__card[href]:hover &__btn { background: $tp-primary-dark; span { transform: translateX(3px); } }
+
+    // --- SAĞ: ürün slider ---
+    &__products { min-width: 0; display: flex; flex-direction: column; }
+    &__head { margin-top: 0; margin-bottom: $tp-space-4; }
+    &__slider {
+        flex: 1;
+        overflow-x: auto; overflow-y: hidden;
+        -webkit-overflow-scrolling: touch; scroll-behavior: smooth;
+        scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+        cursor: grab;
+        &.is-dragging { cursor: grabbing; scroll-behavior: auto; }
+    }
+    &__track { display: flex; gap: $tp-space-4; width: max-content; padding: 2px; align-items: stretch; }
+    // Bu bölümde kartlar biraz daha geniş dursun (2 kart yan yana boşluğu doldursun)
+    &__track .vapor-pcard { width: 260px; }
+    @media (max-width: 575.98px) {
+        &__track .vapor-pcard { width: 72vw; max-width: 260px; scroll-snap-align: start; }
+        &__slider { scroll-snap-type: x mandatory; }
+    }
+}
+
 .vapor-brandnav {
     margin: 0 0 1.25rem;
     overflow-x: auto; overflow-y: hidden;

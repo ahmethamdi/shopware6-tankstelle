@@ -25,3 +25,4 @@
 
 # Composer-managed store plugins (composer.json/lock ile gelir, kaynak repoda tutulmaz)
 /custom/plugins/SwagPayPal/
+.playwright-cli/

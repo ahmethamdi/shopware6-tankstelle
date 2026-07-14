@@ -204,6 +204,13 @@
                     "en-GB": "1b) Bento grid & shortcuts",
                     "tr-TR": "1b) Bento grid & kısayollar"
                 }
+            },
+            "vaporPromoduo": {
+                "label": {
+                    "de-DE": "1c) Promo-Karte + Produkt-Slider",
+                    "en-GB": "1c) Promo card + product slider",
+                    "tr-TR": "1c) Promo kart + ürün slider"
+                }
             }
         },
         "fields": {
@@ -6847,6 +6854,132 @@
                 "editable": true,
                 "block": "vaporBento",
                 "order": 900,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-sec-promoduo-show": {
+                "label": {
+                    "de-DE": "Promo + Produkt-Slider anzeigen",
+                    "en-GB": "Show: Promo + product slider",
+                    "tr-TR": "Promo + ürün slider göster"
+                },
+                "type": "switch",
+                "value": true,
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 107,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-promoduo-order": {
+                "label": {
+                    "de-DE": "Promo + Produkt-Slider Reihenfolge",
+                    "en-GB": "Promo + product slider order",
+                    "tr-TR": "Promo + ürün slider sıra"
+                },
+                "type": "text",
+                "value": "19",
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 108,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-promoduo-eyebrow": {
+                "label": {
+                    "de-DE": "Promo-Karte: Eyebrow",
+                    "en-GB": "Promo card: eyebrow",
+                    "tr-TR": "Promo kart: üst etiket"
+                },
+                "type": "text",
+                "value": "Exklusiv für Händler",
+                "editable": true,
+                "block": "vaporPromoduo",
+                "order": 910,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-promoduo-title": {
+                "label": {
+                    "de-DE": "Promo-Karte: Titel",
+                    "en-GB": "Promo card: title",
+                    "tr-TR": "Promo kart: başlık"
+                },
+                "type": "text",
+                "value": "Neue Kollektion<br>frisch eingetroffen",
+                "editable": true,
+                "block": "vaporPromoduo",
+                "order": 911,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-promoduo-text": {
+                "label": {
+                    "de-DE": "Promo-Karte: Text",
+                    "en-GB": "Promo card: text",
+                    "tr-TR": "Promo kart: metin"
+                },
+                "type": "text",
+                "value": "Sichere dir die neuesten Produkte zu fairen B2B-Preisen.",
+                "editable": true,
+                "block": "vaporPromoduo",
+                "order": 912,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-promoduo-btn": {
+                "label": {
+                    "de-DE": "Promo-Karte: Button-Text",
+                    "en-GB": "Promo card: button text",
+                    "tr-TR": "Promo kart: buton metni"
+                },
+                "type": "text",
+                "value": "Jetzt entdecken",
+                "editable": true,
+                "block": "vaporPromoduo",
+                "order": 913,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-promoduo-link": {
+                "label": {
+                    "de-DE": "Promo-Karte: Link",
+                    "en-GB": "Promo card: link",
+                    "tr-TR": "Promo kart: link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporPromoduo",
+                "order": 914,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-promoduo-bg": {
+                "label": {
+                    "de-DE": "Promo-Karte: Hintergrundbild",
+                    "en-GB": "Promo card: background image",
+                    "tr-TR": "Promo kart: arka plan görseli"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporPromoduo",
+                "order": 915,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-promoduo-right-title": {
+                "label": {
+                    "de-DE": "Produkt-Slider: Titel",
+                    "en-GB": "Product slider: title",
+                    "tr-TR": "Ürün slider: başlık"
+                },
+                "type": "text",
+                "value": "Frisch im Sortiment",
+                "editable": true,
+                "block": "vaporPromoduo",
+                "order": 916,
                 "scss": false,
                 "tab": "vaporTabHome"
             }

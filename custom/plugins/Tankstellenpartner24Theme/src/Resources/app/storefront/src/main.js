@@ -294,6 +294,29 @@
     initDragScroll();
 
     // =================================================================
+    // Slider prev/next düğmeleri: data-vapor-slide="KEY" düğmesi,
+    // data-vapor-slider="KEY" konteynerini bir kart genişliği kaydırır.
+    // (catslider + promoduo ortak — drag-scroll'a ek okla kaydırma.)
+    // =================================================================
+    function initSlideButtons() {
+        var btns = document.querySelectorAll('[data-vapor-slide]');
+        btns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var key = btn.getAttribute('data-vapor-slide');
+                var dir = btn.getAttribute('data-dir') === 'prev' ? -1 : 1;
+                var slider = document.querySelector('[data-vapor-slider="' + key + '"]');
+                if (!slider) { return; }
+                var track = slider.querySelector('[class$="__track"]') || slider.firstElementChild;
+                var card = track ? track.firstElementChild : null;
+                // Bir kart + gap kadar kaydır; kart bulunamazsa görünür alanın %80'i.
+                var step = card ? (card.getBoundingClientRect().width + 16) : slider.clientWidth * 0.8;
+                slider.scrollBy({ left: dir * step, behavior: 'smooth' });
+            });
+        });
+    }
+    initSlideButtons();
+
+    // =================================================================
     // Arama popup: backdrop'a tıklayınca + ESC ile kapat
     // =================================================================
     // =================================================================
