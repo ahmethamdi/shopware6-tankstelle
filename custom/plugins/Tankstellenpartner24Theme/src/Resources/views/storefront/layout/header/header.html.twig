@@ -88,7 +88,9 @@
             </div>
         </div>
 
-        {# ============ [3] MENÜ ŞERİDİ (mega menü tetikleyici) ============ #}
+        {# ============ [3] MENÜ ŞERİDİ (KISAYOLLAR — mega menü sidebar'a taşındı) ============
+           Asıl kategori navigasyonu sol sidebar'da (her sayfada). Navbar sadece hızlı
+           kısayollar: panelden vapor-header-menu-1..6, boşsa ana kategori linkleri (fallback). #}
         {% block vapor_header_menu %}
             {% set vaporManualMenu = [] %}
             {% for i in 1..6 %}
@@ -110,39 +112,11 @@
                                 <a class="tp-navbar__link" href="{{ m.link ?: '#' }}">{{ m.name }}</a>
                             {% endfor %}
                         {% else %}
-                            {# Fallback: Shopware Hauptnavigation + mega menü panel (hover) #}
-                            {% for m in vaporNavTree %}
-                                {% set hasChildren = m.children|default([])|length > 0 %}
-                                <div class="tp-navbar__item{% if hasChildren %} has-mega{% endif %}">
-                                    <a class="tp-navbar__link" href="{{ seoUrl('frontend.navigation.page', { navigationId: m.category.id }) }}">
-                                        {{ m.category.translated.name }}
-                                        {% if hasChildren %}<span class="tp-navbar__caret" aria-hidden="true">▾</span>{% endif %}
-                                    </a>
-                                    {% if hasChildren %}
-                                        <div class="tp-mega">
-                                            <div class="tp-mega__inner">
-                                                {% for child in m.children %}
-                                                    <div class="tp-mega__col">
-                                                        <a class="tp-mega__head" href="{{ seoUrl('frontend.navigation.page', { navigationId: child.category.id }) }}">
-                                                            {{ child.category.translated.name }}
-                                                        </a>
-                                                        {% if child.children|default([])|length > 0 %}
-                                                            <ul class="tp-mega__list">
-                                                                {% for gc in child.children|slice(0, 8) %}
-                                                                    <li>
-                                                                        <a class="tp-mega__link" href="{{ seoUrl('frontend.navigation.page', { navigationId: gc.category.id }) }}">
-                                                                            {{ gc.category.translated.name }}
-                                                                        </a>
-                                                                    </li>
-                                                                {% endfor %}
-                                                            </ul>
-                                                        {% endif %}
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                    {% endif %}
-                                </div>
+                            {# Fallback: ana kategori kısayolları (sade, mega menü yok) #}
+                            {% for m in vaporNavTree|slice(0, 6) %}
+                                <a class="tp-navbar__link" href="{{ seoUrl('frontend.navigation.page', { navigationId: m.category.id }) }}">
+                                    {{ m.category.translated.name }}
+                                </a>
                             {% endfor %}
                         {% endif %}
                     </nav>

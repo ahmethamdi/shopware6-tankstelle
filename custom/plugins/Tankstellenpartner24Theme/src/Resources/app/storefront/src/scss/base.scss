@@ -1090,15 +1090,26 @@ $vapor-radius: 12px;
 
 // --- Gövde: sidebar (sol) + içerik (sağ) — container'da (1600), hero altında ---
 .vapor-body {
-    max-width: 1600px;
-    margin: 1.5rem auto 0;
-    padding: 0 1.5rem;
+    // REDESIGN: full-width tek kolon (sidebar kaldırıldı). Ferah kurumsal ritim.
+    max-width: $tp-container-max;
+    margin: $tp-space-6 auto 0;
+    padding: 0 $tp-space-5;
     display: grid;
-    grid-template-columns: 240px 1fr;
-    gap: 1.25rem;
+    grid-template-columns: 1fr;
+    gap: $tp-space-6;
     align-items: start;
-    @media (max-width: 991.98px) { grid-template-columns: 1fr; }
-    &__main { min-width: 0; }
+    &__main {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: $tp-space-7; // bölümler arası nefes
+    }
+
+    // Sidebar hâlâ config'ten açılırsa (opsiyonel) 2 kolona düş
+    &:has(.vapor-sidebar) {
+        grid-template-columns: 260px 1fr;
+        @media (max-width: 991.98px) { grid-template-columns: 1fr; }
+    }
 
     // --- Anasayfadaki CMS ürün listing'ini "Bestseller vitrini" gibi göster ---
     &__cms {
@@ -1265,19 +1276,44 @@ $vapor-radius: 12px;
 
 // Sidebar — mockup: açık mavi/lila tonda kart, dikey kategori listesi
 .vapor-sidebar {
-    background: #fff;
-    border: 1px solid rgba($vapor-color-ink, 0.07);
-    border-radius: $vapor-radius;
+    background: $tp-surface;
+    border: 1px solid $tp-line;
+    border-radius: $tp-radius-lg;
     overflow: hidden;
+    box-shadow: $tp-shadow-sm;
+    align-self: start;
+
+    // Modern başlık: lacivert şerit + turuncu ikon
+    &__head {
+        display: flex;
+        align-items: center;
+        gap: $tp-space-2;
+        background: $tp-navy;
+        color: #fff;
+        font-weight: 700;
+        font-size: .82rem;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+        padding: $tp-space-4 $tp-space-4;
+        &::before {
+            content: "";
+            width: 18px; height: 14px;
+            flex: 0 0 auto;
+            background: $tp-primary;
+            border-radius: 2px;
+            box-shadow: 0 3px 0 -1px $tp-primary, 0 6px 0 -2px $tp-primary; // 3 çizgi (menü) hissi
+        }
+    }
+
     &__list { list-style: none; margin: 0; padding: 0; }
-    &__item { border-bottom: 1px solid rgba($vapor-color-ink, 0.06); &:last-child { border-bottom: none; } }
+    &__item { border-bottom: 1px solid $tp-line; &:last-child { border-bottom: none; } }
     &__link {
         display: block; padding: .8rem 1rem;
-        color: $vapor-color-ink; text-decoration: none; font-size: .82rem; font-weight: 700;
-        text-transform: uppercase; letter-spacing: .02em;
-        transition: background .12s ease, color .12s ease;
-        &:hover { background: rgba($sw-color-brand-primary, 0.08); color: $sw-color-brand-primary; text-decoration: none; }
-        &.is-home { background: $sw-color-brand-primary; color: #fff; letter-spacing: .03em; }
+        color: $tp-ink; text-decoration: none; font-size: .82rem; font-weight: 600;
+        letter-spacing: .01em;
+        transition: background $tp-transition, color $tp-transition, padding $tp-transition;
+        &:hover { background: $tp-primary-soft; color: $tp-primary; text-decoration: none; padding-left: 1.25rem; }
+        &.is-home { background: $tp-primary; color: #fff; letter-spacing: .02em; }
     }
     // Sidebar altı promo görsel kutusu (mockup)
     &__promo {
