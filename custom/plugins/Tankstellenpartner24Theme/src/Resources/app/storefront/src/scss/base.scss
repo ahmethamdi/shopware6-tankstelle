@@ -1104,6 +1104,105 @@ $vapor-radius: 12px;
     &__name { font-size: .86rem; font-weight: 600; padding-right: $tp-space-2; }
 }
 
+/* ---- YENİ: Bento grid (1 büyük + 2 orta + 2 küçük) ---- */
+.vapor-bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 190px 190px;
+    gap: $tp-space-4;
+    // big (2x2 sol) | mid1 (sağ üst geniş) | mid2 + sm1 + sm2 (sağ alt sıra)
+    grid-template-areas:
+        "big big mid1 mid1"
+        "big big mid2 sm1";
+    // sm2 → mid1'in sağ üst yanına sıkışır; 5 kartı 2 satırda dengeli dağıt
+    grid-template-areas:
+        "big big mid1 sm2"
+        "big big mid2 sm1";
+    @media (max-width: 991.98px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 160px);
+        grid-template-areas:
+            "big big"
+            "mid1 mid2"
+            "sm1 sm2";
+    }
+    @media (max-width: 575.98px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: "big" "mid1" "mid2" "sm1" "sm2";
+        .vapor-bento__cell { min-height: 150px; }
+    }
+
+    &__cell {
+        position: relative;
+        overflow: hidden;
+        border-radius: $tp-radius-lg;
+        background: $tp-surface-2;
+        border: 1px solid $tp-line;
+        text-decoration: none;
+        display: flex; align-items: flex-end;
+        transition: transform $tp-transition, box-shadow $tp-transition;
+        box-shadow: $tp-shadow-xs;
+        &:hover { transform: translateY(-3px); box-shadow: $tp-shadow-lg; text-decoration: none;
+            .vapor-bento__img { transform: scale(1.05); } }
+        &.is-big  { grid-area: big; }
+        &.is-mid  { grid-area: mid1; }
+        &.is-mid2 { grid-area: mid2; }
+        &.is-sm   { grid-area: sm1; }
+        &.is-sm2  { grid-area: sm2; }
+    }
+    &__img {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; transition: transform .35s ease;
+    }
+    &__ph {
+        position: absolute; inset: 0; display: grid; place-items: center;
+        color: rgba($tp-navy, 0.25); background: $tp-surface-2;
+        svg { width: 40px; height: 40px; }
+    }
+    &__body {
+        position: relative; z-index: 2;
+        padding: $tp-space-5;
+        background: linear-gradient(0deg, rgba($tp-navy, 0.88) 0%, rgba($tp-navy, 0.35) 60%, rgba($tp-navy, 0) 100%);
+        width: 100%;
+        color: #fff;
+        display: flex; flex-direction: column; gap: 4px;
+    }
+    &__eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(#fff, 0.85); }
+    &__title { font-family: $vapor-font-headline; font-weight: 800; font-size: 1.25rem; line-height: 1.15; }
+    .is-big &__title { font-size: 1.7rem; }
+    &__cta { margin-top: $tp-space-2; font-size: .85rem; font-weight: 600; color: $tp-primary;
+        background: #fff; align-self: flex-start; padding: .35rem .8rem; border-radius: $tp-radius-pill; }
+}
+
+/* ---- YENİ: 6 kısayol kartı (bento altı) ---- */
+.vapor-shortcuts {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: $tp-space-3;
+    margin-top: $tp-space-4;
+    @media (max-width: 991.98px) { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 575.98px) { grid-template-columns: repeat(2, 1fr); }
+}
+.vapor-shortcut {
+    display: flex; flex-direction: column; align-items: center; gap: $tp-space-2;
+    background: $tp-surface; border: 1px solid $tp-line; border-radius: $tp-radius;
+    padding: $tp-space-4 $tp-space-2; text-decoration: none; color: $tp-ink;
+    box-shadow: $tp-shadow-xs; text-align: center; position: relative;
+    transition: transform $tp-transition, box-shadow $tp-transition, border-color $tp-transition;
+    &:hover { transform: translateY(-3px); box-shadow: $tp-shadow-md; border-color: rgba($tp-primary, 0.4);
+        text-decoration: none; color: $tp-primary;
+        .vapor-shortcut__ico { background: $tp-primary; color: #fff; }
+        .vapor-shortcut__arrow { color: $tp-primary; transform: translateX(2px); } }
+    &__ico { width: 48px; height: 48px; border-radius: 50%; background: $tp-primary-soft; color: $tp-primary;
+        display: grid; place-items: center; transition: background $tp-transition, color $tp-transition;
+        .icon { width: 22px; height: 22px; } .icon svg { color: currentColor; }
+        img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; } }
+    &__name { font-size: .82rem; font-weight: 600; line-height: 1.2; }
+    &__arrow { position: absolute; top: $tp-space-2; right: $tp-space-3; color: $tp-muted; font-size: 1.1rem;
+        transition: color $tp-transition, transform $tp-transition; }
+}
+
 .vapor-brandnav {
     margin: 0 0 1.25rem;
     overflow-x: auto; overflow-y: hidden;

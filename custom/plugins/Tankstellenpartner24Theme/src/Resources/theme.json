@@ -197,6 +197,13 @@
                     "en-GB": "13) Free sections (builder)",
                     "tr-TR": "13) Serbest bölümler"
                 }
+            },
+            "vaporBento": {
+                "label": {
+                    "de-DE": "1b) Bento-Grid & Shortcuts",
+                    "en-GB": "1b) Bento grid & shortcuts",
+                    "tr-TR": "1b) Bento grid & kısayollar"
+                }
             }
         },
         "fields": {
@@ -281,6 +288,34 @@
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 101,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-bento-show": {
+                "label": {
+                    "de-DE": "Bento-Grid (Kacheln) anzeigen",
+                    "en-GB": "Show: Bento grid",
+                    "tr-TR": "Bento grid göster"
+                },
+                "type": "switch",
+                "value": true,
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 103,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-bento-order": {
+                "label": {
+                    "de-DE": "Bento-Grid Reihenfolge",
+                    "en-GB": "Bento grid order",
+                    "tr-TR": "Bento grid sıra"
+                },
+                "type": "text",
+                "value": "15",
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 104,
                 "scss": false,
                 "tab": "vaporTabGeneral"
             },
@@ -6278,6 +6313,500 @@
                 "order": 2680,
                 "scss": false,
                 "tab": "vaporTabHome"
+            },
+            "vapor-bento-big-img": {
+                "label": {
+                    "de-DE": "Bento big Bild",
+                    "en-GB": "Bento big Bild",
+                    "tr-TR": "Bento big Bild"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-big-sub": {
+                "label": {
+                    "de-DE": "Bento big Eyebrow",
+                    "en-GB": "Bento big Eyebrow",
+                    "tr-TR": "Bento big Eyebrow"
+                },
+                "type": "text",
+                "value": "Neu im Sortiment",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-big-title": {
+                "label": {
+                    "de-DE": "Bento big Titel",
+                    "en-GB": "Bento big Titel",
+                    "tr-TR": "Bento big Titel"
+                },
+                "type": "text",
+                "value": "Winter '25 Kollektion",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-big-link": {
+                "label": {
+                    "de-DE": "Bento big Link",
+                    "en-GB": "Bento big Link",
+                    "tr-TR": "Bento big Link"
+                },
+                "type": "text",
+                "value": "/E-Zigaretten-Vapes/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid1-img": {
+                "label": {
+                    "de-DE": "Bento mid1 Bild",
+                    "en-GB": "Bento mid1 Bild",
+                    "tr-TR": "Bento mid1 Bild"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid1-sub": {
+                "label": {
+                    "de-DE": "Bento mid1 Eyebrow",
+                    "en-GB": "Bento mid1 Eyebrow",
+                    "tr-TR": "Bento mid1 Eyebrow"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid1-title": {
+                "label": {
+                    "de-DE": "Bento mid1 Titel",
+                    "en-GB": "Bento mid1 Titel",
+                    "tr-TR": "Bento mid1 Titel"
+                },
+                "type": "text",
+                "value": "Jetzt entdecken",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid1-link": {
+                "label": {
+                    "de-DE": "Bento mid1 Link",
+                    "en-GB": "Bento mid1 Link",
+                    "tr-TR": "Bento mid1 Link"
+                },
+                "type": "text",
+                "value": "/Pods-Akkutraeger/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid2-img": {
+                "label": {
+                    "de-DE": "Bento mid2 Bild",
+                    "en-GB": "Bento mid2 Bild",
+                    "tr-TR": "Bento mid2 Bild"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid2-sub": {
+                "label": {
+                    "de-DE": "Bento mid2 Eyebrow",
+                    "en-GB": "Bento mid2 Eyebrow",
+                    "tr-TR": "Bento mid2 Eyebrow"
+                },
+                "type": "text",
+                "value": "Bis 30K Züge",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid2-title": {
+                "label": {
+                    "de-DE": "Bento mid2 Titel",
+                    "en-GB": "Bento mid2 Titel",
+                    "tr-TR": "Bento mid2 Titel"
+                },
+                "type": "text",
+                "value": "Al Fakher 30K",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-mid2-link": {
+                "label": {
+                    "de-DE": "Bento mid2 Link",
+                    "en-GB": "Bento mid2 Link",
+                    "tr-TR": "Bento mid2 Link"
+                },
+                "type": "text",
+                "value": "/E-Zigaretten-Vapes/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm1-img": {
+                "label": {
+                    "de-DE": "Bento sm1 Bild",
+                    "en-GB": "Bento sm1 Bild",
+                    "tr-TR": "Bento sm1 Bild"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm1-sub": {
+                "label": {
+                    "de-DE": "Bento sm1 Eyebrow",
+                    "en-GB": "Bento sm1 Eyebrow",
+                    "tr-TR": "Bento sm1 Eyebrow"
+                },
+                "type": "text",
+                "value": "Ab 100 Stk.",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm1-title": {
+                "label": {
+                    "de-DE": "Bento sm1 Titel",
+                    "en-GB": "Bento sm1 Titel",
+                    "tr-TR": "Bento sm1 Titel"
+                },
+                "type": "text",
+                "value": "Liquids",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm1-link": {
+                "label": {
+                    "de-DE": "Bento sm1 Link",
+                    "en-GB": "Bento sm1 Link",
+                    "tr-TR": "Bento sm1 Link"
+                },
+                "type": "text",
+                "value": "/Liquids/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm2-img": {
+                "label": {
+                    "de-DE": "Bento sm2 Bild",
+                    "en-GB": "Bento sm2 Bild",
+                    "tr-TR": "Bento sm2 Bild"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm2-sub": {
+                "label": {
+                    "de-DE": "Bento sm2 Eyebrow",
+                    "en-GB": "Bento sm2 Eyebrow",
+                    "tr-TR": "Bento sm2 Eyebrow"
+                },
+                "type": "text",
+                "value": "Neu",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm2-title": {
+                "label": {
+                    "de-DE": "Bento sm2 Titel",
+                    "en-GB": "Bento sm2 Titel",
+                    "tr-TR": "Bento sm2 Titel"
+                },
+                "type": "text",
+                "value": "Aromen",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-sm2-link": {
+                "label": {
+                    "de-DE": "Bento sm2 Link",
+                    "en-GB": "Bento sm2 Link",
+                    "tr-TR": "Bento sm2 Link"
+                },
+                "type": "text",
+                "value": "/Aromen/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-1-name": {
+                "label": {
+                    "de-DE": "Shortcut 1 Name",
+                    "en-GB": "Shortcut 1 Name",
+                    "tr-TR": "Shortcut 1 Name"
+                },
+                "type": "text",
+                "value": "E-Zigaretten & Vapes",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-1-link": {
+                "label": {
+                    "de-DE": "Shortcut 1 Link",
+                    "en-GB": "Shortcut 1 Link",
+                    "tr-TR": "Shortcut 1 Link"
+                },
+                "type": "text",
+                "value": "/E-Zigaretten-Vapes/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-1-icon": {
+                "label": {
+                    "de-DE": "Shortcut 1 Icon",
+                    "en-GB": "Shortcut 1 Icon",
+                    "tr-TR": "Shortcut 1 Icon"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-2-name": {
+                "label": {
+                    "de-DE": "Shortcut 2 Name",
+                    "en-GB": "Shortcut 2 Name",
+                    "tr-TR": "Shortcut 2 Name"
+                },
+                "type": "text",
+                "value": "Pods & Akkuträger",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-2-link": {
+                "label": {
+                    "de-DE": "Shortcut 2 Link",
+                    "en-GB": "Shortcut 2 Link",
+                    "tr-TR": "Shortcut 2 Link"
+                },
+                "type": "text",
+                "value": "/Pods-Akkutraeger/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-2-icon": {
+                "label": {
+                    "de-DE": "Shortcut 2 Icon",
+                    "en-GB": "Shortcut 2 Icon",
+                    "tr-TR": "Shortcut 2 Icon"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-3-name": {
+                "label": {
+                    "de-DE": "Shortcut 3 Name",
+                    "en-GB": "Shortcut 3 Name",
+                    "tr-TR": "Shortcut 3 Name"
+                },
+                "type": "text",
+                "value": "Liquids",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-3-link": {
+                "label": {
+                    "de-DE": "Shortcut 3 Link",
+                    "en-GB": "Shortcut 3 Link",
+                    "tr-TR": "Shortcut 3 Link"
+                },
+                "type": "text",
+                "value": "/Liquids/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-3-icon": {
+                "label": {
+                    "de-DE": "Shortcut 3 Icon",
+                    "en-GB": "Shortcut 3 Icon",
+                    "tr-TR": "Shortcut 3 Icon"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-4-name": {
+                "label": {
+                    "de-DE": "Shortcut 4 Name",
+                    "en-GB": "Shortcut 4 Name",
+                    "tr-TR": "Shortcut 4 Name"
+                },
+                "type": "text",
+                "value": "Aromen",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-4-link": {
+                "label": {
+                    "de-DE": "Shortcut 4 Link",
+                    "en-GB": "Shortcut 4 Link",
+                    "tr-TR": "Shortcut 4 Link"
+                },
+                "type": "text",
+                "value": "/Aromen/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-4-icon": {
+                "label": {
+                    "de-DE": "Shortcut 4 Icon",
+                    "en-GB": "Shortcut 4 Icon",
+                    "tr-TR": "Shortcut 4 Icon"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-5-name": {
+                "label": {
+                    "de-DE": "Shortcut 5 Name",
+                    "en-GB": "Shortcut 5 Name",
+                    "tr-TR": "Shortcut 5 Name"
+                },
+                "type": "text",
+                "value": "Shisha",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-5-link": {
+                "label": {
+                    "de-DE": "Shortcut 5 Link",
+                    "en-GB": "Shortcut 5 Link",
+                    "tr-TR": "Shortcut 5 Link"
+                },
+                "type": "text",
+                "value": "/Shisha/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-5-icon": {
+                "label": {
+                    "de-DE": "Shortcut 5 Icon",
+                    "en-GB": "Shortcut 5 Icon",
+                    "tr-TR": "Shortcut 5 Icon"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-6-name": {
+                "label": {
+                    "de-DE": "Shortcut 6 Name",
+                    "en-GB": "Shortcut 6 Name",
+                    "tr-TR": "Shortcut 6 Name"
+                },
+                "type": "text",
+                "value": "Aktionen",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-6-link": {
+                "label": {
+                    "de-DE": "Shortcut 6 Link",
+                    "en-GB": "Shortcut 6 Link",
+                    "tr-TR": "Shortcut 6 Link"
+                },
+                "type": "text",
+                "value": "/Aktionen/",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
+            },
+            "vapor-bento-short-6-icon": {
+                "label": {
+                    "de-DE": "Shortcut 6 Icon",
+                    "en-GB": "Shortcut 6 Icon",
+                    "tr-TR": "Shortcut 6 Icon"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "tab": "vaporTabHome",
+                "scss": false
             }
         }
     }

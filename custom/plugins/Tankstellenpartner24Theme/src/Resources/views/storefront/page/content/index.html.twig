@@ -233,6 +233,69 @@
                     {% endblock %}
 
                     {% endset %}
+
+                    {# ---- YENİ: Bento grid (1 büyük + 2 orta + 2 küçük) + 6 kısayol kart ----
+                       Tüm içerik panelden: vapor-bento-{big,mid1,mid2,sm1,sm2}-{img,title,sub,link}
+                       + vapor-bento-short-1..6-{name,link,icon}. Boş kartlar gizli. #}
+                    {% set vaporSecHtml_bento %}
+                    {% block vapor_home_bento %}
+                        {% set bentoSlots = [
+                            { k: 'big',  cls: 'is-big'  },
+                            { k: 'mid1', cls: 'is-mid'  },
+                            { k: 'sm1',  cls: 'is-sm'   },
+                            { k: 'mid2', cls: 'is-mid2' },
+                            { k: 'sm2',  cls: 'is-sm2'  }
+                        ] %}
+                        {% set bentoAny = false %}
+                        {% for s in bentoSlots %}
+                            {% if theme_config('vapor-bento-' ~ s.k ~ '-title') or theme_config('vapor-bento-' ~ s.k ~ '-img') %}{% set bentoAny = true %}{% endif %}
+                        {% endfor %}
+                        {# Kısayol kartları #}
+                        {% set bentoShorts = [] %}
+                        {% for i in 1..6 %}
+                            {% set snName = theme_config('vapor-bento-short-' ~ i ~ '-name') %}
+                            {% if snName %}
+                                {% set bentoShorts = bentoShorts|merge([{ name: snName, link: theme_config('vapor-bento-short-' ~ i ~ '-link'), icon: theme_config('vapor-bento-short-' ~ i ~ '-icon') }]) %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if bentoAny or bentoShorts|length > 0 %}
+                            {% if bentoAny %}
+                                <div class="vapor-bento">
+                                    {% for s in bentoSlots %}
+                                        {% set bImg   = theme_config('vapor-bento-' ~ s.k ~ '-img') %}
+                                        {% set bTitle = theme_config('vapor-bento-' ~ s.k ~ '-title') %}
+                                        {% set bSub   = theme_config('vapor-bento-' ~ s.k ~ '-sub') %}
+                                        {% set bLink  = theme_config('vapor-bento-' ~ s.k ~ '-link') %}
+                                        {% set bTag   = bLink ? 'a' : 'div' %}
+                                        <{{ bTag }} class="vapor-bento__cell {{ s.cls }}"{% if bLink %} href="{{ bLink }}"{% endif %}>
+                                            {% if bImg %}<img class="vapor-bento__img" src="{{ bImg }}" alt="{{ bTitle }}" loading="lazy">{% else %}<span class="vapor-bento__ph">{{ mediaSvg }}</span>{% endif %}
+                                            {% if bSub or bTitle %}
+                                                <div class="vapor-bento__body">
+                                                    {% if bSub %}<span class="vapor-bento__eyebrow">{{ bSub }}</span>{% endif %}
+                                                    {% if bTitle %}<span class="vapor-bento__title">{{ bTitle }}</span>{% endif %}
+                                                    {% if bLink %}<span class="vapor-bento__cta">Entdecken →</span>{% endif %}
+                                                </div>
+                                            {% endif %}
+                                        </{{ bTag }}>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if bentoShorts|length > 0 %}
+                                <div class="vapor-shortcuts">
+                                    {% for sc in bentoShorts %}
+                                        <a href="{{ sc.link ?: '#' }}" class="vapor-shortcut">
+                                            <span class="vapor-shortcut__ico">{% if sc.icon %}<img src="{{ sc.icon }}" alt="" loading="lazy">{% else %}{% sw_icon 'tags' %}{% endif %}</span>
+                                            <span class="vapor-shortcut__name">{{ sc.name }}</span>
+                                            <span class="vapor-shortcut__arrow" aria-hidden="true">›</span>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endblock %}
+                    {% endset %}
+
                     {% set vaporSecHtml_campaign %}
                     {% block vapor_home_campaign %}
                         {# Üst tam genişlik (col-12) görsel banner — promo görselleriyle
@@ -545,6 +608,7 @@
                     {% set vaporSecDefs = [
                         { key: 'pills',      def: 5,   html: vaporSecHtml_pills },
                         { key: 'brands',     def: 10,  html: vaporSecHtml_brands },
+                        { key: 'bento',      def: 15,  html: vaporSecHtml_bento },
                         { key: 'campaign',   def: 20,  html: vaporSecHtml_campaign },
                         { key: 'promo',      def: 30,  html: vaporSecHtml_promo },
                         { key: 'categories', def: 40,  html: vaporSecHtml_categories },
