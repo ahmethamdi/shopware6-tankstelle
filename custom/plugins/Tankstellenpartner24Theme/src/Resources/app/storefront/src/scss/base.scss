@@ -96,15 +96,15 @@ h1, h2, h3, h4, h5, h6,
     z-index: 1030;
 }
 
-// Ortak iç genişlik sarmalayıcı — TAM GENİŞLİK (edge-to-edge), sağlı-sollu boşluk yok.
-// İçerik ekranı doldurur; sadece kenarlara nefes payı (padding) bırakılır.
+// Ortak iç genişlik sarmalayıcı — ARKA PLAN tam genişlik (bar'ların kendisi edge-to-edge),
+// İÇERİK ise container'da (sayfa gövdesiyle -.vapor-body- aynı hizada). Böylece logo/menü
+// hizalı kalır ama alttaki menü çizgisi + üst USP şeridi arka planı ekranı doldurur.
 .tp-header__inner,
 .tp-navbar__inner {
-    max-width: 100%;
+    max-width: $tp-container-max;
     margin: 0 auto;
-    padding-left: $tp-space-6;
-    padding-right: $tp-space-6;
-    @media (max-width: 767.98px) { padding-left: $tp-space-4; padding-right: $tp-space-4; }
+    padding-left: $tp-space-5;
+    padding-right: $tp-space-5;
 }
 
 // ---- Ana header satırı ----
@@ -438,12 +438,11 @@ h1, h2, h3, h4, h5, h6,
     padding-top: 0;
     padding-bottom: 0;
 
-    // Header içeriği TAM GENİŞLİK (edge-to-edge) — Bootstrap .container'ın
-    // sabit max-width'ini ez (top-bar'ı saran dış .container dahil).
-    // Yan boşluk .tp-header__inner / .vapor-info-bar .container padding'inden gelir.
-    .container { max-width: 100% !important; }
-    // Dış (sarmalayıcı) .container'ın kendi yan padding'i olmasın (çift boşluk)
-    > .container { padding-left: 0; padding-right: 0; }
+    // DIŞ sarmalayıcı .container tam genişlik olsun (içindeki lacivert USP şeridi
+    // arka planı edge-to-edge dolsun). İÇERİK container'ları (.vapor-info-bar .container /
+    // .tp-header__inner) kendi max-width'leriyle sayfa gövdesiyle hizalı kalır.
+    // Sadece DOĞRUDAN çocuk .container hedeflenir (iç container'a dokunma).
+    > .container { max-width: 100% !important; padding-left: 0; padding-right: 0; }
 
     // Beyaz yuvarlak "pill" kart (logo+menü+ikon+CTA bunun içinde)
     .vapor-header-pill {
@@ -653,9 +652,9 @@ h1, h2, h3, h4, h5, h6,
     font-size: .82rem;
     font-weight: 500;
     padding: .5rem 0;
-    // USP şeridi de header ile aynı tam genişlik: içerik ekranı doldursun
-    .container { max-width: 100%; padding-left: $tp-space-6; padding-right: $tp-space-6;
-        @media (max-width: 767.98px) { padding-left: $tp-space-4; padding-right: $tp-space-4; } }
+    // Arka plan tam genişlik (yukarıdaki background), İÇERİK container'da (header ile hizalı)
+    .container { max-width: $tp-container-max; margin: 0 auto;
+        padding-left: $tp-space-5; padding-right: $tp-space-5; }
     &__inner {
         display: flex;
         flex-wrap: wrap;
