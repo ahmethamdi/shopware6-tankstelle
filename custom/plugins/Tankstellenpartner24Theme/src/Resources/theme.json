@@ -6807,6 +6807,48 @@
                 "block": "vaporBento",
                 "tab": "vaporTabHome",
                 "scss": false
+            },
+            "vapor-sec-catslider-show": {
+                "label": {
+                    "de-DE": "Kategorie-Slider anzeigen",
+                    "en-GB": "Kategorie-Slider anzeigen",
+                    "tr-TR": "Kategorie-Slider anzeigen"
+                },
+                "type": "switch",
+                "value": true,
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 105,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-catslider-order": {
+                "label": {
+                    "de-DE": "Kategorie-Slider Reihenfolge",
+                    "en-GB": "Kategorie-Slider Reihenfolge",
+                    "tr-TR": "Kategorie-Slider Reihenfolge"
+                },
+                "type": "text",
+                "value": "18",
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 106,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-catslider-title": {
+                "label": {
+                    "de-DE": "Kategorie-Slider Titel",
+                    "en-GB": "Category slider title",
+                    "tr-TR": "Kategori slider başlık"
+                },
+                "type": "text",
+                "value": "Nach Kategorie einkaufen",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 900,
+                "scss": false,
+                "tab": "vaporTabHome"
             }
         }
     }

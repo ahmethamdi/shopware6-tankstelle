@@ -296,6 +296,60 @@
                     {% endblock %}
                     {% endset %}
 
+                    {# ---- YENİ: Kategori slider ("Kategoriye Göre Alışveriş") ----
+                       Canlı kategori ağacından her ana kategori bir kart:
+                       büyük görsel + 3 küçük görsel (mozaik) + isim + ürün sayısı + İncele.
+                       Görseller: kategorinin media'sı ya da alt kategorilerin media'sı; yoksa placeholder. #}
+                    {% set vaporSecHtml_catslider %}
+                    {% block vapor_home_catslider %}
+                        {% set catTitle = theme_config('vapor-catslider-title') ?: 'Nach Kategorie einkaufen' %}
+                        {% if vaporNavTree|length > 0 %}
+                            <div class="vapor-section-head">
+                                <h2 class="vapor-section-head__title">{{ catTitle }}</h2>
+                                <div class="vapor-slider-nav">
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="catslider" data-dir="prev" aria-label="zurück">{% sw_icon 'chevron-left' %}</button>
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="catslider" data-dir="next" aria-label="weiter">{% sw_icon 'chevron-right' %}</button>
+                                </div>
+                            </div>
+                            <div class="vapor-catslider" data-vapor-slider="catslider" data-vapor-dragscroll>
+                                <div class="vapor-catslider__track">
+                                    {% for m in vaporNavTree %}
+                                        {% set cat = m.category %}
+                                        {% set catUrl = seoUrl('frontend.navigation.page', { navigationId: cat.id }) %}
+                                        {% set kids = m.children|default([]) %}
+                                        {% set mainMedia = cat.media ?? null %}
+                                        <a href="{{ catUrl }}" class="vapor-catcard">
+                                            <div class="vapor-catcard__media">
+                                                <span class="vapor-catcard__big">
+                                                    {% if mainMedia %}{% sw_thumbnails 'vapor-catcard-big' with { media: mainMedia, sizes: { default: '260px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                </span>
+                                                <span class="vapor-catcard__mini">
+                                                    {% for k in kids|slice(0, 3) %}
+                                                        <span class="vapor-catcard__minicell">
+                                                            {% if k.category.media %}{% sw_thumbnails 'vapor-catcard-mini' with { media: k.category.media, sizes: { default: '90px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                        </span>
+                                                    {% else %}
+                                                        <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
+                                                        <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
+                                                        <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
+                                                    {% endfor %}
+                                                </span>
+                                            </div>
+                                            <div class="vapor-catcard__foot">
+                                                <div class="vapor-catcard__info">
+                                                    <span class="vapor-catcard__name">{{ cat.translated.name }}</span>
+                                                    {% if kids|length > 0 %}<span class="vapor-catcard__count">{{ kids|length }} Kategorien</span>{% endif %}
+                                                </div>
+                                                <span class="vapor-catcard__btn">Ansehen</span>
+                                            </div>
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                    {% endset %}
+
                     {% set vaporSecHtml_campaign %}
                     {% block vapor_home_campaign %}
                         {# Üst tam genişlik (col-12) görsel banner — promo görselleriyle
@@ -609,6 +663,7 @@
                         { key: 'pills',      def: 5,   html: vaporSecHtml_pills },
                         { key: 'brands',     def: 10,  html: vaporSecHtml_brands },
                         { key: 'bento',      def: 15,  html: vaporSecHtml_bento },
+                        { key: 'catslider',  def: 18,  html: vaporSecHtml_catslider },
                         { key: 'campaign',   def: 20,  html: vaporSecHtml_campaign },
                         { key: 'promo',      def: 30,  html: vaporSecHtml_promo },
                         { key: 'categories', def: 40,  html: vaporSecHtml_categories },

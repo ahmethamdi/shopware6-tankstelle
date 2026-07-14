@@ -1203,6 +1203,69 @@ $vapor-radius: 12px;
         transition: color $tp-transition, transform $tp-transition; }
 }
 
+/* ---- YENİ: Kategori slider (büyük + 3 küçük mozaik kartlar) ---- */
+.vapor-catslider {
+    overflow-x: auto; overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; scroll-behavior: smooth;
+    scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+    cursor: grab;
+    &.is-dragging { cursor: grabbing; scroll-behavior: auto; }
+    &__track { display: flex; gap: $tp-space-4; width: max-content; padding: 2px; }
+}
+.vapor-catcard {
+    flex: 0 0 auto;
+    width: 340px;
+    background: $tp-surface;
+    border: 1px solid $tp-line;
+    border-radius: $tp-radius-lg;
+    overflow: hidden;
+    text-decoration: none;
+    color: $tp-ink;
+    box-shadow: $tp-shadow-xs;
+    display: flex; flex-direction: column;
+    transition: transform $tp-transition, box-shadow $tp-transition, border-color $tp-transition;
+    &:hover { transform: translateY(-4px); box-shadow: $tp-shadow-lg; border-color: rgba($tp-primary, 0.35);
+        text-decoration: none; color: $tp-ink;
+        .vapor-catcard__btn { background: $tp-primary; color: #fff; } }
+    @media (max-width: 575.98px) { width: 280px; }
+
+    &__media {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: $tp-space-2;
+        padding: $tp-space-3;
+        height: 240px;
+    }
+    &__big {
+        border-radius: $tp-radius; overflow: hidden; background: $tp-surface-2;
+        display: grid; place-items: center; color: rgba($tp-navy, 0.2);
+        img { width: 100%; height: 100%; object-fit: cover; }
+        svg { width: 40px; height: 40px; }
+    }
+    &__mini { display: grid; grid-template-rows: repeat(3, 1fr); gap: $tp-space-2; }
+    &__minicell {
+        border-radius: $tp-radius-sm; overflow: hidden; background: $tp-surface-2;
+        display: grid; place-items: center; color: rgba($tp-navy, 0.2);
+        img { width: 100%; height: 100%; object-fit: cover; }
+        svg { width: 22px; height: 22px; }
+    }
+
+    &__foot {
+        display: flex; align-items: center; justify-content: space-between; gap: $tp-space-3;
+        padding: 0 $tp-space-4 $tp-space-4;
+    }
+    &__info { display: flex; flex-direction: column; min-width: 0; }
+    &__name { font-weight: 700; font-size: 1.02rem; color: $tp-navy; line-height: 1.2; }
+    &__count { font-size: .8rem; color: $tp-muted; margin-top: 2px; }
+    &__btn {
+        flex: 0 0 auto;
+        background: $tp-navy; color: #fff;
+        font-weight: 600; font-size: .85rem;
+        padding: .5rem 1.1rem; border-radius: $tp-radius-pill;
+        transition: background $tp-transition, color $tp-transition;
+    }
+}
+
 .vapor-brandnav {
     margin: 0 0 1.25rem;
     overflow-x: auto; overflow-y: hidden;
