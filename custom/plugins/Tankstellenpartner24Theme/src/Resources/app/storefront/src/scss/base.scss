@@ -96,13 +96,15 @@ h1, h2, h3, h4, h5, h6,
     z-index: 1030;
 }
 
-// Ortak iç genişlik sarmalayıcı
+// Ortak iç genişlik sarmalayıcı — TAM GENİŞLİK (edge-to-edge), sağlı-sollu boşluk yok.
+// İçerik ekranı doldurur; sadece kenarlara nefes payı (padding) bırakılır.
 .tp-header__inner,
 .tp-navbar__inner {
-    max-width: $tp-container-max;
+    max-width: 100%;
     margin: 0 auto;
-    padding-left: $tp-space-5;
-    padding-right: $tp-space-5;
+    padding-left: $tp-space-6;
+    padding-right: $tp-space-6;
+    @media (max-width: 767.98px) { padding-left: $tp-space-4; padding-right: $tp-space-4; }
 }
 
 // ---- Ana header satırı ----
@@ -436,8 +438,12 @@ h1, h2, h3, h4, h5, h6,
     padding-top: 0;
     padding-bottom: 0;
 
-    // Header içeriği max 1600 (kullanıcı isteği)
-    .container { max-width: 1600px; }
+    // Header içeriği TAM GENİŞLİK (edge-to-edge) — Bootstrap .container'ın
+    // sabit max-width'ini ez (top-bar'ı saran dış .container dahil).
+    // Yan boşluk .tp-header__inner / .vapor-info-bar .container padding'inden gelir.
+    .container { max-width: 100% !important; }
+    // Dış (sarmalayıcı) .container'ın kendi yan padding'i olmasın (çift boşluk)
+    > .container { padding-left: 0; padding-right: 0; }
 
     // Beyaz yuvarlak "pill" kart (logo+menü+ikon+CTA bunun içinde)
     .vapor-header-pill {
@@ -647,7 +653,9 @@ h1, h2, h3, h4, h5, h6,
     font-size: .82rem;
     font-weight: 500;
     padding: .5rem 0;
-    .container { max-width: $tp-container-max; }
+    // USP şeridi de header ile aynı tam genişlik: içerik ekranı doldursun
+    .container { max-width: 100%; padding-left: $tp-space-6; padding-right: $tp-space-6;
+        @media (max-width: 767.98px) { padding-left: $tp-space-4; padding-right: $tp-space-4; } }
     &__inner {
         display: flex;
         flex-wrap: wrap;
@@ -1732,6 +1740,29 @@ $vapor-radius: 12px;
         &:hover { text-decoration: underline; }
     }
     &__support-txt small { font-size: .72rem; color: $tp-muted; }
+
+    // (d) Vorteile — sidebar'da alt alta kompakt kartlar
+    &__vorteile { margin: 1rem; padding-top: 1rem; border-top: 1px solid rgba($tp-ink, 0.07);
+        display: flex; flex-direction: column; gap: .6rem;
+        .vapor-sidebar__mini-head { margin-bottom: .2rem; }
+    }
+    &__vt-card {
+        display: flex; align-items: flex-start; gap: .7rem;
+        padding: .75rem; border-radius: $tp-radius;
+        background: $tp-surface-2; border: 1px solid $tp-line;
+        transition: border-color $tp-transition, box-shadow $tp-transition;
+        &:hover { border-color: rgba($tp-primary, 0.3); box-shadow: $tp-shadow-xs; }
+    }
+    &__vt-ico {
+        flex: 0 0 auto; width: 38px; height: 38px; border-radius: $tp-radius-sm;
+        background: linear-gradient(150deg, $tp-navy, $tp-navy-dark);
+        display: grid; place-items: center;
+        .icon { width: 18px; height: 18px; } .icon svg { color: #fff; }
+    }
+    &__vt-txt { display: flex; flex-direction: column; gap: 2px; line-height: 1.3; min-width: 0;
+        b { font-size: .82rem; font-weight: 700; color: $tp-navy; }
+        small { font-size: .72rem; color: $tp-muted; line-height: 1.35; }
+    }
 }
 
 // Sağ kolon promo görsel kutuları (mockup'ta marka ikonları+banner sonrası 2 geniş kutu)
@@ -2448,6 +2479,61 @@ $vapor-radius: 12px;
 // Sidebar gizliyse (panelden kapatıldıysa) grid tek kolon → içerik tam genişlik
 .vapor-body--no-sidebar {
     grid-template-columns: 1fr;
+}
+
+// =====================================================================
+// Vorteile — B2B avantaj 3-kart bölümü (eski mor CMS bölümünün token dili karşılığı)
+// =====================================================================
+.vapor-vorteile {
+    &__head { max-width: 720px; margin-bottom: $tp-space-5; }
+    &__eyebrow {
+        display: inline-block; font-size: .74rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: .08em; color: $tp-primary;
+        margin-bottom: $tp-space-2;
+    }
+    &__title {
+        font-family: $vapor-font-headline; font-weight: 800;
+        font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.12;
+        color: $tp-navy; margin: 0 0 $tp-space-3;
+        position: relative; padding-bottom: $tp-space-3;
+        &::after { content: ""; position: absolute; left: 0; bottom: 0;
+            width: 56px; height: 3px; background: $tp-primary; border-radius: 3px; }
+    }
+    &__sub { font-size: 1rem; line-height: 1.55; color: $tp-muted; margin: 0; }
+
+    &__grid {
+        display: grid; grid-template-columns: repeat(3, 1fr); gap: $tp-space-4;
+        @media (max-width: 991.98px) { grid-template-columns: 1fr; }
+    }
+    &__card {
+        background: $tp-surface; border: 1px solid $tp-line;
+        border-radius: $tp-radius-lg; padding: $tp-space-6 $tp-space-5;
+        box-shadow: $tp-shadow-xs;
+        transition: transform $tp-transition, box-shadow $tp-transition, border-color $tp-transition;
+        &:hover { transform: translateY(-4px); box-shadow: $tp-shadow-lg; border-color: rgba($tp-primary, 0.3); }
+    }
+    &__ico {
+        display: grid; place-items: center;
+        width: 56px; height: 56px; border-radius: $tp-radius;
+        background: linear-gradient(150deg, $tp-navy, $tp-navy-dark);
+        margin-bottom: $tp-space-4; box-shadow: $tp-shadow-sm;
+        .icon { width: 26px; height: 26px; }
+        .icon svg { color: #fff; }
+    }
+    &__card-title {
+        font-family: $vapor-font-headline; font-weight: 700; font-size: 1.15rem;
+        color: $tp-navy; margin: 0 0 $tp-space-2;
+    }
+    &__card-text { font-size: .92rem; line-height: 1.5; color: $tp-muted; margin: 0 0 $tp-space-4; }
+    &__list {
+        list-style: none; margin: 0; padding: $tp-space-4 0 0;
+        border-top: 1px solid $tp-line;
+        display: flex; flex-direction: column; gap: $tp-space-3;
+        li { display: flex; align-items: flex-start; gap: $tp-space-2;
+            font-size: .88rem; color: $tp-ink; line-height: 1.35; }
+        .icon { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 1px; }
+        .icon svg { color: $tp-primary; }
+    }
 }
 
 // =====================================================================

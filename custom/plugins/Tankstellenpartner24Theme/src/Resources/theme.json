@@ -211,6 +211,13 @@
                     "en-GB": "1c) Promo card + product slider",
                     "tr-TR": "1c) Promo kart + ürün slider"
                 }
+            },
+            "vaporVorteile": {
+                "label": {
+                    "de-DE": "1d) Vorteile (3 Karten)",
+                    "en-GB": "1d) Advantages (3 cards)",
+                    "tr-TR": "1d) Vorteile (3 kart)"
+                }
             }
         },
         "fields": {
@@ -347,7 +354,7 @@
                     "tr-TR": "Kampanya banner göster"
                 },
                 "type": "switch",
-                "value": true,
+                "value": false,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 111,
@@ -3529,6 +3536,20 @@
                 "editable": true,
                 "block": "vaporSidebar",
                 "order": 363,
+                "scss": false,
+                "tab": "vaporTabSidebar"
+            },
+            "vapor-sidebar-vorteile-title": {
+                "label": {
+                    "de-DE": "Sidebar Vorteile: Titel",
+                    "en-GB": "Sidebar advantages: title",
+                    "tr-TR": "Sidebar Vorteile: başlık"
+                },
+                "type": "text",
+                "value": "Ihre Vorteile",
+                "editable": true,
+                "block": "vaporSidebar",
+                "order": 364,
                 "scss": false,
                 "tab": "vaporTabSidebar"
             },
@@ -7073,7 +7094,7 @@
                     "tr-TR": "Angebote slider göster"
                 },
                 "type": "switch",
-                "value": true,
+                "value": false,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 109,
@@ -7107,6 +7128,121 @@
                 "order": 920,
                 "scss": false,
                 "tab": "vaporTabHome"
+            },
+            "vapor-sec-vorteile-show": {
+                "label": { "de-DE": "Vorteile-Sektion anzeigen", "en-GB": "Show: advantages section", "tr-TR": "Vorteile bölümü göster" },
+                "type": "switch", "value": true, "editable": true,
+                "block": "vaporLayout", "order": 111, "scss": false, "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-vorteile-order": {
+                "label": { "de-DE": "Vorteile-Sektion Reihenfolge", "en-GB": "Advantages section order", "tr-TR": "Vorteile bölümü sıra" },
+                "type": "text", "value": "22", "editable": true,
+                "block": "vaporLayout", "order": 112, "scss": false, "tab": "vaporTabGeneral"
+            },
+            "vapor-vorteile-eyebrow": {
+                "label": { "de-DE": "Vorteile: Eyebrow", "en-GB": "Advantages: eyebrow", "tr-TR": "Vorteile: üst etiket" },
+                "type": "text", "value": "Ihre Vorteile", "editable": true,
+                "block": "vaporVorteile", "order": 930, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-title": {
+                "label": { "de-DE": "Vorteile: Titel", "en-GB": "Advantages: title", "tr-TR": "Vorteile: başlık" },
+                "type": "text", "value": "Ihr zuverlässiger Großhandelspartner", "editable": true,
+                "block": "vaporVorteile", "order": 931, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-sub": {
+                "label": { "de-DE": "Vorteile: Untertitel", "en-GB": "Advantages: subtitle", "tr-TR": "Vorteile: alt metin" },
+                "type": "text", "value": "Vom Bestellprozess bis zur Lieferung – wir machen Großhandel einfach, sicher und planbar. Das erwartet Sie als Partner:", "editable": true,
+                "block": "vaporVorteile", "order": 932, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-1-icon": {
+                "label": { "de-DE": "Karte 1: Icon", "en-GB": "Card 1: icon", "tr-TR": "Kart 1: ikon" },
+                "type": "text", "value": "shield", "editable": true,
+                "block": "vaporVorteile", "order": 940, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-1-title": {
+                "label": { "de-DE": "Karte 1: Titel", "en-GB": "Card 1: title", "tr-TR": "Kart 1: başlık" },
+                "type": "text", "value": "100% Originalware", "editable": true,
+                "block": "vaporVorteile", "order": 941, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-1-text": {
+                "label": { "de-DE": "Karte 1: Text", "en-GB": "Card 1: text", "tr-TR": "Kart 1: metin" },
+                "type": "text", "value": "Direkt vom autorisierten Distributor – keine Grauimporte, keine Fälschungen.", "editable": true,
+                "block": "vaporVorteile", "order": 942, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-1-li1": {
+                "label": { "de-DE": "Karte 1: Punkt 1", "en-GB": "Card 1: item 1", "tr-TR": "Kart 1: madde 1" },
+                "type": "text", "value": "Jede Charge geprüft & zertifiziert", "editable": true,
+                "block": "vaporVorteile", "order": 943, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-1-li2": {
+                "label": { "de-DE": "Karte 1: Punkt 2", "en-GB": "Card 1: item 2", "tr-TR": "Kart 1: madde 2" },
+                "type": "text", "value": "Deutsche Steuerbanderole", "editable": true,
+                "block": "vaporVorteile", "order": 944, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-1-li3": {
+                "label": { "de-DE": "Karte 1: Punkt 3", "en-GB": "Card 1: item 3", "tr-TR": "Kart 1: madde 3" },
+                "type": "text", "value": "Rechtssicher für den Wiederverkauf", "editable": true,
+                "block": "vaporVorteile", "order": 945, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-2-icon": {
+                "label": { "de-DE": "Karte 2: Icon", "en-GB": "Card 2: icon", "tr-TR": "Kart 2: ikon" },
+                "type": "text", "value": "truck", "editable": true,
+                "block": "vaporVorteile", "order": 950, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-2-title": {
+                "label": { "de-DE": "Karte 2: Titel", "en-GB": "Card 2: title", "tr-TR": "Kart 2: başlık" },
+                "type": "text", "value": "Schnell & zuverlässig", "editable": true,
+                "block": "vaporVorteile", "order": 951, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-2-text": {
+                "label": { "de-DE": "Karte 2: Text", "en-GB": "Card 2: text", "tr-TR": "Kart 2: metin" },
+                "type": "text", "value": "Heute bestellt, in 24–48 h geliefert – planbar für Ihren Nachschub.", "editable": true,
+                "block": "vaporVorteile", "order": 952, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-2-li1": {
+                "label": { "de-DE": "Karte 2: Punkt 1", "en-GB": "Card 2: item 1", "tr-TR": "Kart 2: madde 1" },
+                "type": "text", "value": "Versand aus deutschem Lager", "editable": true,
+                "block": "vaporVorteile", "order": 953, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-2-li2": {
+                "label": { "de-DE": "Karte 2: Punkt 2", "en-GB": "Card 2: item 2", "tr-TR": "Kart 2: madde 2" },
+                "type": "text", "value": "Versandkostenfrei ab Mindestbestellwert", "editable": true,
+                "block": "vaporVorteile", "order": 954, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-2-li3": {
+                "label": { "de-DE": "Karte 2: Punkt 3", "en-GB": "Card 2: item 3", "tr-TR": "Kart 2: madde 3" },
+                "type": "text", "value": "Sendungsverfolgung inklusive", "editable": true,
+                "block": "vaporVorteile", "order": 955, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-3-icon": {
+                "label": { "de-DE": "Karte 3: Icon", "en-GB": "Card 3: icon", "tr-TR": "Kart 3: ikon" },
+                "type": "text", "value": "headset", "editable": true,
+                "block": "vaporVorteile", "order": 960, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-3-title": {
+                "label": { "de-DE": "Karte 3: Titel", "en-GB": "Card 3: title", "tr-TR": "Kart 3: başlık" },
+                "type": "text", "value": "Persönlicher B2B-Service", "editable": true,
+                "block": "vaporVorteile", "order": 961, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-3-text": {
+                "label": { "de-DE": "Karte 3: Text", "en-GB": "Card 3: text", "tr-TR": "Kart 3: metin" },
+                "type": "text", "value": "Ein fester Ansprechpartner, faire Konditionen und flexible Zahlung.", "editable": true,
+                "block": "vaporVorteile", "order": 962, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-3-li1": {
+                "label": { "de-DE": "Karte 3: Punkt 1", "en-GB": "Card 3: item 1", "tr-TR": "Kart 3: madde 1" },
+                "type": "text", "value": "Kauf auf Rechnung für Gewerbekunden", "editable": true,
+                "block": "vaporVorteile", "order": 963, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-3-li2": {
+                "label": { "de-DE": "Karte 3: Punkt 2", "en-GB": "Card 3: item 2", "tr-TR": "Kart 3: madde 2" },
+                "type": "text", "value": "Staffelpreise & Mengenrabatte", "editable": true,
+                "block": "vaporVorteile", "order": 964, "scss": false, "tab": "vaporTabHome"
+            },
+            "vapor-vorteile-3-li3": {
+                "label": { "de-DE": "Karte 3: Punkt 3", "en-GB": "Card 3: item 3", "tr-TR": "Kart 3: madde 3" },
+                "type": "text", "value": "Beratung zu Sortiment & Aktionen", "editable": true,
+                "block": "vaporVorteile", "order": 965, "scss": false, "tab": "vaporTabHome"
             }
         }
     }

@@ -212,6 +212,36 @@
                                 </div>
                             </div>
                         {% endif %}
+
+                        {# (d) Vorteile — sidebar'da ALT ALTA kompakt kartlar (ana koldan taşındı).
+                           Aynı vapor-vorteile-* config; uzun metin gizli, madde listesi kompakt. #}
+                        {% set sbVtCards = [] %}
+                        {% for i in 1..3 %}
+                            {% set cTitle = theme_config('vapor-vorteile-' ~ i ~ '-title') %}
+                            {% if cTitle %}
+                                {% set sbVtCards = sbVtCards|merge([{
+                                    icon:  theme_config('vapor-vorteile-' ~ i ~ '-icon') ?: 'shield',
+                                    title: cTitle,
+                                    text:  theme_config('vapor-vorteile-' ~ i ~ '-text')
+                                }]) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if sbVtCards|length %}
+                            <div class="vapor-sidebar__vorteile">
+                                {% if theme_config('vapor-vorteile-title') %}
+                                    <div class="vapor-sidebar__mini-head">{{ theme_config('vapor-sidebar-vorteile-title') ?: theme_config('vapor-vorteile-title') }}</div>
+                                {% endif %}
+                                {% for c in sbVtCards %}
+                                    <div class="vapor-sidebar__vt-card">
+                                        <span class="vapor-sidebar__vt-ico">{% sw_icon c.icon %}</span>
+                                        <span class="vapor-sidebar__vt-txt">
+                                            <b>{{ c.title }}</b>
+                                            {% if c.text %}<small>{{ c.text }}</small>{% endif %}
+                                        </span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </aside>
                 {% endblock %}
                 {% endif %}
@@ -313,45 +343,27 @@
                             {% endif %}
                         {% endfor %}
 
-                        {% if bentoAny or bentoShorts|length > 0 %}
-                            {% if bentoAny %}
-                                <div class="vapor-bento">
-                                    {% for s in bentoSlots %}
-                                        {% set bImg   = theme_config('vapor-bento-' ~ s.k ~ '-img') %}
-                                        {% set bTitle = theme_config('vapor-bento-' ~ s.k ~ '-title') %}
-                                        {% set bSub   = theme_config('vapor-bento-' ~ s.k ~ '-sub') %}
-                                        {% set bLink  = theme_config('vapor-bento-' ~ s.k ~ '-link') %}
-                                        {% set bTag   = bLink ? 'a' : 'div' %}
-                                        <{{ bTag }} class="vapor-bento__cell {{ s.cls }}"{% if bLink %} href="{{ bLink }}"{% endif %}>
-                                            {% if bImg %}<img class="vapor-bento__img" src="{{ bImg }}" alt="{{ bTitle }}" loading="lazy">{% else %}<span class="vapor-bento__ph">{{ mediaSvg }}</span>{% endif %}
-                                            {% if bSub or bTitle %}
-                                                <div class="vapor-bento__body">
-                                                    {% if bSub %}<span class="vapor-bento__eyebrow">{{ bSub }}</span>{% endif %}
-                                                    {% if bTitle %}<span class="vapor-bento__title">{{ bTitle }}</span>{% endif %}
-                                                    {% if bLink %}<span class="vapor-bento__cta">Entdecken →</span>{% endif %}
-                                                </div>
-                                            {% endif %}
-                                        </{{ bTag }}>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
-                            {% if bentoShorts|length > 0 %}
-                                {# Marka kısayolları (kategori pill şeridiyle tekrar ETMESİN diye
-                                   ayrı başlık + marka baş-harfi rozeti). Logo yüklenirse img kullanılır. #}
-                                {% set bentoShortsTitle = theme_config('vapor-bento-shorts-title') ?: 'Top-Marken' %}
-                                <div class="vapor-section-head vapor-shortcuts-head">
-                                    <h2 class="vapor-section-head__title">{{ bentoShortsTitle }}</h2>
-                                </div>
-                                <div class="vapor-shortcuts">
-                                    {% for sc in bentoShorts %}
-                                        <a href="{{ sc.link ?: '#' }}" class="vapor-shortcut vapor-shortcut--brand">
-                                            <span class="vapor-shortcut__ico">{% if sc.icon %}<img src="{{ sc.icon }}" alt="{{ sc.name }}" loading="lazy">{% else %}<b class="vapor-shortcut__initials">{{ sc.name|split(' ')|map(w => w|first)|join('')|slice(0, 2)|upper }}</b>{% endif %}</span>
-                                            <span class="vapor-shortcut__name">{{ sc.name }}</span>
-                                            <span class="vapor-shortcut__arrow" aria-hidden="true">›</span>
-                                        </a>
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
+                        {# Not: Marka kısayol şeridi (Top-Marken) kullanıcı isteğiyle KALDIRILDI. #}
+                        {% if bentoAny %}
+                            <div class="vapor-bento">
+                                {% for s in bentoSlots %}
+                                    {% set bImg   = theme_config('vapor-bento-' ~ s.k ~ '-img') %}
+                                    {% set bTitle = theme_config('vapor-bento-' ~ s.k ~ '-title') %}
+                                    {% set bSub   = theme_config('vapor-bento-' ~ s.k ~ '-sub') %}
+                                    {% set bLink  = theme_config('vapor-bento-' ~ s.k ~ '-link') %}
+                                    {% set bTag   = bLink ? 'a' : 'div' %}
+                                    <{{ bTag }} class="vapor-bento__cell {{ s.cls }}"{% if bLink %} href="{{ bLink }}"{% endif %}>
+                                        {% if bImg %}<img class="vapor-bento__img" src="{{ bImg }}" alt="{{ bTitle }}" loading="lazy">{% else %}<span class="vapor-bento__ph">{{ mediaSvg }}</span>{% endif %}
+                                        {% if bSub or bTitle %}
+                                            <div class="vapor-bento__body">
+                                                {% if bSub %}<span class="vapor-bento__eyebrow">{{ bSub }}</span>{% endif %}
+                                                {% if bTitle %}<span class="vapor-bento__title">{{ bTitle }}</span>{% endif %}
+                                                {% if bLink %}<span class="vapor-bento__cta">Entdecken →</span>{% endif %}
+                                            </div>
+                                        {% endif %}
+                                    </{{ bTag }}>
+                                {% endfor %}
+                            </div>
                         {% endif %}
                     {% endblock %}
                     {% endset %}
@@ -367,8 +379,8 @@
                             <div class="vapor-section-head">
                                 <h2 class="vapor-section-head__title">{{ catTitle }}</h2>
                                 <div class="vapor-slider-nav">
-                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="catslider" data-dir="prev" aria-label="zurück">{% sw_icon 'chevron-left' %}</button>
-                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="catslider" data-dir="next" aria-label="weiter">{% sw_icon 'chevron-right' %}</button>
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="catslider" data-dir="prev" aria-label="zurück"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 6 9 12 15 18"/></svg></button>
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="catslider" data-dir="next" aria-label="weiter"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></button>
                                 </div>
                             </div>
                             <div class="vapor-catslider" data-vapor-slider="catslider" data-vapor-dragscroll>
@@ -420,8 +432,8 @@
                             <div class="vapor-section-head">
                                 {% if theme_config('vapor-angebote-title') %}<h2 class="vapor-section-head__title">{{ theme_config('vapor-angebote-title') }}</h2>{% endif %}
                                 <div class="vapor-slider-nav">
-                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="angebote" data-dir="prev" aria-label="zurück">{% sw_icon 'chevron-left' %}</button>
-                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="angebote" data-dir="next" aria-label="weiter">{% sw_icon 'chevron-right' %}</button>
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="angebote" data-dir="prev" aria-label="zurück"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 6 9 12 15 18"/></svg></button>
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="angebote" data-dir="next" aria-label="weiter"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></button>
                                 </div>
                             </div>
                             <div class="vapor-cardslider" data-vapor-slider="angebote" data-vapor-dragscroll>
@@ -468,8 +480,8 @@
                                     <div class="vapor-section-head vapor-promoduo__head">
                                         {% if pdRightTitle %}<h3 class="vapor-section-head__title">{{ pdRightTitle }}</h3>{% endif %}
                                         <div class="vapor-slider-nav">
-                                            <button type="button" class="vapor-slider-btn" data-vapor-slide="promoduo" data-dir="prev" aria-label="zurück">{% sw_icon 'chevron-left' %}</button>
-                                            <button type="button" class="vapor-slider-btn" data-vapor-slide="promoduo" data-dir="next" aria-label="weiter">{% sw_icon 'chevron-right' %}</button>
+                                            <button type="button" class="vapor-slider-btn" data-vapor-slide="promoduo" data-dir="prev" aria-label="zurück"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 6 9 12 15 18"/></svg></button>
+                                            <button type="button" class="vapor-slider-btn" data-vapor-slide="promoduo" data-dir="next" aria-label="weiter"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg></button>
                                         </div>
                                     </div>
                                     <div class="vapor-promoduo__slider" data-vapor-slider="promoduo" data-vapor-dragscroll>
