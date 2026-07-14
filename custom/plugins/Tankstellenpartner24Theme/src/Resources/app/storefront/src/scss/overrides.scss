@@ -9,14 +9,15 @@ olarak enjekte edilir: $sw-color-brand-primary, $sw-color-brand-secondary, vb.
 Burada onlara fallback default veriyoruz ki admin'de değer girilmese de derleme bozulmasın.
 */
 
-// --- Vapor marka renkleri (admin config fallback'leri) ---
-$sw-color-brand-primary:   #D64535 !default; // mavi — ana marka (spec)
-$sw-color-brand-secondary: #D93A3A !default; // açık mavi — ikincil (spec)
-$vapor-color-ink:          #1F2937 !default; // koyu metin (spec dark)
-$vapor-color-bg:           #F8FAFC !default; // sayfa arka planı (spec light)
-$vapor-color-accent:       #FFD52E !default; // sarı accent (spec — badge/rozet)
+// --- TP24 marka renkleri (admin config fallback'leri) ---
+// Modern B2B/kurumsal dil: turuncu ana + lacivert ikincil.
+$sw-color-brand-primary:   #E1523D !default; // turuncu-kırmızı — ana marka (logo)
+$sw-color-brand-secondary: #13365A !default; // koyu lacivert — logo "PARTNER 24" rengi
+$vapor-color-ink:          #0D0D0D !default; // koyu metin
+$vapor-color-bg:           #F7F8FA !default; // sayfa arka planı (hafif gri-beyaz)
+$vapor-color-accent:       #FFB020 !default; // amber accent (badge/rozet)
 $vapor-color-success:      #1FB16B !default;
-$vapor-color-sale:         #FF4D4D !default;
+$vapor-color-sale:         #D93A3A !default;
 // TP24 branding fontu: Gotham. Ticari/lisanslı olduğundan geçici olarak
 // Montserrat (geometrik, Gotham'a en yakın ücretsiz Google Fonts alternatifi) kullanılıyor.
 // Gerçek Gotham .woff2 dosyaları gelince: base.scss'teki @font-face bloğunu doldur,
@@ -39,10 +40,10 @@ $headings-font-family: $vapor-font-headline;
 $headings-font-weight: 700;
 $font-weight-bold:     600;
 
-// --- Köşe yumuşaklığı / modern his ---
-$border-radius:    .625rem;  // 10px
-$border-radius-sm: .375rem;
-$border-radius-lg: 1rem;
+// --- Köşe yumuşaklığı (modern B2B: hafif yuvarlak, aşırı değil) ---
+$border-radius:    .5rem;    // 8px
+$border-radius-sm: .375rem;  // 6px
+$border-radius-lg: .875rem;  // 14px
 
 // --- Butonlar ---
 $btn-font-weight: 600;
@@ -52,3 +53,56 @@ $btn-padding-x:   1.5rem;
 // --- Linkler ---
 $link-decoration:       none;
 $link-hover-decoration: underline;
+
+/* ============================================================
+   TP24 TASARIM SİSTEMİ (redesign token'ları — modern B2B/kurumsal)
+   base.scss bunları kullanır. Tek yerden tüm görsel dil ayarlanır.
+   ============================================================ */
+
+// Marka renk türevleri (hesaplanmış — SCSS fonksiyonlarıyla)
+$tp-primary:        $sw-color-brand-primary;              // #E1523D
+$tp-primary-dark:   darken($sw-color-brand-primary, 10%);
+$tp-primary-soft:   rgba($sw-color-brand-primary, 0.08);  // açık turuncu zemin
+$tp-navy:           $sw-color-brand-secondary;             // #13365A (logo koyu lacivert)
+$tp-navy-dark:      darken($sw-color-brand-secondary, 4%);
+$tp-navy-soft:      rgba($sw-color-brand-secondary, 0.06);
+$tp-blue:           #005984;                                // logo orta mavi (damla/vurgu)
+$tp-blue-soft:      rgba(#005984, 0.08);
+
+// Nötr gri ölçeği (kurumsal, sakin)
+$tp-ink:            $vapor-color-ink;      // ana metin
+$tp-muted:          #6B7280;               // ikincil metin
+$tp-line:           #E6E8EC;               // ince kenarlık
+$tp-line-strong:    #D5D8DE;
+$tp-surface:        #FFFFFF;               // kart zemini
+$tp-surface-2:      #F2F4F7;               // hafif gri panel
+$tp-bg:             $vapor-color-bg;       // sayfa zemini
+
+// Spacing ölçeği (4px tabanlı — tutarlı ritim)
+$tp-space-1:  .25rem;   //  4px
+$tp-space-2:  .5rem;    //  8px
+$tp-space-3:  .75rem;   // 12px
+$tp-space-4:  1rem;     // 16px
+$tp-space-5:  1.5rem;   // 24px
+$tp-space-6:  2rem;     // 32px
+$tp-space-7:  3rem;     // 48px
+$tp-space-8:  4rem;     // 64px
+
+// Yumuşak gölge katmanları (kurumsal derinlik — sert değil)
+$tp-shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.05);
+$tp-shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.08), 0 1px 2px rgba(16, 24, 40, 0.04);
+$tp-shadow-md: 0 4px 12px rgba(16, 24, 40, 0.08), 0 2px 4px rgba(16, 24, 40, 0.04);
+$tp-shadow-lg: 0 12px 28px rgba(16, 24, 40, 0.10), 0 4px 8px rgba(16, 24, 40, 0.05);
+$tp-shadow-brand: 0 8px 20px rgba($sw-color-brand-primary, 0.22);
+
+// Radius token'ları
+$tp-radius:     $border-radius;      // 8px  — kart/buton
+$tp-radius-sm:  $border-radius-sm;   // 6px
+$tp-radius-lg:  $border-radius-lg;   // 14px — büyük panel/hero
+$tp-radius-pill: 999px;
+
+// Geçişler
+$tp-transition: .18s cubic-bezier(.4, 0, .2, 1);
+
+// Container maksimum genişlik (full-width düzen için ferah ama sınırlı)
+$tp-container-max: 1320px;

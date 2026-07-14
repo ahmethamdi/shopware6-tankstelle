@@ -23,7 +23,7 @@ Renk/font değişkenleri overrides.scss + theme.json config'ten gelir.
 }
 */
 
-// CSS custom property'leri (JS/inline kullanım için de erişilebilir)
+// CSS custom property'leri (JS/inline/twig erişimi için) — TP24 tasarım sistemi
 :root {
     --vapor-primary: #{$sw-color-brand-primary};
     --vapor-secondary: #{$sw-color-brand-secondary};
@@ -31,6 +31,22 @@ Renk/font değişkenleri overrides.scss + theme.json config'ten gelir.
     --vapor-bg: #{$vapor-color-bg};
     --vapor-sale: #{$vapor-color-sale};
     --vapor-radius: #{$border-radius};
+
+    // TP24 token'ları (redesign)
+    --tp-primary: #{$tp-primary};
+    --tp-primary-dark: #{$tp-primary-dark};
+    --tp-navy: #{$tp-navy};
+    --tp-muted: #{$tp-muted};
+    --tp-line: #{$tp-line};
+    --tp-surface: #{$tp-surface};
+    --tp-surface-2: #{$tp-surface-2};
+    --tp-radius: #{$tp-radius};
+    --tp-radius-lg: #{$tp-radius-lg};
+    --tp-shadow-sm: #{$tp-shadow-sm};
+    --tp-shadow-md: #{$tp-shadow-md};
+    --tp-shadow-lg: #{$tp-shadow-lg};
+    --tp-container-max: #{$tp-container-max};
+
     // Shopware core'un yeni (6.6+) font CSS-değişkenlerini de marka fontuna çek
     // (aksi halde core bazı yerlerde 'Inter'e düşüyor).
     --sw-font-family-base: #{$vapor-font-base};
@@ -67,6 +83,312 @@ h1, h2, h3, h4, h5, h6,
 .btn-outline-primary {
     border-width: 2px;
     font-weight: 600;
+}
+
+/* ============================================================
+   TP24 HEADER (REDESIGN — modern B2B/kurumsal)
+   .tp-header > .tp-header__main (logo+arama+aksiyon) + .tp-navbar (mega menü)
+   ============================================================ */
+.tp-header {
+    background: $tp-surface;
+    border-bottom: 1px solid $tp-line;
+    position: relative;
+    z-index: 1030;
+}
+
+// Ortak iç genişlik sarmalayıcı
+.tp-header__inner,
+.tp-navbar__inner {
+    max-width: $tp-container-max;
+    margin: 0 auto;
+    padding-left: $tp-space-5;
+    padding-right: $tp-space-5;
+}
+
+// ---- Ana header satırı ----
+.tp-header__main { background: $tp-surface; }
+
+.tp-header__inner {
+    display: flex;
+    align-items: center;
+    gap: $tp-space-5;
+    min-height: 88px;
+    padding-top: $tp-space-3;
+    padding-bottom: $tp-space-3;
+}
+
+.tp-header__burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    border: 1px solid $tp-line;
+    border-radius: $tp-radius;
+    background: $tp-surface;
+    color: $tp-navy;
+    cursor: pointer;
+    flex: 0 0 auto;
+    .icon { width: 22px; height: 22px; }
+}
+
+.tp-header__logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    .header-logo-main { text-align: left; }
+    img, picture { display: block; }
+    .header-logo-main-img { height: 52px; width: auto; max-width: 260px; }
+    @media (max-width: 991px) { .header-logo-main-img { height: 40px; } }
+}
+
+// ---- Ortada geniş açık arama çubuğu ----
+.tp-header__search {
+    flex: 1 1 auto;
+    max-width: 620px;
+    margin: 0 auto;
+
+    .header-search { width: 100%; }
+    .header-search-form { position: relative; width: 100%; }
+
+    .header-search-input {
+        width: 100%;
+        height: 48px;
+        border: 2px solid $tp-line-strong;
+        border-radius: $tp-radius;
+        padding: 0 56px 0 $tp-space-4;
+        font-size: .95rem;
+        background: $tp-surface;
+        transition: border-color $tp-transition, box-shadow $tp-transition;
+        &:focus {
+            border-color: $tp-primary;
+            box-shadow: 0 0 0 3px $tp-primary-soft;
+            outline: none;
+        }
+    }
+
+    .header-search-btn {
+        position: absolute;
+        top: 4px; right: 4px; bottom: 4px;
+        width: 48px;
+        border: none;
+        border-radius: $tp-radius-sm;
+        background: $tp-navy;
+        color: #fff;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background $tp-transition;
+        &:hover { background: $tp-primary; }
+        .icon { width: 20px; height: 20px; }
+        .icon svg { color: #fff; }
+    }
+}
+
+// ---- Sağ aksiyonlar ----
+.tp-header__actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: $tp-space-2;
+}
+
+.tp-action {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 $tp-space-2;
+    border-radius: $tp-radius;
+    color: $tp-navy;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background $tp-transition, color $tp-transition;
+
+    &:hover { background: $tp-surface-2; color: $tp-primary; }
+
+    .icon { width: 24px; height: 24px; }
+    a, .tp-action__link { color: inherit; display: inline-flex; align-items: center; }
+
+    // sepet sayacı rozeti
+    .header-cart-badge,
+    .badge {
+        position: absolute;
+        top: 2px; right: 2px;
+        background: $tp-primary;
+        color: #fff;
+        font-size: .68rem;
+        font-weight: 700;
+        min-width: 18px; height: 18px;
+        border-radius: 999px;
+        display: inline-flex; align-items: center; justify-content: center;
+        padding: 0 4px;
+    }
+}
+.tp-action--cart .header-cart-btn { position: relative; }
+
+// ---- B2B kayıt CTA ----
+.tp-header__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: $tp-space-2;
+    height: 44px;
+    padding: 0 $tp-space-4;
+    margin-left: $tp-space-2;
+    border-radius: $tp-radius;
+    background: $tp-primary;
+    color: #fff;
+    font-weight: 600;
+    font-size: .92rem;
+    white-space: nowrap;
+    box-shadow: $tp-shadow-brand;
+    transition: transform $tp-transition, box-shadow $tp-transition, background $tp-transition;
+    .icon { width: 20px; height: 20px; }
+    .icon svg { color: #fff; }
+    &:hover {
+        background: $tp-primary-dark;
+        color: #fff;
+        transform: translateY(-1px);
+        text-decoration: none;
+    }
+}
+
+/* ============================================================
+   TP24 NAVBAR + MEGA MENÜ (modern, şık)
+   ============================================================ */
+.tp-navbar {
+    background: $tp-navy;
+    border-top: 3px solid $tp-primary;
+}
+
+.tp-navbar__inner {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: $tp-space-4;
+}
+
+.tp-navbar__nav {
+    display: flex;
+    align-items: stretch;
+    gap: 2px;
+    flex-wrap: nowrap;
+}
+
+.tp-navbar__item {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+}
+
+.tp-navbar__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 52px;
+    padding: 0 $tp-space-4;
+    color: rgba(#fff, 0.92);
+    font-weight: 600;
+    font-size: .92rem;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    transition: background $tp-transition, color $tp-transition;
+    .icon { width: 18px; height: 18px; }
+    .icon svg { color: currentColor; }
+
+    &:hover,
+    .tp-navbar__item:hover & {
+        background: rgba(#fff, 0.10);
+        color: #fff;
+        text-decoration: none;
+    }
+}
+.tp-navbar__link--home {
+    background: rgba(#fff, 0.06);
+    color: #fff;
+}
+.tp-navbar__caret {
+    font-size: .7rem;
+    opacity: .8;
+    transition: transform $tp-transition;
+}
+.tp-navbar__item.has-mega:hover .tp-navbar__caret { transform: rotate(180deg); }
+
+// ---- Mega panel ----
+.tp-mega {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1040;
+    min-width: 560px;
+    max-width: 860px;
+    background: $tp-surface;
+    border: 1px solid $tp-line;
+    border-top: 3px solid $tp-primary;
+    border-radius: 0 0 $tp-radius-lg $tp-radius-lg;
+    box-shadow: $tp-shadow-lg;
+    padding: $tp-space-5;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity $tp-transition, transform $tp-transition, visibility $tp-transition;
+}
+.tp-navbar__item.has-mega:hover .tp-mega {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.tp-mega__inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: $tp-space-5 $tp-space-6;
+}
+
+.tp-mega__col { min-width: 0; }
+
+.tp-mega__head {
+    display: block;
+    font-weight: 700;
+    font-size: .95rem;
+    color: $tp-navy;
+    padding-bottom: $tp-space-2;
+    margin-bottom: $tp-space-2;
+    border-bottom: 2px solid $tp-primary-soft;
+    &:hover { color: $tp-primary; text-decoration: none; }
+}
+.tp-mega__list { list-style: none; margin: 0; padding: 0; }
+.tp-mega__list li { margin: 0; }
+.tp-mega__link {
+    display: block;
+    padding: 5px 0;
+    color: $tp-muted;
+    font-size: .875rem;
+    transition: color $tp-transition, padding $tp-transition;
+    &:hover {
+        color: $tp-primary;
+        padding-left: 4px;
+        text-decoration: none;
+    }
+}
+
+// ---- Navbar sağ ödeme logoları ----
+.tp-navbar__pays {
+    display: flex;
+    align-items: center;
+    gap: $tp-space-2;
+}
+.tp-navbar__pay {
+    display: inline-flex;
+    align-items: center;
+    background: #fff;
+    border-radius: $tp-radius-sm;
+    padding: 3px 6px;
+    height: 30px;
+    img { height: 20px; width: auto; display: block; }
 }
 
 // --- Ürün kartı: modern, hover'da yükselme ---
@@ -316,23 +638,38 @@ h1, h2, h3, h4, h5, h6,
     a { color: rgba(#fff, 0.85); &:hover { color: #fff; } }
 }
 
-// --- Üst TEK ince bilgi şeridi (mockup) ---
+// --- Üst USP bilgi şeridi (REDESIGN: koyu lacivert, kurumsal) ---
 .vapor-info-bar {
-    background: transparent; // kullanıcı: şeffaf
-    color: rgba(#fff, 0.92);
-    font-size: .8rem;
-    padding: .45rem 0;
+    background: $tp-navy-dark;
+    color: rgba(#fff, 0.90);
+    font-size: .82rem;
+    font-weight: 500;
+    padding: .5rem 0;
+    .container { max-width: $tp-container-max; }
     &__inner {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
-        gap: .5rem;
+        justify-content: space-between;
+        gap: $tp-space-2 $tp-space-5;
     }
-    &__sep { color: rgba(#fff, 0.3); }
-    &__item { white-space: nowrap; }
-    // MOBİL: marketing şeridi yer kaplıyor → tamamen gizle (kullanıcı isteği)
-    @media (max-width: 991.98px) { display: none !important; }
+    &__sep { display: none; } // ayraç yerine space-between dağıtımı
+    &__item {
+        white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        &::before {
+            content: "✓";
+            color: $tp-primary;
+            font-weight: 800;
+            font-size: .78rem;
+        }
+    }
+    @media (max-width: 991.98px) {
+        &__inner { justify-content: center; }
+        &__item:nth-child(n+3) { display: none; } // mobilde ilk 2 USP
+    }
 }
 
 // --- Sade üst menü (beyaz pill içinde — koyu linkler, mockup) ---
