@@ -571,7 +571,7 @@
                     "tr-TR": "Top markalar şeridi göster"
                 },
                 "type": "switch",
-                "value": true,
+                "value": false,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 191,
@@ -2964,6 +2964,20 @@
                 "editable": true,
                 "block": "vaporDeals",
                 "order": 50,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-deals-count": {
+                "label": {
+                    "de-DE": "Deals: Anzahl Produkte pro Tag",
+                    "en-GB": "Deals: products per day",
+                    "tr-TR": "Deals: günlük ürün sayısı"
+                },
+                "type": "text",
+                "value": "6",
+                "editable": true,
+                "block": "vaporDeals",
+                "order": 51,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -6993,6 +7007,48 @@
                 "editable": true,
                 "block": "vaporPromoduo",
                 "order": 916,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-sec-angebote-show": {
+                "label": {
+                    "de-DE": "Angebote-Slider anzeigen",
+                    "en-GB": "Show: offers slider",
+                    "tr-TR": "Angebote slider göster"
+                },
+                "type": "switch",
+                "value": true,
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 109,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-angebote-order": {
+                "label": {
+                    "de-DE": "Angebote-Slider Reihenfolge",
+                    "en-GB": "Offers slider order",
+                    "tr-TR": "Angebote slider sıra"
+                },
+                "type": "text",
+                "value": "45",
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 110,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-angebote-title": {
+                "label": {
+                    "de-DE": "Angebote-Slider: Titel",
+                    "en-GB": "Offers slider: title",
+                    "tr-TR": "Angebote slider: başlık"
+                },
+                "type": "text",
+                "value": "Angebote für Händler",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 920,
                 "scss": false,
                 "tab": "vaporTabHome"
             }

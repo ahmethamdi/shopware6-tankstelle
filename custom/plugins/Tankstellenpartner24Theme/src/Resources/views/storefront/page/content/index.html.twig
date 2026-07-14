@@ -356,6 +356,31 @@
                     {% endblock %}
                     {% endset %}
 
+                    {# ---- YENİ: 'Angebote' ürün slider'ı (Kategorien ile Deals arası) ----
+                       Ürünler daha erken/çok görünsün diye Bestseller verisinden yatay slider.
+                       Aynı .vapor-pcard makrosu + B2B login-gate. Başlık panelden. #}
+                    {% set vaporSecHtml_angebote %}
+                    {% block vapor_home_angebote %}
+                        {% set angProducts = page.extensions.vaporBestseller.products ?? [] %}
+                        {% if angProducts|length %}
+                            <div class="vapor-section-head">
+                                {% if theme_config('vapor-angebote-title') %}<h2 class="vapor-section-head__title">{{ theme_config('vapor-angebote-title') }}</h2>{% endif %}
+                                <div class="vapor-slider-nav">
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="angebote" data-dir="prev" aria-label="zurück">{% sw_icon 'chevron-left' %}</button>
+                                    <button type="button" class="vapor-slider-btn" data-vapor-slide="angebote" data-dir="next" aria-label="weiter">{% sw_icon 'chevron-right' %}</button>
+                                </div>
+                            </div>
+                            <div class="vapor-cardslider" data-vapor-slider="angebote" data-vapor-dragscroll>
+                                <div class="vapor-cardslider__track">
+                                    {% for product in angProducts %}
+                                        {{ _self.vaporProductCard(product, vaporLoggedIn, 'Angebot') }}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+                    {% endset %}
+
                     {# ---- YENİ (Bölüm 4): SOL büyük lacivert promo kart + SAĞ 2 ürün slider ----
                        Sol kart: panelden eyebrow/başlık/metin/buton + opsiyonel arka plan görseli
                        (görsel boşsa lacivert gradient zemin). Sağ: Neuheiten ürünlerinden yatay
@@ -486,51 +511,63 @@
                     {% endset %}
                     {% set vaporSecHtml_deals %}
                     {% block vapor_home_deals %}
-                        {% set dealTextColor = theme_config('vapor-deal-text-color') %}
-                        <div class="vapor-section-head">
-                            {% if theme_config('vapor-deals-title') %}<h2 class="vapor-section-head__title">{{ theme_config('vapor-deals-title') }}</h2>{% endif %}
-                        </div>
-                        <div class="vapor-deals-row">
-                            {# 3 Deal config'ten: name/brand/price/img/link/hours. İsim boşsa gizli. #}
-                            {% for i in 1..3 %}
-                                {% set dName = theme_config('vapor-deal-' ~ i ~ '-name') %}
-                                {% set dBrand = theme_config('vapor-deal-' ~ i ~ '-brand') %}
-                                {% set dPrice = theme_config('vapor-deal-' ~ i ~ '-price') %}
-                                {% set dImg = theme_config('vapor-deal-' ~ i ~ '-img') %}
-                                {% set dLink = theme_config('vapor-deal-' ~ i ~ '-link') %}
-                                {% set dHours = theme_config('vapor-deal-' ~ i ~ '-hours')|default(12 + i * 6) %}
-                                {% if dName %}
-                                <div class="vapor-deal" data-vapor-countdown data-end-hours="{{ dHours }}">
-                                    {# Flip-clock geri sayım #}
-                                    <div class="vapor-deal__timer">
-                                        <span class="vapor-deal__t"><b data-d>05</b><small>Tage</small></span>
-                                        <span class="vapor-deal__t"><b data-h>14</b><small>Stunden</small></span>
-                                        <span class="vapor-deal__t"><b data-m>26</b><small>Minuten</small></span>
-                                        <span class="vapor-deal__t"><b data-s>24</b><small>Sekunden</small></span>
-                                    </div>
-                                    {# Beyaz iç ürün kartı #}
-                                    <div class="vapor-deal__card">
-                                        <div class="vapor-deal__img">{% if dImg %}<img src="{{ dImg }}" alt="{{ dName }}" loading="lazy">{% else %}{{ mediaSvg }}{% endif %}</div>
-                                        <div class="vapor-deal__brand"{% if dealTextColor %} style="background:{{ dealTextColor }}"{% endif %}>{{ dBrand }}</div>
-                                        <div class="vapor-deal__name"{% if dealTextColor %} style="color:{{ dealTextColor }}"{% endif %}>{{ dName }}</div>
-                                        {# Deal-Karte = reine Panel-Texte (kein echtes Produkt) → KEINE Fake-Sterne/Reviews.
-                                           Bewertungen nur dort, wo echte Shopware-Daten existieren (Produktdetail/Listing). #}
-                                        <div class="vapor-deal__foot">
-                                            {% if vaporLoggedIn %}
-                                                <span class="vapor-deal__price">{{ dPrice }}</span>
-                                                <a href="{{ dLink ?: '#' }}" class="vapor-deal__btn">
-                                                    {% sw_icon 'bag-product' %} Kaufen
-                                                </a>
-                                            {% else %}
-                                                <span class="vapor-deal__price is-login">{% sw_icon 'lock-closed' %} Login</span>
-                                                <a href="{{ path('frontend.account.login.page') }}" class="vapor-deal__btn">Anmelden</a>
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endif %}
+                        {# ---- Deals des Tages: GERÇEK ürünler, HER GÜN otomatik döner ----
+                           Ürünler Bestseller havuzundan; günün sırası (day-of-year 'z')
+                           bir pencere kaydırır → her gün farklı deal seti. Sayaç gece
+                           yarısına (ortak deadline) sayar; 00:00'da JS sayfayı yeniler →
+                           yeni günün seti gelir. Login-gate ürün kartıyla aynı. #}
+                        {% set dealPool = page.extensions.vaporBestseller.products ?? [] %}
+                        {% set dealCount = (theme_config('vapor-deals-count') ?: 4)|round %}
+                        {% if dealCount < 1 %}{% set dealCount = 1 %}{% elseif dealCount > 8 %}{% set dealCount = 8 %}{% endif %}
+                        {% if dealPool|length %}
+                            {# Günün ofseti: 'z' (0..365) modulo havuz uzunluğu → her gün kaydır #}
+                            {% set dayOfYear = "now"|date('z') %}
+                            {% set poolLen = dealPool|length %}
+                            {% set dealItems = [] %}
+                            {% for k in 0..(dealCount - 1) %}
+                                {% set idx = (dayOfYear + k) % poolLen %}
+                                {% set dealItems = dealItems|merge([dealPool[idx]]) %}
                             {% endfor %}
-                        </div>
+
+                            <div class="vapor-section-head">
+                                {% if theme_config('vapor-deals-title') %}<h2 class="vapor-section-head__title">{{ theme_config('vapor-deals-title') }}</h2>{% endif %}
+                                {# Ortak "endet in" sayaç — gece yarısına, 00:00'da otomatik yenilenir #}
+                                <div class="vapor-deals-countdown" data-vapor-daily-countdown>
+                                    <span class="vapor-deals-countdown__label">Endet in</span>
+                                    <span class="vapor-deals-countdown__clock">
+                                        <b data-h>00</b><i>:</i><b data-m>00</b><i>:</i><b data-s>00</b>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="vapor-deals-row" data-vapor-dragscroll>
+                                {% for product in dealItems %}
+                                    {% set pName = product.translated.name ?? product.name %}
+                                    {% set pBrand = product.manufacturer ? (product.manufacturer.translated.name ?? product.manufacturer.name) : '' %}
+                                    {% set pCover = product.cover.media ?? null %}
+                                    {% set pPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
+                                    {% set pUrl = path('frontend.detail.page', { productId: product.id }) %}
+                                    <a href="{{ pUrl }}" class="vapor-deal">
+                                        <span class="vapor-deal__flag">Deal des Tages</span>
+                                        <div class="vapor-deal__card">
+                                            <div class="vapor-deal__img">
+                                                {% if pCover %}{% sw_thumbnails 'vapor-deal-img' with { media: pCover, sizes: { default: '240px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                            </div>
+                                            {% if pBrand %}<div class="vapor-deal__brand">{{ pBrand }}</div>{% endif %}
+                                            <div class="vapor-deal__name">{{ pName }}</div>
+                                            <div class="vapor-deal__foot">
+                                                {% if vaporLoggedIn %}
+                                                    <span class="vapor-deal__price">{{ pPrice.unitPrice|currency }}</span>
+                                                    <span class="vapor-deal__btn">{% sw_icon 'bag-product' %} Ansehen</span>
+                                                {% else %}
+                                                    <span class="vapor-deal__price is-login">{% sw_icon 'lock-closed' %} Login</span>
+                                                    <span class="vapor-deal__btn">Anmelden</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     {% endblock %}
 
                     {# ============ Geniş banner (Deals ↔ Neuheiten arası,
@@ -723,6 +760,7 @@
                         { key: 'campaign',   def: 20,  html: vaporSecHtml_campaign },
                         { key: 'promo',      def: 30,  html: vaporSecHtml_promo },
                         { key: 'categories', def: 40,  html: vaporSecHtml_categories },
+                        { key: 'angebote',   def: 45,  html: vaporSecHtml_angebote },
                         { key: 'deals',      def: 50,  html: vaporSecHtml_deals },
                         { key: 'banner',     def: 60,  html: vaporSecHtml_banner },
                         { key: 'neu',        def: 70,  html: vaporSecHtml_neu },

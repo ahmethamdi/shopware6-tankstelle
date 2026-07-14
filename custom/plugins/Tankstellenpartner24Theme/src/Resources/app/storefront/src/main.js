@@ -183,6 +183,47 @@
     }
 
     // =================================================================
+    // Deals des Tages — GÜNLÜK sayaç (gece yarısına sayar, 00:00'da yeniler)
+    // Tüm deal'ler ortak bir sona (bugün 23:59:59) doğru sayar. 0'a ulaşınca
+    // sayfa yenilenir → Twig günün yeni ofsetiyle farklı ürünleri basar.
+    // =================================================================
+    function initDailyCountdown() {
+        var els = document.querySelectorAll('[data-vapor-daily-countdown]');
+        if (!els.length) { return; }
+
+        function pad(n) { return (n < 10 ? '0' : '') + n; }
+        function nextMidnight() {
+            var now = new Date();
+            var mid = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+            return mid.getTime();
+        }
+
+        var reloaded = false;
+        function tick() {
+            var diff = nextMidnight() - new Date().getTime();
+            if (diff <= 0) {
+                // Gün döndü → yeni deal setini almak için bir kez yenile
+                if (!reloaded) { reloaded = true; window.location.reload(); }
+                diff = 0;
+            }
+            var hrs = Math.floor(diff / (1000 * 60 * 60));
+            var min = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var sec = Math.floor((diff % (1000 * 60)) / 1000);
+            els.forEach(function (el) {
+                var h = el.querySelector('[data-h]');
+                var m = el.querySelector('[data-m]');
+                var s = el.querySelector('[data-s]');
+                if (h) { h.textContent = pad(hrs); }
+                if (m) { m.textContent = pad(min); }
+                if (s) { s.textContent = pad(sec); }
+            });
+        }
+        tick();
+        window.setInterval(tick, 1000);
+    }
+    initDailyCountdown();
+
+    // =================================================================
     // Ürün kart slider (Neuheiten) — prev/next ok butonları
     // =================================================================
     function initCardSliders() {
