@@ -1060,6 +1060,50 @@ $vapor-radius: 12px;
 }
 
 // --- Marka hızlı navigasyon (sağ kolon üstü, 4 adet) ---
+/* ---- YENİ: Pill şeridi (yuvarlak-ikonlu kategori kısayolları) ---- */
+.vapor-pills {
+    overflow-x: auto; overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; scroll-behavior: smooth;
+    scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+    cursor: grab;
+    &.is-dragging { cursor: grabbing; scroll-behavior: auto; }
+    &__track { display: flex; gap: $tp-space-3; width: max-content; padding: 2px 0; }
+}
+.vapor-pill {
+    flex: 0 0 auto;
+    display: inline-flex; align-items: center; gap: $tp-space-2;
+    background: $tp-surface;
+    border: 1px solid $tp-line;
+    border-radius: $tp-radius-pill;
+    padding: .45rem .55rem .45rem .5rem;
+    text-decoration: none;
+    color: $tp-ink;
+    box-shadow: $tp-shadow-xs;
+    white-space: nowrap;
+    user-select: none;
+    transition: transform $tp-transition, box-shadow $tp-transition, border-color $tp-transition, color $tp-transition;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $tp-shadow-sm;
+        border-color: rgba($tp-primary, 0.4);
+        color: $tp-primary;
+        text-decoration: none;
+        .vapor-pill__ico { background: $tp-primary; color: #fff; }
+    }
+    &__ico {
+        flex: 0 0 auto;
+        width: 34px; height: 34px; border-radius: 50%;
+        background: $tp-primary-soft;
+        color: $tp-primary;
+        display: grid; place-items: center;
+        transition: background $tp-transition, color $tp-transition;
+        .icon { width: 17px; height: 17px; }
+        .icon svg { color: currentColor; }
+        img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    }
+    &__name { font-size: .86rem; font-weight: 600; padding-right: $tp-space-2; }
+}
+
 .vapor-brandnav {
     margin: 0 0 1.25rem;
     overflow-x: auto; overflow-y: hidden;

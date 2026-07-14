@@ -170,6 +170,46 @@
                    da aynı listeye girer → ekip panelden sıra no + göster/gizle ile
                    tüm bölümleri (mevcut + serbest) birlikte diziler. #}
                 <div class="vapor-body__main">
+                    {# ---- YENİ: Pill şeridi (yuvarlak-ikonlu kategori kısayolları) ----
+                       Canlı kategori ağacından (vaporNavTree) ilk seviye kategoriler.
+                       Panelden manuel de doldurulabilir (vapor-pill-1..10-name/-link/-icon). #}
+                    {% set vaporSecHtml_pills %}
+                    {% block vapor_home_pills %}
+                        {% set vaporManualPills = [] %}
+                        {% for i in 1..10 %}
+                            {% set pName = theme_config('vapor-pill-' ~ i ~ '-name') %}
+                            {% if pName %}
+                                {% set vaporManualPills = vaporManualPills|merge([{
+                                    name: pName,
+                                    link: theme_config('vapor-pill-' ~ i ~ '-link'),
+                                    icon: theme_config('vapor-pill-' ~ i ~ '-icon')
+                                }]) %}
+                            {% endif %}
+                        {% endfor %}
+                        <div class="vapor-pills" data-vapor-dragscroll>
+                            <div class="vapor-pills__track">
+                                {% if vaporManualPills|length > 0 %}
+                                    {% for p in vaporManualPills %}
+                                        <a href="{{ p.link ?: '#' }}" class="vapor-pill">
+                                            <span class="vapor-pill__ico">
+                                                {% if p.icon %}<img src="{{ p.icon }}" alt="" loading="lazy">{% else %}{% sw_icon 'tags' %}{% endif %}
+                                            </span>
+                                            <span class="vapor-pill__name">{{ p.name }}</span>
+                                        </a>
+                                    {% endfor %}
+                                {% else %}
+                                    {# Fallback: canlı kategori ağacı ilk seviye #}
+                                    {% for m in vaporNavTree|slice(0, 10) %}
+                                        <a href="{{ seoUrl('frontend.navigation.page', { navigationId: m.category.id }) }}" class="vapor-pill">
+                                            <span class="vapor-pill__ico">{% sw_icon 'tags' %}</span>
+                                            <span class="vapor-pill__name">{{ m.category.translated.name }}</span>
+                                        </a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endblock %}
+                    {% endset %}
                     {% set vaporSecHtml_brands %}
                     {% block vapor_home_brands %}
                         <div class="vapor-brandnav" data-vapor-dragscroll>
@@ -503,6 +543,7 @@
                        default'lar (theme.json) mevcut düzeni birebir korur. #}
                     {% set vaporSections = [] %}
                     {% set vaporSecDefs = [
+                        { key: 'pills',      def: 5,   html: vaporSecHtml_pills },
                         { key: 'brands',     def: 10,  html: vaporSecHtml_brands },
                         { key: 'campaign',   def: 20,  html: vaporSecHtml_campaign },
                         { key: 'promo',      def: 30,  html: vaporSecHtml_promo },

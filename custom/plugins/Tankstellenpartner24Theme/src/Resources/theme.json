@@ -242,6 +242,34 @@
                 "scss": false,
                 "tab": "vaporTabGeneral"
             },
+            "vapor-sec-pills-show": {
+                "label": {
+                    "de-DE": "Kategorie-Pills (Schnellzugriff) anzeigen",
+                    "en-GB": "Show: Category pills",
+                    "tr-TR": "Kategori pill şeridi göster"
+                },
+                "type": "switch",
+                "value": true,
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 99,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-pills-order": {
+                "label": {
+                    "de-DE": "Kategorie-Pills Reihenfolge",
+                    "en-GB": "Category pills order",
+                    "tr-TR": "Kategori pill sıra"
+                },
+                "type": "text",
+                "value": "5",
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 100,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
             "vapor-sec-brands-show": {
                 "label": {
                     "de-DE": "Markennavigation (Kreise) anzeigen",
