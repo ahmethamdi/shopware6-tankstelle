@@ -2971,25 +2971,30 @@ $vapor-radius: 12px;
 // FOOTER (B2B çok kolonlu)
 // =====================================================================
 // =====================================================================
-// FOOTER — AÇIK GRİ ZEMİN (kullanıcı: siyah/koyu istemiyor)
-// $vapor-footer-bg açık gri, metinler koyu, başlıklar mavi.
+// FOOTER — KURUMSAL LACİVERT (TP24 redesign, token dili)
+// Header USP şeridi / hero / Bölüm 4 promo kartıyla tutarlı: lacivert zemin,
+// açık metin, turuncu başlık aksanları. (Eski açık-gri Vapor footer'ı yerine.)
 // =====================================================================
-$vapor-footer-bg:    #F4F6FA;   // açık gri zemin
-$vapor-footer-ink:   #2A3340;   // koyu metin
-$vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
+$tp-footer-bg:      $tp-navy;                 // lacivert zemin
+$tp-footer-bg-2:    $tp-navy-dark;            // alt bar (biraz daha koyu)
+$tp-footer-ink:     #FFFFFF;                  // başlıca metin (başlık altı)
+$tp-footer-text:    rgba(#FFFFFF, 0.72);      // gövde metni
+$tp-footer-muted:   rgba(#FFFFFF, 0.52);      // ikincil / soluk
+$tp-footer-line:    rgba(#FFFFFF, 0.12);      // ince ayraç
+$tp-footer-surface: rgba(#FFFFFF, 0.06);      // hafif kart/ikon zemini
 
 .footer-main {
-    background: $vapor-footer-bg;
-    color: $vapor-footer-muted;
-    padding-top: 3.5rem;
-    margin-top: 4rem;
-    border-top: 3px solid $sw-color-brand-primary;
+    background: $tp-footer-bg;
+    color: $tp-footer-text;
+    padding-top: $tp-space-8;
+    margin-top: $tp-space-8;
+    border-top: 3px solid $tp-primary;
     font-size: 0.9375rem;
 
-    a { color: $vapor-footer-muted; }
+    a { color: $tp-footer-text; }
 }
 
-.vapor-footer-columns { padding-bottom: 2.5rem; row-gap: 2rem; }
+.vapor-footer-columns { padding-bottom: $tp-space-7; row-gap: $tp-space-6; }
 
 .vapor-footer-col {
     // Core'un @media min-768 .footer-column-headline { padding: 3rem 0 0.5rem 0 }
@@ -3000,19 +3005,20 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
         font-family: $vapor-font-headline;
         font-weight: 700;
         font-size: 1.0625rem;
-        color: $sw-color-brand-primary;
+        color: $tp-footer-ink;
         margin-bottom: 1.1rem;
         letter-spacing: 0.01em;
         position: relative;
         padding-bottom: 0.6rem;
-        a { color: $sw-color-brand-primary; text-decoration: none; }
+        a { color: $tp-footer-ink; text-decoration: none;
+            &:hover { color: $tp-primary; } }
 
         &::after {
             content: "";
             position: absolute;
             left: 0; bottom: 0;
             width: 32px; height: 2px;
-            background: $sw-color-brand-primary;
+            background: $tp-primary;
             border-radius: 2px;
         }
     }
@@ -3020,21 +3026,21 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
 
 // Footer üst şerit — USP güven rozetleri
 .vapor-footer-top {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
-    padding: 0 0 2.5rem; margin-bottom: 2.5rem;
-    border-bottom: 1px solid rgba(#2A3340, 0.1);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: $tp-space-5;
+    padding: 0 0 $tp-space-7; margin-bottom: $tp-space-7;
+    border-bottom: 1px solid $tp-footer-line;
     @media (max-width: 767.98px) { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
     &__item { display: flex; align-items: center; gap: .8rem; }
     &__ico {
-        flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px;
-        background: rgba($sw-color-brand-primary, 0.12);
+        flex: 0 0 auto; width: 44px; height: 44px; border-radius: $tp-radius;
+        background: rgba($tp-primary, 0.18);
         display: grid; place-items: center;
         .icon { width: 20px; height: 20px; }
-        .icon svg { color: $sw-color-brand-primary; }
+        .icon svg { color: $tp-primary; }
     }
     &__txt { display: flex; flex-direction: column; line-height: 1.3;
-        b { color: $vapor-footer-ink; font-size: .92rem; font-weight: 700; }
-        small { color: $vapor-footer-muted; font-size: .8rem; }
+        b { color: $tp-footer-ink; font-size: .92rem; font-weight: 700; }
+        small { color: $tp-footer-muted; font-size: .8rem; }
     }
 }
 
@@ -3042,28 +3048,28 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
 .vapor-footer-social {
     display: flex; gap: .6rem; margin-top: 1.2rem;
     &__link {
-        width: 38px; height: 38px; border-radius: 10px;
-        background: #fff; border: 1px solid rgba(#2A3340, 0.12);
-        display: grid; place-items: center; color: $vapor-footer-ink;
-        transition: background .15s ease, color .15s ease, transform .15s ease;
-        &:hover { background: $sw-color-brand-primary; color: #fff; transform: translateY(-2px); border-color: $sw-color-brand-primary; }
+        width: 38px; height: 38px; border-radius: $tp-radius;
+        background: $tp-footer-surface; border: 1px solid $tp-footer-line;
+        display: grid; place-items: center; color: $tp-footer-ink;
+        transition: background $tp-transition, color $tp-transition, transform $tp-transition, border-color $tp-transition;
+        &:hover { background: $tp-primary; color: #fff; transform: translateY(-2px); border-color: $tp-primary; }
     }
 }
 
-.vapor-footer-blurb { line-height: 1.6; margin-bottom: 1rem; color: $vapor-footer-muted; }
+.vapor-footer-blurb { line-height: 1.6; margin-bottom: 1rem; color: $tp-footer-text; }
 .vapor-footer-links, .vapor-footer-contact { margin-bottom: 0; li { margin-bottom: 0.55rem; } }
-.vapor-footer-hours { color: rgba(#2A3340, 0.5); }
+.vapor-footer-hours { color: $tp-footer-muted; }
 
 .vapor-footer-link {
-    color: $vapor-footer-muted;
+    color: $tp-footer-text;
     text-decoration: none;
     transition: color 0.15s ease;
     display: inline-flex;
     align-items: center;
     min-height: 24px;
 
-    &:hover, &:focus-visible { color: $sw-color-brand-primary; text-decoration: none; }
-    &:focus-visible { outline: 2px solid $sw-color-brand-secondary; outline-offset: 2px; border-radius: 2px; }
+    &:hover, &:focus-visible { color: $tp-primary; text-decoration: none; }
+    &:focus-visible { outline: 2px solid $tp-primary; outline-offset: 2px; border-radius: 2px; }
 }
 
 .vapor-footer-b2b-cta {
@@ -3073,13 +3079,13 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     font-weight: 600;
     font-size: 0.875rem;
     color: #fff;
-    background: $sw-color-brand-primary;
+    background: $tp-primary;
     border: none;
-    border-radius: 8px;
+    border-radius: $tp-radius;
     transition: background 0.15s ease, transform 0.15s ease;
 
-    &:hover, &:focus-visible { background: darken($sw-color-brand-primary, 8%); color: #fff; }
-    &:focus-visible { outline: 2px solid $sw-color-brand-secondary; outline-offset: 2px; }
+    &:hover, &:focus-visible { background: $tp-primary-dark; color: #fff; }
+    &:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
     &:active { transform: translateY(1px); }
 }
 
@@ -3095,27 +3101,28 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
 // B2B kolonu newsletter'a dönüştü → başlık yok, içerik en üstten başlasın
 .vapor-footer-col--newsletter .vapor-footer-col-content { margin-top: 0; }
 
-// Footer Newsletter kutusu (B2B/Händler kolonunda) — mavi gradient kart
+// Footer Newsletter kutusu — turuncu CTA'lı koyu lacivert kart (token dili)
 .vapor-footer-newsletter {
     margin-top: 0;
-    padding: 1.4rem 1.3rem;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #B83030 0%, $sw-color-brand-primary 55%, #D64535 100%);
+    padding: 1.5rem 1.4rem;
+    border-radius: $tp-radius-lg;
+    background: linear-gradient(150deg, lighten($tp-navy, 4%) 0%, $tp-navy 60%, $tp-navy-dark 100%);
+    border: 1px solid $tp-footer-line;
     color: #fff;
-    box-shadow: 0 12px 28px -12px rgba($sw-color-brand-primary, 0.6);
+    box-shadow: $tp-shadow-lg;
 
     &__head {
         font-family: $vapor-font-headline;
-        font-weight: 800; font-size: 1.5rem; line-height: 1.05;
-        color: #fff; margin-bottom: .35rem;
+        font-weight: 800; font-size: 1.4rem; line-height: 1.1;
+        color: #fff; margin-bottom: .4rem;
     }
     &__text {
-        margin: 0 0 .9rem; font-size: .9rem; line-height: 1.4;
-        color: rgba(#fff, 0.92);
+        margin: 0 0 1rem; font-size: .9rem; line-height: 1.45;
+        color: rgba(#fff, 0.78);
     }
     &__row {
         display: flex; align-items: stretch; gap: .4rem;
-        background: #fff; border-radius: 10px; padding: .25rem;
+        background: #fff; border-radius: $tp-radius; padding: .25rem;
     }
     &__input {
         flex: 1 1 auto; min-width: 0;
@@ -3126,27 +3133,27 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     &__btn {
         flex: 0 0 auto;
         display: inline-flex; align-items: center; justify-content: center;
-        width: 40px; border: 0; border-radius: 8px; cursor: pointer;
-        background: #D6F23E; color: #15330f;
-        transition: background .15s ease, transform .15s ease;
-        &:hover { background: #c7e62f; }
+        width: 42px; border: 0; border-radius: $tp-radius-sm; cursor: pointer;
+        background: $tp-primary; color: #fff;
+        transition: background $tp-transition, transform $tp-transition;
+        &:hover { background: $tp-primary-dark; }
         &:active { transform: scale(.96); }
     }
     &__privacy {
-        margin-top: .7rem; font-size: .72rem; line-height: 1.4;
-        color: rgba(#fff, 0.85);
+        margin-top: .8rem; font-size: .72rem; line-height: 1.4;
+        color: rgba(#fff, 0.72);
         label { display: flex; align-items: flex-start; gap: .45rem; cursor: pointer; }
-        input { margin-top: .15rem; flex: 0 0 auto; accent-color: #D6F23E; }
+        input { margin-top: .15rem; flex: 0 0 auto; accent-color: $tp-primary; }
         a { color: #fff; text-decoration: underline; }
     }
     &__note {
         margin: .55rem 0 0; font-size: .7rem;
-        color: rgba(#fff, 0.7);
+        color: rgba(#fff, 0.6);
     }
     // başarı/hata mesajı (Shopware AJAX form alert'leri)
     .alert {
         margin-top: .7rem; font-size: .8rem; padding: .55rem .75rem;
-        border-radius: 8px; background: rgba(#fff, 0.95); color: $vapor-color-ink;
+        border-radius: $tp-radius; background: rgba(#fff, 0.96); color: $vapor-color-ink;
         border: 0;
         &.alert-success { color: #1c6b2e; }
         &.alert-danger, &.alert-warning { color: #9a2a2a; }
@@ -3163,7 +3170,7 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     .vapor-footer-newsletter {
         margin-bottom: 1.75rem;   // alt bar çizgisiyle birleşmesin
         padding: 1.6rem 1.4rem;
-        &__head { font-size: 1.6rem; }
+        &__head { font-size: 1.5rem; }
         &__row { padding: .3rem; }
         &__input { padding: .65rem .7rem; font-size: 1rem; }
         &__btn { width: 48px; }
@@ -3175,14 +3182,17 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     display: flex; flex-wrap: wrap; align-items: center;
     justify-content: center; gap: 1.5rem 2.5rem;
     padding: 2rem 0;
-    border-top: 1px solid rgba(#2A3340, 0.1);
+    border-top: 1px solid $tp-footer-line;
     &__item {
         display: inline-flex; align-items: center;
-        img { display: block; max-height: 64px; width: auto; object-fit: contain; }
+        // Sertifika logoları çoğu koyu renk → lacivert zeminde okunur kalsın diye
+        // hafif beyaz "pad" kart içine al.
+        background: #fff; border-radius: $tp-radius; padding: .5rem .75rem;
+        img { display: block; max-height: 56px; width: auto; object-fit: contain; }
     }
     a.vapor-footer-trust__item {
         transition: transform .15s ease, opacity .15s ease;
-        &:hover { transform: translateY(-2px); opacity: .85; }
+        &:hover { transform: translateY(-2px); opacity: .9; }
     }
 }
 
@@ -3191,8 +3201,8 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     flex-wrap: wrap;
     gap: 1.75rem 3rem;
     padding: 1.75rem 0;
-    border-top: 1px solid rgba(#2A3340, 0.1);
-    border-bottom: 1px solid rgba(#2A3340, 0.1);
+    border-top: 1px solid $tp-footer-line;
+    border-bottom: 1px solid $tp-footer-line;
 }
 
 .vapor-badge-group { display: flex; flex-direction: column; gap: 0.6rem; }
@@ -3200,7 +3210,7 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: rgba(#2A3340, 0.5);
+    color: $tp-footer-muted;
     font-weight: 600;
 }
 .vapor-badge-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; }
@@ -3211,51 +3221,52 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     padding: 0.3rem 0.7rem;
     font-size: 0.8125rem;
     font-weight: 500;
-    color: $vapor-footer-ink;
-    background: #fff;
-    border: 1px solid rgba(#2A3340, 0.12);
-    border-radius: 6px;
+    color: $tp-footer-ink;
+    background: $tp-footer-surface;
+    border: 1px solid $tp-footer-line;
+    border-radius: $tp-radius-sm;
     line-height: 1.2;
 
-    // Panelden yüklenen ödeme/kargo görseli
+    // Panelden yüklenen ödeme/kargo görseli → beyaz pad (logo okunur kalsın)
     &--img {
         padding: 0.35rem 0.6rem;
+        background: #fff; border-color: transparent;
         img { display: block; max-height: 26px; width: auto; object-fit: contain; }
     }
 }
 
-// Alt bar — açık zeminle uyumlu (hafif daha koyu gri ayrım)
+// Alt bar — lacivertin biraz daha koyusu (ince ayrım)
 .footer-main .footer-bottom {
     border-top: none;
     padding: 1.75rem 0 2.25rem;
-    background: #E9EDF4;
-    color: rgba(#2A3340, 0.6);
+    background: $tp-footer-bg-2;
+    color: $tp-footer-muted;
 }
 .footer-main .footer-copyright,
 .footer-main .footer-copyright a,
-.footer-main .icon-shopware { color: rgba(#2A3340, 0.6); }
-.footer-main .icon-shopware svg { fill: rgba(#2A3340, 0.6); }
+.footer-main .icon-shopware { color: $tp-footer-muted; }
+.footer-main .icon-shopware svg { fill: $tp-footer-muted; }
 .footer-main .footer-service-menu-list {
     margin-bottom: 1.25rem;
     gap: 0.25rem 1.5rem;
     .footer-service-menu-link {
-        color: rgba(#2A3340, 0.6);
+        color: $tp-footer-text;
         font-size: 0.8125rem;
         text-decoration: none;
         min-height: 24px;
         display: inline-flex;
         align-items: center;
-        &:hover, &:focus-visible { color: $sw-color-brand-primary; }
-        &:focus-visible { outline: 2px solid $sw-color-brand-secondary; outline-offset: 2px; }
+        &:hover, &:focus-visible { color: $tp-primary; }
+        &:focus-visible { outline: 2px solid $tp-primary; outline-offset: 2px; }
     }
 }
 
 .footer-main .footer-vat {
     text-align: center;
-    color: rgba(#2A3340, 0.5);
+    color: $tp-footer-muted;
     font-size: 0.8125rem;
     margin-bottom: 0.75rem;
-    a { color: rgba(#2A3340, 0.7); }
+    a { color: $tp-footer-text; }
 }
 
 .vapor-footer-copyright {
@@ -3264,7 +3275,7 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     align-items: center;
     gap: 0.4rem;
     text-align: center;
-    color: rgba(#2A3340, 0.5);
+    color: $tp-footer-muted;
     font-size: 0.8125rem;
 }
 
@@ -3273,17 +3284,18 @@ $vapor-footer-muted: rgba(#2A3340, 0.62); // ikincil metin
     padding: 0.35rem 0.85rem;
     font-weight: 600;
     font-size: 0.8125rem;
-    color: $sw-color-brand-primary;
-    background: rgba($sw-color-brand-primary, 0.1);
-    border: 1px solid rgba($sw-color-brand-primary, 0.4);
-    border-radius: 20px;
+    color: #fff;
+    background: rgba($tp-primary, 0.9);
+    border: 1px solid $tp-primary;
+    border-radius: $tp-radius-pill;
 }
 
 @media (max-width: 767.98px) {
     .footer-main { padding-top: 2.5rem; }
     .vapor-footer-columns { row-gap: 1.75rem; }
     .vapor-footer-badges { gap: 1.25rem 2rem; }
-    .vapor-footer-trust { gap: 1.25rem 1.75rem; padding: 1.5rem 0; img { max-height: 52px; } }
+    .vapor-footer-trust { gap: 1.25rem 1.75rem; padding: 1.5rem 0;
+        &__item img { max-height: 44px; } }
     .vapor-footer-social { margin-bottom: 10px; }
     .vapor-footer-b2b-cta { margin-bottom: 10px; }
 }
