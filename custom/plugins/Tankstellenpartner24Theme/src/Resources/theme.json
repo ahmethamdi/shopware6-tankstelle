@@ -178,6 +178,15 @@
                 "tab": "vaporTabHomeBot",
                 "order": 220
             },
+            "vaporInfo": {
+                "label": {
+                    "de-DE": "12b) Information-Bereich (Statement + Checkliste)",
+                    "en-GB": "12b) Information section (statement + checklist)",
+                    "tr-TR": "12b) Bilgi bölümü (statement + liste)"
+                },
+                "tab": "vaporTabHomeBot",
+                "order": 225
+            },
             "vaporTopMarken": {
                 "label": {
                     "de-DE": "13) Top-Marken-Leiste (Logos)",
@@ -351,7 +360,7 @@
                     "tr-TR": "Marka navigasyonu göster"
                 },
                 "type": "switch",
-                "value": true,
+                "value": false,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 101,
@@ -715,7 +724,7 @@
                     "tr-TR": "Çok satanlar göster"
                 },
                 "type": "switch",
-                "value": true,
+                "value": false,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 181,
@@ -736,6 +745,34 @@
                 "scss": false,
                 "tab": "vaporTabGeneral"
             },
+            "vapor-sec-info-show": {
+                "label": {
+                    "de-DE": "Information-Bereich anzeigen",
+                    "en-GB": "Show: Information section",
+                    "tr-TR": "Bilgi bölümü göster"
+                },
+                "type": "switch",
+                "value": true,
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 183,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
+            "vapor-sec-info-order": {
+                "label": {
+                    "de-DE": "Information-Bereich Reihenfolge",
+                    "en-GB": "Information section order",
+                    "tr-TR": "Bilgi bölümü sıra"
+                },
+                "type": "text",
+                "value": "92",
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 184,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
             "vapor-sec-topmarken-show": {
                 "label": {
                     "de-DE": "Top-Marken-Leiste anzeigen",
@@ -743,7 +780,7 @@
                     "tr-TR": "Top markalar şeridi göster"
                 },
                 "type": "switch",
-                "value": false,
+                "value": true,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 191,
@@ -5340,6 +5377,160 @@
                 "editable": true,
                 "block": "vaporBestseller",
                 "order": 200,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-eyebrow": {
+                "label": {
+                    "de-DE": "Info: Eyebrow (kleine Überzeile)",
+                    "en-GB": "Info: eyebrow",
+                    "tr-TR": "Info: üst etiket"
+                },
+                "type": "text",
+                "value": "Warum TP24",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 202,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-title": {
+                "label": {
+                    "de-DE": "Info: Überschrift",
+                    "en-GB": "Info: title",
+                    "tr-TR": "Info: başlık"
+                },
+                "type": "text",
+                "value": "Ihr zuverlässiger Großhandelspartner für E-Zigaretten.",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 203,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-text": {
+                "label": {
+                    "de-DE": "Info: Text",
+                    "en-GB": "Info: text",
+                    "tr-TR": "Info: metin"
+                },
+                "type": "text",
+                "value": "Wir beliefern Fachhändler, Kioske und Tankstellen deutschlandweit – mit geprüfter Originalware, fairen Staffelpreisen und einem Team, das Ihr Geschäft versteht. Rechtssicher für den Wiederverkauf, planbar in der Lieferung.",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 204,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-btn": {
+                "label": {
+                    "de-DE": "Info: Button-Text (leer = aus)",
+                    "en-GB": "Info: button text (empty = off)",
+                    "tr-TR": "Info: buton metni (boş = kapalı)"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 205,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-btn-link": {
+                "label": {
+                    "de-DE": "Info: Button-Link",
+                    "en-GB": "Info: button link",
+                    "tr-TR": "Info: buton link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 206,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-check-1": {
+                "label": {
+                    "de-DE": "Info: Checkliste 1",
+                    "en-GB": "Info: checklist 1",
+                    "tr-TR": "Info: liste 1"
+                },
+                "type": "text",
+                "value": "Jede Charge geprüft & zertifiziert",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 207,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-check-2": {
+                "label": {
+                    "de-DE": "Info: Checkliste 2",
+                    "en-GB": "Info: checklist 2",
+                    "tr-TR": "Info: liste 2"
+                },
+                "type": "text",
+                "value": "Deutsche Steuerbanderole",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 208,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-check-3": {
+                "label": {
+                    "de-DE": "Info: Checkliste 3",
+                    "en-GB": "Info: checklist 3",
+                    "tr-TR": "Info: liste 3"
+                },
+                "type": "text",
+                "value": "Versand aus deutschem Lager",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 209,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-check-4": {
+                "label": {
+                    "de-DE": "Info: Checkliste 4",
+                    "en-GB": "Info: checklist 4",
+                    "tr-TR": "Info: liste 4"
+                },
+                "type": "text",
+                "value": "Kauf auf Rechnung für Gewerbe",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 210,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-check-5": {
+                "label": {
+                    "de-DE": "Info: Checkliste 5",
+                    "en-GB": "Info: checklist 5",
+                    "tr-TR": "Info: liste 5"
+                },
+                "type": "text",
+                "value": "Staffelpreise & Mengenrabatte",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 211,
+                "scss": false,
+                "tab": "vaporTabHomeBot"
+            },
+            "vapor-info-check-6": {
+                "label": {
+                    "de-DE": "Info: Checkliste 6 (leer = aus)",
+                    "en-GB": "Info: checklist 6 (empty = off)",
+                    "tr-TR": "Info: liste 6 (boş = kapalı)"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporInfo",
+                "order": 212,
                 "scss": false,
                 "tab": "vaporTabHomeBot"
             },

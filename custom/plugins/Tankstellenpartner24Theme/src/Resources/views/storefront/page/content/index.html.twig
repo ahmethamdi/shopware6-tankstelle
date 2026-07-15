@@ -788,6 +788,44 @@
                                Bestseller ürünleri atandığında bu dal zaten dolacak.) #}
                         {% endif %}
                     {% endblock %}
+                    {% endset %}
+
+                    {# ============ Information — editorial Statement + Vorteile-Checkliste
+                       (Bestseller'ın yerine geçen bölüm; tümü panelden). ============ #}
+                    {% set vaporSecHtml_info %}
+                    {% block vapor_home_info %}
+                        {# Checklist maddelerini topla (boş olanı atla) #}
+                        {% set infoChecks = [] %}
+                        {% for i in 1..6 %}
+                            {% set ck = theme_config('vapor-info-check-' ~ i) %}
+                            {% if ck %}{% set infoChecks = infoChecks|merge([ck]) %}{% endif %}
+                        {% endfor %}
+                        {% set infoHasContent = theme_config('vapor-info-title') or theme_config('vapor-info-text') or infoChecks|length %}
+                        {% if infoHasContent %}
+                            <section class="vapor-info">
+                                {% if theme_config('vapor-info-eyebrow') %}<span class="vapor-info__eyebrow">{{ theme_config('vapor-info-eyebrow') }}</span>{% endif %}
+                                <div class="vapor-info__body">
+                                    <div class="vapor-info__lead">
+                                        {% if theme_config('vapor-info-title') %}<h2 class="vapor-info__title">{{ theme_config('vapor-info-title')|raw }}</h2>{% endif %}
+                                        {% if theme_config('vapor-info-text') %}<p class="vapor-info__text">{{ theme_config('vapor-info-text') }}</p>{% endif %}
+                                        {% if theme_config('vapor-info-btn') %}
+                                            <a href="{{ theme_config('vapor-info-btn-link') ?: path('frontend.account.register.page') }}" class="vapor-info__cta">{{ theme_config('vapor-info-btn') }}</a>
+                                        {% endif %}
+                                    </div>
+                                    {% if infoChecks|length %}
+                                        <ul class="vapor-info__checks">
+                                            {% for ck in infoChecks %}
+                                                <li>
+                                                    <span class="vapor-info__tick">{% sw_icon 'checkmark' %}</span>
+                                                    <span>{{ ck }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </section>
+                        {% endif %}
+                    {% endblock %}
 
                     {# ============ Marka logo slider (kayan şerit) ============ #}
                     {% endset %}
@@ -878,6 +916,7 @@
                         { key: 'neu',        def: 70,  html: vaporSecHtml_neu },
                         { key: 'showcase',   def: 80,  html: vaporSecHtml_showcase },
                         { key: 'bestseller', def: 90,  html: vaporSecHtml_bestseller },
+                        { key: 'info',       def: 92,  html: vaporSecHtml_info },
                         { key: 'topmarken',  def: 100, html: vaporSecHtml_topmarken },
                         { key: 'b2b',        def: 110, html: vaporSecHtml_b2b }
                     ] %}

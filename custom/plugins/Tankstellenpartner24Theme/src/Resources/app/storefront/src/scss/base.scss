@@ -2577,6 +2577,56 @@ $vapor-radius: 12px;
 }
 
 // =====================================================================
+// Information — editorial Statement + Vorteile-Checkliste
+// (Bestseller'ın yerine geçen bölüm; mockup D — turuncu sol rail)
+// =====================================================================
+.vapor-info {
+    background: $tp-surface;
+    border: 1px solid $tp-line;
+    border-left: 5px solid $tp-primary;
+    border-radius: $tp-radius-lg;
+    padding: $tp-space-7 $tp-space-8;
+    box-shadow: $tp-shadow-sm;
+    @media (max-width: 767.98px) { padding: $tp-space-6 $tp-space-5; }
+
+    &__eyebrow {
+        display: inline-block; font-size: .72rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: .09em; color: $tp-primary;
+        margin-bottom: $tp-space-3;
+    }
+    &__body {
+        display: grid; grid-template-columns: 1.2fr 1fr;
+        gap: $tp-space-7; align-items: start;
+        @media (max-width: 767.98px) { grid-template-columns: 1fr; gap: $tp-space-5; }
+    }
+    &__title {
+        font-family: $vapor-font-headline; font-weight: 800;
+        font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.14;
+        color: $tp-navy; margin: 0 0 $tp-space-3; max-width: 22ch;
+    }
+    &__text { color: $tp-muted; font-size: 1rem; line-height: 1.6; margin: 0 0 $tp-space-4; }
+    &__cta {
+        display: inline-block; background: $tp-primary; color: #fff;
+        text-decoration: none; font-weight: 700; font-size: .9rem;
+        padding: .7rem 1.4rem; border-radius: 999px;
+        transition: transform $tp-transition, box-shadow $tp-transition;
+        &:hover { transform: translateY(-2px); box-shadow: $tp-shadow-md; color: #fff; }
+    }
+    &__checks {
+        list-style: none; margin: 0; padding: 0;
+        display: grid; gap: $tp-space-3;
+        li { display: flex; gap: $tp-space-3; align-items: flex-start;
+            font-size: .95rem; color: $tp-ink; line-height: 1.4; }
+    }
+    &__tick {
+        flex: 0 0 auto; width: 24px; height: 24px; border-radius: 999px;
+        background: $tp-primary-soft; display: grid; place-items: center; margin-top: 1px;
+        .icon { width: 13px; height: 13px; }
+        .icon svg { color: $tp-primary; }
+    }
+}
+
+// =====================================================================
 // B2B avantaj / kayıt CTA banner (sayfa sonu)
 // =====================================================================
 .vapor-b2b {
