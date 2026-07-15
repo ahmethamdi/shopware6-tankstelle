@@ -408,22 +408,20 @@
                     {% set vaporSecHtml_catslider %}
                     {% block vapor_home_catslider %}
                         {% set catTitle = theme_config('vapor-catslider-title') ?: 'Nach Kategorie einkaufen' %}
-                        {# Manuel kartlar: ana görsel VEYA başlık VEYA herhangi bir mini doluysa slot çıkar.
-                           (Sadece görsel girip başlık boş bırakılan kartlar da görünür.)
-                           İçi TAMAMEN boş kart hiç eklenmez → boş kart gösterilmez. #}
+                        {# Manuel kartlar: title doluysa slot çıkar. Ana görsel + 3 mini görsel + başlık + link panelden. #}
                         {% set vaporCatCards = [] %}
                         {% for i in 1..6 %}
                             {% set ccTitle = theme_config('vapor-catcard-' ~ i ~ '-title') %}
-                            {% set ccImg = theme_config('vapor-catcard-' ~ i ~ '-img') %}
-                            {% set ccMini1 = theme_config('vapor-catcard-' ~ i ~ '-mini1') %}
-                            {% set ccMini2 = theme_config('vapor-catcard-' ~ i ~ '-mini2') %}
-                            {% set ccMini3 = theme_config('vapor-catcard-' ~ i ~ '-mini3') %}
-                            {% if ccTitle or ccImg or ccMini1 or ccMini2 or ccMini3 %}
+                            {% if ccTitle %}
                                 {% set vaporCatCards = vaporCatCards|merge([{
                                     title: ccTitle,
-                                    img: ccImg,
+                                    img: theme_config('vapor-catcard-' ~ i ~ '-img'),
                                     link: theme_config('vapor-catcard-' ~ i ~ '-link'),
-                                    minis: [ccMini1, ccMini2, ccMini3]
+                                    minis: [
+                                        theme_config('vapor-catcard-' ~ i ~ '-mini1'),
+                                        theme_config('vapor-catcard-' ~ i ~ '-mini2'),
+                                        theme_config('vapor-catcard-' ~ i ~ '-mini3')
+                                    ]
                                 }]) %}
                             {% endif %}
                         {% endfor %}
@@ -440,27 +438,23 @@
                                     {% if vaporCatCards|length > 0 %}
                                         {# ---- Manuel: ana görsel + 3 mini görsel + başlık + link ---- #}
                                         {% for c in vaporCatCards %}
-                                            {# Dolu mini görselleri (boş olanları atla — boş hücre gösterme) #}
-                                            {% set cMinis = c.minis|filter(m => m) %}
-                                            <a href="{{ c.link ?: '#' }}" class="vapor-catcard{% if not c.img %} is-noimg{% endif %}{% if cMinis|length == 0 %} is-nomini{% endif %}">
+                                            <a href="{{ c.link ?: '#' }}" class="vapor-catcard">
                                                 <div class="vapor-catcard__media">
                                                     <span class="vapor-catcard__big">
                                                         {% if c.img %}<img src="{{ c.img }}" alt="{{ c.title }}" loading="lazy">{% else %}{{ mediaSvg }}{% endif %}
                                                     </span>
-                                                    {% if cMinis|length > 0 %}
-                                                        <span class="vapor-catcard__mini">
-                                                            {% for mImg in cMinis %}
-                                                                <span class="vapor-catcard__minicell"><img src="{{ mImg }}" alt="" loading="lazy"></span>
-                                                            {% endfor %}
-                                                        </span>
-                                                    {% endif %}
+                                                    <span class="vapor-catcard__mini">
+                                                        {% for mImg in c.minis %}
+                                                            <span class="vapor-catcard__minicell">
+                                                                {% if mImg %}<img src="{{ mImg }}" alt="" loading="lazy">{% else %}{{ mediaSvg }}{% endif %}
+                                                            </span>
+                                                        {% endfor %}
+                                                    </span>
                                                 </div>
                                                 <div class="vapor-catcard__foot">
-                                                    {% if c.title %}
-                                                        <div class="vapor-catcard__info">
-                                                            <span class="vapor-catcard__name">{{ c.title }}</span>
-                                                        </div>
-                                                    {% endif %}
+                                                    <div class="vapor-catcard__info">
+                                                        <span class="vapor-catcard__name">{{ c.title }}</span>
+                                                    </div>
                                                     <span class="vapor-catcard__btn">Ansehen</span>
                                                 </div>
                                             </a>
