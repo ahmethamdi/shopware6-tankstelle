@@ -418,13 +418,10 @@
                             {% set ccMini1 = theme_config('vapor-catcard-' ~ i ~ '-mini1') %}
                             {% set ccMini2 = theme_config('vapor-catcard-' ~ i ~ '-mini2') %}
                             {% set ccMini3 = theme_config('vapor-catcard-' ~ i ~ '-mini3') %}
-                            {# Ana görsel yoksa ve ilk 4 karttan biriyse: temaya gömülü placeholder (600×400).
-                               Admin'den gerçek görsel yüklenince otomatik yerine geçer. #}
-                            {% set ccDefaultImg = (i <= 4) ? asset('bundles/tankstellenpartner24theme/catcards/cat-' ~ i ~ '.svg') : '' %}
-                            {% if ccTitle or ccImg or ccMini1 or ccMini2 or ccMini3 or ccDefaultImg %}
+                            {% if ccTitle or ccImg or ccMini1 or ccMini2 or ccMini3 %}
                                 {% set vaporCatCards = vaporCatCards|merge([{
                                     title: ccTitle,
-                                    img: ccImg ?: ccDefaultImg,
+                                    img: ccImg,
                                     link: theme_config('vapor-catcard-' ~ i ~ '-link'),
                                     minis: [ccMini1, ccMini2, ccMini3]
                                 }]) %}
