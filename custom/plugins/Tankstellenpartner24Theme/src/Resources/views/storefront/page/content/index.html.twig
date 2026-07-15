@@ -638,43 +638,46 @@
                                 {% set dealItems = dealItems|merge([dealPool[idx]]) %}
                             {% endfor %}
 
-                            <div class="vapor-section-head">
-                                {% if theme_config('vapor-deals-title') %}<h2 class="vapor-section-head__title">{{ theme_config('vapor-deals-title') }}</h2>{% endif %}
-                                {# Ortak "endet in" sayaç — gece yarısına, 00:00'da otomatik yenilenir #}
-                                <div class="vapor-deals-countdown" data-vapor-daily-countdown>
-                                    <span class="vapor-deals-countdown__label">Endet in</span>
-                                    <span class="vapor-deals-countdown__clock">
-                                        <b data-h>00</b><i>:</i><b data-m>00</b><i>:</i><b data-s>00</b>
-                                    </span>
+                            {# V4 dikkat-çekici zemin: koyu panel + turuncu/mavi glow (SCSS'te). #}
+                            <div class="vapor-deals-panel">
+                                <div class="vapor-section-head">
+                                    {% if theme_config('vapor-deals-title') %}<h2 class="vapor-section-head__title">{{ theme_config('vapor-deals-title') }}</h2>{% endif %}
+                                    {# Ortak "endet in" sayaç — gece yarısına, 00:00'da otomatik yenilenir #}
+                                    <div class="vapor-deals-countdown" data-vapor-daily-countdown>
+                                        <span class="vapor-deals-countdown__label">Endet in</span>
+                                        <span class="vapor-deals-countdown__clock">
+                                            <b data-h>00</b><i>:</i><b data-m>00</b><i>:</i><b data-s>00</b>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="vapor-deals-row" data-vapor-dragscroll>
-                                {% for product in dealItems %}
-                                    {% set pName = product.translated.name ?? product.name %}
-                                    {% set pBrand = product.manufacturer ? (product.manufacturer.translated.name ?? product.manufacturer.name) : '' %}
-                                    {% set pCover = product.cover.media ?? null %}
-                                    {% set pPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
-                                    {% set pUrl = path('frontend.detail.page', { productId: product.id }) %}
-                                    <a href="{{ pUrl }}" class="vapor-deal">
-                                        <span class="vapor-deal__flag">Deal des Tages</span>
-                                        <div class="vapor-deal__card">
-                                            <div class="vapor-deal__img">
-                                                {% if pCover %}{% sw_thumbnails 'vapor-deal-img' with { media: pCover, sizes: { default: '240px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                <div class="vapor-deals-row" data-vapor-dragscroll>
+                                    {% for product in dealItems %}
+                                        {% set pName = product.translated.name ?? product.name %}
+                                        {% set pBrand = product.manufacturer ? (product.manufacturer.translated.name ?? product.manufacturer.name) : '' %}
+                                        {% set pCover = product.cover.media ?? null %}
+                                        {% set pPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
+                                        {% set pUrl = path('frontend.detail.page', { productId: product.id }) %}
+                                        <a href="{{ pUrl }}" class="vapor-deal">
+                                            <span class="vapor-deal__flag">Deal des Tages</span>
+                                            <div class="vapor-deal__card">
+                                                <div class="vapor-deal__img">
+                                                    {% if pCover %}{% sw_thumbnails 'vapor-deal-img' with { media: pCover, sizes: { default: '240px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                </div>
+                                                {% if pBrand %}<div class="vapor-deal__brand">{{ pBrand }}</div>{% endif %}
+                                                <div class="vapor-deal__name">{{ pName }}</div>
+                                                <div class="vapor-deal__foot">
+                                                    {% if vaporLoggedIn %}
+                                                        <span class="vapor-deal__price">{{ pPrice.unitPrice|currency }}</span>
+                                                        <span class="vapor-deal__btn">{% sw_icon 'bag-product' %} Ansehen</span>
+                                                    {% else %}
+                                                        <span class="vapor-deal__price is-login">{% sw_icon 'lock-closed' %} Login</span>
+                                                        <span class="vapor-deal__btn">Anmelden</span>
+                                                    {% endif %}
+                                                </div>
                                             </div>
-                                            {% if pBrand %}<div class="vapor-deal__brand">{{ pBrand }}</div>{% endif %}
-                                            <div class="vapor-deal__name">{{ pName }}</div>
-                                            <div class="vapor-deal__foot">
-                                                {% if vaporLoggedIn %}
-                                                    <span class="vapor-deal__price">{{ pPrice.unitPrice|currency }}</span>
-                                                    <span class="vapor-deal__btn">{% sw_icon 'bag-product' %} Ansehen</span>
-                                                {% else %}
-                                                    <span class="vapor-deal__price is-login">{% sw_icon 'lock-closed' %} Login</span>
-                                                    <span class="vapor-deal__btn">Anmelden</span>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </a>
-                                {% endfor %}
+                                        </a>
+                                    {% endfor %}
+                                </div>
                             </div>
                         {% endif %}
                     {% endblock %}

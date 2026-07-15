@@ -1832,6 +1832,46 @@ $vapor-radius: 12px;
 // --- Deals des Tages (countdown) ---
 // --- Deals des Tages: yatay kayan GERÇEK ürün kartları + ortak günlük sayaç ---
 // Ortak sayaç section-head'in sağında; kartlar tek satır scroll (drag + snap).
+
+// V4 dikkat-çekici zemin: koyu lacivert panel + turuncu/mavi radial glow.
+// Beyaz ürün kartları koyu zeminde öne çıkar; başlık beyaz, sayaç turuncu.
+.vapor-deals-panel {
+    position: relative;
+    overflow: hidden;
+    background: #0E2740;
+    border-radius: $tp-radius-lg;
+    padding: $tp-space-6 $tp-space-5 calc(#{$tp-space-6} - 2px);
+    box-shadow: $tp-shadow-lg;
+    // Üst-sağ turuncu ışıltı
+    &::before {
+        content: ""; position: absolute; top: -60px; right: -40px;
+        width: 320px; height: 320px; pointer-events: none;
+        background: radial-gradient(circle, rgba($tp-primary, 0.55), transparent 65%);
+    }
+    // Alt-sol mavi ışıltı
+    &::after {
+        content: ""; position: absolute; bottom: -80px; left: -30px;
+        width: 280px; height: 280px; pointer-events: none;
+        background: radial-gradient(circle, rgba(#136EB4, 0.42), transparent 65%);
+    }
+    // İçerik glow'un üstünde
+    > .vapor-section-head, > .vapor-deals-row { position: relative; z-index: 1; }
+    // Koyu zeminde başlık beyaz
+    .vapor-section-head__title { color: #fff; }
+    // Sayaç turuncu (glow ile aynı dil → aciliyet vurgusu)
+    .vapor-deals-countdown {
+        background: $tp-primary;
+        &__label { color: rgba(#fff, 0.9); }
+        &__clock { background: rgba(#fff, 0.16); }
+    }
+    @media (max-width: 575.98px) {
+        padding: $tp-space-5 $tp-space-4;
+        // Dar ekranda glow'ları küçült/yaklaştır (taşma/aşırı doygunluk olmasın)
+        &::before { width: 200px; height: 200px; top: -40px; right: -30px; }
+        &::after  { width: 180px; height: 180px; bottom: -50px; left: -20px; }
+    }
+}
+
 .vapor-deals-countdown {
     display: inline-flex; align-items: center; gap: $tp-space-3;
     background: $tp-navy; color: #fff;
