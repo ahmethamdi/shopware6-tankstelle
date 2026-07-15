@@ -1243,24 +1243,17 @@ $vapor-radius: 12px;
     @media (max-width: 575.98px) { width: 280px; }
 
     &__media {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: $tp-space-2;
+        // Manuel karta geçildi: tek büyük görsel (mini kolon kaldırıldı)
+        display: block;
         padding: $tp-space-3;
         height: 240px;
     }
     &__big {
+        width: 100%; height: 100%;
         border-radius: $tp-radius; overflow: hidden; background: $tp-surface-2;
         display: grid; place-items: center; color: rgba($tp-navy, 0.2);
         img { width: 100%; height: 100%; object-fit: cover; }
         svg { width: 40px; height: 40px; }
-    }
-    &__mini { display: grid; grid-template-rows: repeat(3, 1fr); gap: $tp-space-2; }
-    &__minicell {
-        border-radius: $tp-radius-sm; overflow: hidden; background: $tp-surface-2;
-        display: grid; place-items: center; color: rgba($tp-navy, 0.2);
-        img { width: 100%; height: 100%; object-fit: cover; }
-        svg { width: 22px; height: 22px; }
     }
 
     &__foot {
@@ -3204,6 +3197,8 @@ $tp-footer-surface: rgba(#FFFFFF, 0.06);      // hafif kart/ikon zemini
     padding: 0 0 $tp-space-7; margin-bottom: $tp-space-7;
     border-bottom: 1px solid $tp-footer-line;
     @media (max-width: 767.98px) { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    // Dar mobilde 2 kolon metin kutusunu ~108px'e sıkıştırıp başlıkları 2-3 satıra sardırıyordu → tek kolon
+    @media (max-width: 575.98px) { grid-template-columns: 1fr; gap: 1rem; }
     &__item { display: flex; align-items: center; gap: .8rem; }
     &__ico {
         flex: 0 0 auto; width: 44px; height: 44px; border-radius: $tp-radius;

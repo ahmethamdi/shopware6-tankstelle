@@ -6961,6 +6961,678 @@
                 "scss": false,
                 "tab": "vaporTabHome"
             },
+            "vapor-pill-1-name": {
+                "label": {
+                    "de-DE": "Pill 1 – Name",
+                    "en-GB": "Pill 1 – Name",
+                    "tr-TR": "Pill 1 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 910,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-1-icon": {
+                "label": {
+                    "de-DE": "Pill 1 – Bild",
+                    "en-GB": "Pill 1 – Image",
+                    "tr-TR": "Pill 1 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 911,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-1-link": {
+                "label": {
+                    "de-DE": "Pill 1 – Link",
+                    "en-GB": "Pill 1 – Link",
+                    "tr-TR": "Pill 1 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 912,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-2-name": {
+                "label": {
+                    "de-DE": "Pill 2 – Name",
+                    "en-GB": "Pill 2 – Name",
+                    "tr-TR": "Pill 2 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 913,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-2-icon": {
+                "label": {
+                    "de-DE": "Pill 2 – Bild",
+                    "en-GB": "Pill 2 – Image",
+                    "tr-TR": "Pill 2 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 914,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-2-link": {
+                "label": {
+                    "de-DE": "Pill 2 – Link",
+                    "en-GB": "Pill 2 – Link",
+                    "tr-TR": "Pill 2 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 915,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-3-name": {
+                "label": {
+                    "de-DE": "Pill 3 – Name",
+                    "en-GB": "Pill 3 – Name",
+                    "tr-TR": "Pill 3 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 916,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-3-icon": {
+                "label": {
+                    "de-DE": "Pill 3 – Bild",
+                    "en-GB": "Pill 3 – Image",
+                    "tr-TR": "Pill 3 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 917,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-3-link": {
+                "label": {
+                    "de-DE": "Pill 3 – Link",
+                    "en-GB": "Pill 3 – Link",
+                    "tr-TR": "Pill 3 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 918,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-4-name": {
+                "label": {
+                    "de-DE": "Pill 4 – Name",
+                    "en-GB": "Pill 4 – Name",
+                    "tr-TR": "Pill 4 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 919,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-4-icon": {
+                "label": {
+                    "de-DE": "Pill 4 – Bild",
+                    "en-GB": "Pill 4 – Image",
+                    "tr-TR": "Pill 4 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 920,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-4-link": {
+                "label": {
+                    "de-DE": "Pill 4 – Link",
+                    "en-GB": "Pill 4 – Link",
+                    "tr-TR": "Pill 4 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 921,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-5-name": {
+                "label": {
+                    "de-DE": "Pill 5 – Name",
+                    "en-GB": "Pill 5 – Name",
+                    "tr-TR": "Pill 5 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 922,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-5-icon": {
+                "label": {
+                    "de-DE": "Pill 5 – Bild",
+                    "en-GB": "Pill 5 – Image",
+                    "tr-TR": "Pill 5 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 923,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-5-link": {
+                "label": {
+                    "de-DE": "Pill 5 – Link",
+                    "en-GB": "Pill 5 – Link",
+                    "tr-TR": "Pill 5 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 924,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-6-name": {
+                "label": {
+                    "de-DE": "Pill 6 – Name",
+                    "en-GB": "Pill 6 – Name",
+                    "tr-TR": "Pill 6 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 925,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-6-icon": {
+                "label": {
+                    "de-DE": "Pill 6 – Bild",
+                    "en-GB": "Pill 6 – Image",
+                    "tr-TR": "Pill 6 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 926,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-6-link": {
+                "label": {
+                    "de-DE": "Pill 6 – Link",
+                    "en-GB": "Pill 6 – Link",
+                    "tr-TR": "Pill 6 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 927,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-7-name": {
+                "label": {
+                    "de-DE": "Pill 7 – Name",
+                    "en-GB": "Pill 7 – Name",
+                    "tr-TR": "Pill 7 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 928,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-7-icon": {
+                "label": {
+                    "de-DE": "Pill 7 – Bild",
+                    "en-GB": "Pill 7 – Image",
+                    "tr-TR": "Pill 7 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 929,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-7-link": {
+                "label": {
+                    "de-DE": "Pill 7 – Link",
+                    "en-GB": "Pill 7 – Link",
+                    "tr-TR": "Pill 7 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 930,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-8-name": {
+                "label": {
+                    "de-DE": "Pill 8 – Name",
+                    "en-GB": "Pill 8 – Name",
+                    "tr-TR": "Pill 8 – İsim"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 931,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-8-icon": {
+                "label": {
+                    "de-DE": "Pill 8 – Bild",
+                    "en-GB": "Pill 8 – Image",
+                    "tr-TR": "Pill 8 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 932,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-pill-8-link": {
+                "label": {
+                    "de-DE": "Pill 8 – Link",
+                    "en-GB": "Pill 8 – Link",
+                    "tr-TR": "Pill 8 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 933,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-1-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 1 – Bild",
+                    "en-GB": "Category card 1 – Image",
+                    "tr-TR": "Kategori kartı 1 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 934,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-1-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 1 – Titel",
+                    "en-GB": "Category card 1 – Title",
+                    "tr-TR": "Kategori kartı 1 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 935,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-1-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 1 – Link",
+                    "en-GB": "Category card 1 – Link",
+                    "tr-TR": "Kategori kartı 1 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 936,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-2-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 2 – Bild",
+                    "en-GB": "Category card 2 – Image",
+                    "tr-TR": "Kategori kartı 2 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 937,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-2-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 2 – Titel",
+                    "en-GB": "Category card 2 – Title",
+                    "tr-TR": "Kategori kartı 2 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 938,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-2-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 2 – Link",
+                    "en-GB": "Category card 2 – Link",
+                    "tr-TR": "Kategori kartı 2 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 939,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-3-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 3 – Bild",
+                    "en-GB": "Category card 3 – Image",
+                    "tr-TR": "Kategori kartı 3 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 940,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-3-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 3 – Titel",
+                    "en-GB": "Category card 3 – Title",
+                    "tr-TR": "Kategori kartı 3 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 941,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-3-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 3 – Link",
+                    "en-GB": "Category card 3 – Link",
+                    "tr-TR": "Kategori kartı 3 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 942,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-4-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 4 – Bild",
+                    "en-GB": "Category card 4 – Image",
+                    "tr-TR": "Kategori kartı 4 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 943,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-4-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 4 – Titel",
+                    "en-GB": "Category card 4 – Title",
+                    "tr-TR": "Kategori kartı 4 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 944,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-4-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 4 – Link",
+                    "en-GB": "Category card 4 – Link",
+                    "tr-TR": "Kategori kartı 4 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 945,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-5-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 5 – Bild",
+                    "en-GB": "Category card 5 – Image",
+                    "tr-TR": "Kategori kartı 5 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 946,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-5-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 5 – Titel",
+                    "en-GB": "Category card 5 – Title",
+                    "tr-TR": "Kategori kartı 5 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 947,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-5-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 5 – Link",
+                    "en-GB": "Category card 5 – Link",
+                    "tr-TR": "Kategori kartı 5 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 948,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-6-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 6 – Bild",
+                    "en-GB": "Category card 6 – Image",
+                    "tr-TR": "Kategori kartı 6 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 949,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-6-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 6 – Titel",
+                    "en-GB": "Category card 6 – Title",
+                    "tr-TR": "Kategori kartı 6 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 950,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-6-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 6 – Link",
+                    "en-GB": "Category card 6 – Link",
+                    "tr-TR": "Kategori kartı 6 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 951,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-7-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 7 – Bild",
+                    "en-GB": "Category card 7 – Image",
+                    "tr-TR": "Kategori kartı 7 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 952,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-7-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 7 – Titel",
+                    "en-GB": "Category card 7 – Title",
+                    "tr-TR": "Kategori kartı 7 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 953,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-7-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 7 – Link",
+                    "en-GB": "Category card 7 – Link",
+                    "tr-TR": "Kategori kartı 7 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 954,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-8-img": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 8 – Bild",
+                    "en-GB": "Category card 8 – Image",
+                    "tr-TR": "Kategori kartı 8 – Görsel"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 955,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-8-title": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 8 – Titel",
+                    "en-GB": "Category card 8 – Title",
+                    "tr-TR": "Kategori kartı 8 – Başlık"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 956,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-8-link": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 8 – Link",
+                    "en-GB": "Category card 8 – Link",
+                    "tr-TR": "Kategori kartı 8 – Link"
+                },
+                "type": "text",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 957,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
             "vapor-sec-promoduo-show": {
                 "label": {
                     "de-DE": "Promo + Produkt-Slider anzeigen",

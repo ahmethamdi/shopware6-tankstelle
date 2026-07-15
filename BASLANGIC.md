@@ -32,15 +32,16 @@ nohup env PHP_CLI_SERVER_WORKERS=16 \
 > Bu dosya `.gitignore`'da (dev-only), repoda yok — Vapor'dan kopyalandı, dursun.
 
 ### Ağ paylaşımı (LAN — aynı Wi-Fi'daki cihazlar görsün)
-LAN IP: **192.168.1.37** (değişebilir → `ipconfig getifaddr en0`). `0.0.0.0`'da dinlet + APP_URL LAN IP:
+LAN IP: **192.168.1.25** (DHCP → değişebilir, `ipconfig getifaddr en0` ile kontrol et). `0.0.0.0`'da dinlet + APP_URL LAN IP:
 ```bash
 nohup env PHP_CLI_SERVER_WORKERS=16 \
   DATABASE_URL="mysql://root@127.0.0.1:3307/shopware_tp24" \
-  APP_URL="http://192.168.1.37:18600" APP_ENV=prod \
+  APP_URL="http://192.168.1.25:18600" APP_ENV=prod \
   php -d memory_limit=1G -S 0.0.0.0:18600 -t public public/dev-router.php \
   > /tmp/tp24-server-lan.log 2>&1 &
 ```
-> LAN IP Shopware sales_channel_domain'e eklendi (`http://192.168.1.37:18600`) → yoksa HTTP 400.
+> LAN IP Shopware sales_channel_domain'e eklendi (`http://192.168.1.25:18600` + eski `.37`) → yoksa HTTP 400.
+> **IP değişirse 3 adım:** (1) yeni IP'yi `sales_channel_domain`'e ekle, (2) `.env.local`'da `APP_URL`'i yeni IP yap, (3) **`theme:compile`** (core `shopware.js` asset URL'i derlemeye gömülü — sadece cache:clear yetmez, dış cihazda o JS 127.0.0.1'e gider). macOS firewall kapalı, ekstra izin gerekmez.
 > `127.0.0.1:18600` domain'i de duruyor. Erişim: **http://192.168.1.37:18600** (18+ yaş kapısı çıkar).
 
 ### Her tema/config değişikliğinden SONRA (Vapor'daki gibi ŞART)

@@ -256,11 +256,11 @@
                 <div class="vapor-body__main">
                     {# ---- YENİ: Pill şeridi (yuvarlak-ikonlu kategori kısayolları) ----
                        Canlı kategori ağacından (vaporNavTree) ilk seviye kategoriler.
-                       Panelden manuel de doldurulabilir (vapor-pill-1..10-name/-link/-icon). #}
+                       Panelden manuel de doldurulabilir (vapor-pill-1..8-name/-link/-icon). #}
                     {% set vaporSecHtml_pills %}
                     {% block vapor_home_pills %}
                         {% set vaporManualPills = [] %}
-                        {% for i in 1..10 %}
+                        {% for i in 1..8 %}
                             {% set pName = theme_config('vapor-pill-' ~ i ~ '-name') %}
                             {% if pName %}
                                 {% set vaporManualPills = vaporManualPills|merge([{
@@ -375,7 +375,19 @@
                     {% set vaporSecHtml_catslider %}
                     {% block vapor_home_catslider %}
                         {% set catTitle = theme_config('vapor-catslider-title') ?: 'Nach Kategorie einkaufen' %}
-                        {% if vaporNavTree|length > 0 %}
+                        {# Manuel kartlar: title doluysa slot çıkar. Görsel + başlık + link kullanıcı panelden girer. #}
+                        {% set vaporCatCards = [] %}
+                        {% for i in 1..8 %}
+                            {% set ccTitle = theme_config('vapor-catcard-' ~ i ~ '-title') %}
+                            {% if ccTitle %}
+                                {% set vaporCatCards = vaporCatCards|merge([{
+                                    title: ccTitle,
+                                    img: theme_config('vapor-catcard-' ~ i ~ '-img'),
+                                    link: theme_config('vapor-catcard-' ~ i ~ '-link')
+                                }]) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if vaporCatCards|length > 0 or vaporNavTree|length > 0 %}
                             <div class="vapor-section-head">
                                 <h2 class="vapor-section-head__title">{{ catTitle }}</h2>
                                 <div class="vapor-slider-nav">
@@ -385,37 +397,44 @@
                             </div>
                             <div class="vapor-catslider" data-vapor-slider="catslider" data-vapor-dragscroll>
                                 <div class="vapor-catslider__track">
-                                    {% for m in vaporNavTree %}
-                                        {% set cat = m.category %}
-                                        {% set catUrl = seoUrl('frontend.navigation.page', { navigationId: cat.id }) %}
-                                        {% set kids = m.children|default([]) %}
-                                        {% set mainMedia = cat.media ?? null %}
-                                        <a href="{{ catUrl }}" class="vapor-catcard">
-                                            <div class="vapor-catcard__media">
-                                                <span class="vapor-catcard__big">
-                                                    {% if mainMedia %}{% sw_thumbnails 'vapor-catcard-big' with { media: mainMedia, sizes: { default: '260px' } } %}{% else %}{{ mediaSvg }}{% endif %}
-                                                </span>
-                                                <span class="vapor-catcard__mini">
-                                                    {% for k in kids|slice(0, 3) %}
-                                                        <span class="vapor-catcard__minicell">
-                                                            {% if k.category.media %}{% sw_thumbnails 'vapor-catcard-mini' with { media: k.category.media, sizes: { default: '90px' } } %}{% else %}{{ mediaSvg }}{% endif %}
-                                                        </span>
-                                                    {% else %}
-                                                        <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
-                                                        <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
-                                                        <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
-                                                    {% endfor %}
-                                                </span>
-                                            </div>
-                                            <div class="vapor-catcard__foot">
-                                                <div class="vapor-catcard__info">
-                                                    <span class="vapor-catcard__name">{{ cat.translated.name }}</span>
-                                                    {% if kids|length > 0 %}<span class="vapor-catcard__count">{{ kids|length }} Kategorien</span>{% endif %}
+                                    {% if vaporCatCards|length > 0 %}
+                                        {# ---- Manuel: görsel + başlık + link ---- #}
+                                        {% for c in vaporCatCards %}
+                                            <a href="{{ c.link ?: '#' }}" class="vapor-catcard">
+                                                <div class="vapor-catcard__media">
+                                                    <span class="vapor-catcard__big">
+                                                        {% if c.img %}<img src="{{ c.img }}" alt="{{ c.title }}" loading="lazy">{% else %}{{ mediaSvg }}{% endif %}
+                                                    </span>
                                                 </div>
-                                                <span class="vapor-catcard__btn">Ansehen</span>
-                                            </div>
-                                        </a>
-                                    {% endfor %}
+                                                <div class="vapor-catcard__foot">
+                                                    <div class="vapor-catcard__info">
+                                                        <span class="vapor-catcard__name">{{ c.title }}</span>
+                                                    </div>
+                                                    <span class="vapor-catcard__btn">Ansehen</span>
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+                                    {% else %}
+                                        {# ---- Fallback: manuel kart girilmediyse canlı kategori (tek görsel) ---- #}
+                                        {% for m in vaporNavTree %}
+                                            {% set cat = m.category %}
+                                            {% set catUrl = seoUrl('frontend.navigation.page', { navigationId: cat.id }) %}
+                                            {% set mainMedia = cat.media ?? null %}
+                                            <a href="{{ catUrl }}" class="vapor-catcard">
+                                                <div class="vapor-catcard__media">
+                                                    <span class="vapor-catcard__big">
+                                                        {% if mainMedia %}{% sw_thumbnails 'vapor-catcard-big' with { media: mainMedia, sizes: { default: '260px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                    </span>
+                                                </div>
+                                                <div class="vapor-catcard__foot">
+                                                    <div class="vapor-catcard__info">
+                                                        <span class="vapor-catcard__name">{{ cat.translated.name }}</span>
+                                                    </div>
+                                                    <span class="vapor-catcard__btn">Ansehen</span>
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                             </div>
                         {% endif %}
