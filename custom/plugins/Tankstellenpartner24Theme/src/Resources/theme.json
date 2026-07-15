@@ -268,29 +268,38 @@
                 "tab": "vaporTabHomeBot",
                 "order": 260
             },
+            "vaporPills": {
+                "label": {
+                    "de-DE": "2) Pills (Kategorie-Shortcuts, unter Hero)",
+                    "en-GB": "2) Pills (category shortcuts, under hero)",
+                    "tr-TR": "2) Pills (kategori kısayolları, hero altı)"
+                },
+                "tab": "vaporTabHomeTop",
+                "order": 105
+            },
             "vaporBento": {
                 "label": {
-                    "de-DE": "2) Pills, Bento & Kategorie-Slider",
-                    "en-GB": "2) Pills, Bento & category slider",
-                    "tr-TR": "2) Pill, Bento & Kategori slider"
+                    "de-DE": "3) Bento & Kategorie-Slider",
+                    "en-GB": "3) Bento & category slider",
+                    "tr-TR": "3) Bento & Kategori slider"
                 },
                 "tab": "vaporTabHomeTop",
                 "order": 110
             },
             "vaporPromoduo": {
                 "label": {
-                    "de-DE": "3) Promo-Karte + Produkt-Slider",
-                    "en-GB": "3) Promo card + product slider",
-                    "tr-TR": "3) Promo kart + ürün slider"
+                    "de-DE": "4) Promo-Karte + Produkt-Slider",
+                    "en-GB": "4) Promo card + product slider",
+                    "tr-TR": "4) Promo kart + ürün slider"
                 },
                 "tab": "vaporTabHomeTop",
                 "order": 120
             },
             "vaporVorteile": {
                 "label": {
-                    "de-DE": "4) Vorteile (3 Karten)",
-                    "en-GB": "4) Benefits (3 cards)",
-                    "tr-TR": "4) Avantajlar (3 kart)"
+                    "de-DE": "5) Vorteile (3 Karten)",
+                    "en-GB": "5) Benefits (3 cards)",
+                    "tr-TR": "5) Avantajlar (3 kart)"
                 },
                 "tab": "vaporTabHomeTop",
                 "order": 130
@@ -360,7 +369,7 @@
                     "tr-TR": "Marka navigasyonu göster"
                 },
                 "type": "switch",
-                "value": false,
+                "value": true,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 101,
@@ -1527,20 +1536,6 @@
                 "scss": false,
                 "tab": "vaporTabHomeTop"
             },
-            "vapor-catslider-title": {
-                "label": {
-                    "de-DE": "Kategorie-Slider Titel",
-                    "en-GB": "Category slider title",
-                    "tr-TR": "Kategori slider başlık"
-                },
-                "type": "text",
-                "value": "Nach Kategorie einkaufen",
-                "editable": true,
-                "block": "vaporBento",
-                "order": 900,
-                "scss": false,
-                "tab": "vaporTabHomeTop"
-            },
             "vapor-pill-1-name": {
                 "label": {
                     "de-DE": "Pill 1 – Name",
@@ -1548,9 +1543,9 @@
                     "tr-TR": "Pill 1 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "E-Zigaretten & Vapes",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 910,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1564,7 +1559,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 911,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1576,9 +1571,9 @@
                     "tr-TR": "Pill 1 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/E-Zigaretten-Vapes/",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 912,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1590,9 +1585,9 @@
                     "tr-TR": "Pill 2 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "Pods & Akkuträger",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 913,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1606,7 +1601,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 914,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1618,9 +1613,9 @@
                     "tr-TR": "Pill 2 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/Pods-Akkutraeger/",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 915,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1632,9 +1627,9 @@
                     "tr-TR": "Pill 3 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "E-Zigaretten & Zubehör",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 916,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1648,7 +1643,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 917,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1660,9 +1655,9 @@
                     "tr-TR": "Pill 3 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/E-Zigaretten-Zubehoer/",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 918,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1674,9 +1669,9 @@
                     "tr-TR": "Pill 4 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "Liquids",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 919,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1690,7 +1685,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 920,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1716,9 +1711,9 @@
                     "tr-TR": "Pill 4 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/Liquids/",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 921,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1730,9 +1725,9 @@
                     "tr-TR": "Pill 5 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "Aromen",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 922,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1746,7 +1741,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 923,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1758,9 +1753,9 @@
                     "tr-TR": "Pill 5 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/Aromen/",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 924,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1772,9 +1767,9 @@
                     "tr-TR": "Pill 6 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "Merchandise & POS",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 925,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1788,7 +1783,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 926,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1800,9 +1795,9 @@
                     "tr-TR": "Pill 6 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/Merchandise-POS/",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 927,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1814,9 +1809,9 @@
                     "tr-TR": "Pill 7 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "Aktionen",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 928,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1830,7 +1825,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 929,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1842,9 +1837,9 @@
                     "tr-TR": "Pill 7 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/Aktionen/",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 930,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1856,9 +1851,9 @@
                     "tr-TR": "Pill 8 – İsim"
                 },
                 "type": "text",
-                "value": "",
+                "value": "Raucherbedarf",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 931,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1872,7 +1867,7 @@
                 "type": "media",
                 "value": "",
                 "editable": true,
-                "block": "vaporBento",
+                "block": "vaporPills",
                 "order": 932,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
@@ -1884,10 +1879,24 @@
                     "tr-TR": "Pill 8 – Link"
                 },
                 "type": "text",
-                "value": "",
+                "value": "/Raucherbedarf/",
+                "editable": true,
+                "block": "vaporPills",
+                "order": 933,
+                "scss": false,
+                "tab": "vaporTabHomeTop"
+            },
+            "vapor-catslider-title": {
+                "label": {
+                    "de-DE": "Kategorie-Slider Titel",
+                    "en-GB": "Category slider title",
+                    "tr-TR": "Kategori slider başlık"
+                },
+                "type": "text",
+                "value": "Nach Kategorie einkaufen",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 933,
+                "order": 900,
                 "scss": false,
                 "tab": "vaporTabHomeTop"
             },
