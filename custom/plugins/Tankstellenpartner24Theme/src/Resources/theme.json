@@ -7299,15 +7299,57 @@
             },
             "vapor-catcard-1-img": {
                 "label": {
-                    "de-DE": "Kategorie-Karte 1 – Bild",
-                    "en-GB": "Category card 1 – Image",
-                    "tr-TR": "Kategori kartı 1 – Görsel"
+                    "de-DE": "Kategorie-Karte 1 – Hauptbild",
+                    "en-GB": "Category card 1 – Main image",
+                    "tr-TR": "Kategori kartı 1 – Ana görsel"
                 },
                 "type": "media",
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
                 "order": 934,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-1-mini1": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 1 – Mini 1",
+                    "en-GB": "Category card 1 – Mini 1",
+                    "tr-TR": "Kategori kartı 1 – Mini 1"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 935,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-1-mini2": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 1 – Mini 2",
+                    "en-GB": "Category card 1 – Mini 2",
+                    "tr-TR": "Kategori kartı 1 – Mini 2"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 936,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-1-mini3": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 1 – Mini 3",
+                    "en-GB": "Category card 1 – Mini 3",
+                    "tr-TR": "Kategori kartı 1 – Mini 3"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 937,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7321,7 +7363,7 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 935,
+                "order": 938,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7335,21 +7377,63 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 936,
+                "order": 939,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
             "vapor-catcard-2-img": {
                 "label": {
-                    "de-DE": "Kategorie-Karte 2 – Bild",
-                    "en-GB": "Category card 2 – Image",
-                    "tr-TR": "Kategori kartı 2 – Görsel"
+                    "de-DE": "Kategorie-Karte 2 – Hauptbild",
+                    "en-GB": "Category card 2 – Main image",
+                    "tr-TR": "Kategori kartı 2 – Ana görsel"
                 },
                 "type": "media",
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 937,
+                "order": 940,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-2-mini1": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 2 – Mini 1",
+                    "en-GB": "Category card 2 – Mini 1",
+                    "tr-TR": "Kategori kartı 2 – Mini 1"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 941,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-2-mini2": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 2 – Mini 2",
+                    "en-GB": "Category card 2 – Mini 2",
+                    "tr-TR": "Kategori kartı 2 – Mini 2"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 942,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-2-mini3": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 2 – Mini 3",
+                    "en-GB": "Category card 2 – Mini 3",
+                    "tr-TR": "Kategori kartı 2 – Mini 3"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 943,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7363,7 +7447,7 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 938,
+                "order": 944,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7377,21 +7461,63 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 939,
+                "order": 945,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
             "vapor-catcard-3-img": {
                 "label": {
-                    "de-DE": "Kategorie-Karte 3 – Bild",
-                    "en-GB": "Category card 3 – Image",
-                    "tr-TR": "Kategori kartı 3 – Görsel"
+                    "de-DE": "Kategorie-Karte 3 – Hauptbild",
+                    "en-GB": "Category card 3 – Main image",
+                    "tr-TR": "Kategori kartı 3 – Ana görsel"
                 },
                 "type": "media",
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 940,
+                "order": 946,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-3-mini1": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 3 – Mini 1",
+                    "en-GB": "Category card 3 – Mini 1",
+                    "tr-TR": "Kategori kartı 3 – Mini 1"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 947,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-3-mini2": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 3 – Mini 2",
+                    "en-GB": "Category card 3 – Mini 2",
+                    "tr-TR": "Kategori kartı 3 – Mini 2"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 948,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-3-mini3": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 3 – Mini 3",
+                    "en-GB": "Category card 3 – Mini 3",
+                    "tr-TR": "Kategori kartı 3 – Mini 3"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 949,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7405,7 +7531,7 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 941,
+                "order": 950,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7419,21 +7545,63 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 942,
+                "order": 951,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
             "vapor-catcard-4-img": {
                 "label": {
-                    "de-DE": "Kategorie-Karte 4 – Bild",
-                    "en-GB": "Category card 4 – Image",
-                    "tr-TR": "Kategori kartı 4 – Görsel"
+                    "de-DE": "Kategorie-Karte 4 – Hauptbild",
+                    "en-GB": "Category card 4 – Main image",
+                    "tr-TR": "Kategori kartı 4 – Ana görsel"
                 },
                 "type": "media",
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 943,
+                "order": 952,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-4-mini1": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 4 – Mini 1",
+                    "en-GB": "Category card 4 – Mini 1",
+                    "tr-TR": "Kategori kartı 4 – Mini 1"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 953,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-4-mini2": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 4 – Mini 2",
+                    "en-GB": "Category card 4 – Mini 2",
+                    "tr-TR": "Kategori kartı 4 – Mini 2"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 954,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-4-mini3": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 4 – Mini 3",
+                    "en-GB": "Category card 4 – Mini 3",
+                    "tr-TR": "Kategori kartı 4 – Mini 3"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 955,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7447,7 +7615,7 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 944,
+                "order": 956,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7461,21 +7629,63 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 945,
+                "order": 957,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
             "vapor-catcard-5-img": {
                 "label": {
-                    "de-DE": "Kategorie-Karte 5 – Bild",
-                    "en-GB": "Category card 5 – Image",
-                    "tr-TR": "Kategori kartı 5 – Görsel"
+                    "de-DE": "Kategorie-Karte 5 – Hauptbild",
+                    "en-GB": "Category card 5 – Main image",
+                    "tr-TR": "Kategori kartı 5 – Ana görsel"
                 },
                 "type": "media",
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 946,
+                "order": 958,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-5-mini1": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 5 – Mini 1",
+                    "en-GB": "Category card 5 – Mini 1",
+                    "tr-TR": "Kategori kartı 5 – Mini 1"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 959,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-5-mini2": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 5 – Mini 2",
+                    "en-GB": "Category card 5 – Mini 2",
+                    "tr-TR": "Kategori kartı 5 – Mini 2"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 960,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-5-mini3": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 5 – Mini 3",
+                    "en-GB": "Category card 5 – Mini 3",
+                    "tr-TR": "Kategori kartı 5 – Mini 3"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 961,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7489,7 +7699,7 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 947,
+                "order": 962,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7503,21 +7713,63 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 948,
+                "order": 963,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
             "vapor-catcard-6-img": {
                 "label": {
-                    "de-DE": "Kategorie-Karte 6 – Bild",
-                    "en-GB": "Category card 6 – Image",
-                    "tr-TR": "Kategori kartı 6 – Görsel"
+                    "de-DE": "Kategorie-Karte 6 – Hauptbild",
+                    "en-GB": "Category card 6 – Main image",
+                    "tr-TR": "Kategori kartı 6 – Ana görsel"
                 },
                 "type": "media",
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 949,
+                "order": 964,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-6-mini1": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 6 – Mini 1",
+                    "en-GB": "Category card 6 – Mini 1",
+                    "tr-TR": "Kategori kartı 6 – Mini 1"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 965,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-6-mini2": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 6 – Mini 2",
+                    "en-GB": "Category card 6 – Mini 2",
+                    "tr-TR": "Kategori kartı 6 – Mini 2"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 966,
+                "scss": false,
+                "tab": "vaporTabHome"
+            },
+            "vapor-catcard-6-mini3": {
+                "label": {
+                    "de-DE": "Kategorie-Karte 6 – Mini 3",
+                    "en-GB": "Category card 6 – Mini 3",
+                    "tr-TR": "Kategori kartı 6 – Mini 3"
+                },
+                "type": "media",
+                "value": "",
+                "editable": true,
+                "block": "vaporBento",
+                "order": 967,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7531,7 +7783,7 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 950,
+                "order": 968,
                 "scss": false,
                 "tab": "vaporTabHome"
             },
@@ -7545,91 +7797,7 @@
                 "value": "",
                 "editable": true,
                 "block": "vaporBento",
-                "order": 951,
-                "scss": false,
-                "tab": "vaporTabHome"
-            },
-            "vapor-catcard-7-img": {
-                "label": {
-                    "de-DE": "Kategorie-Karte 7 – Bild",
-                    "en-GB": "Category card 7 – Image",
-                    "tr-TR": "Kategori kartı 7 – Görsel"
-                },
-                "type": "media",
-                "value": "",
-                "editable": true,
-                "block": "vaporBento",
-                "order": 952,
-                "scss": false,
-                "tab": "vaporTabHome"
-            },
-            "vapor-catcard-7-title": {
-                "label": {
-                    "de-DE": "Kategorie-Karte 7 – Titel",
-                    "en-GB": "Category card 7 – Title",
-                    "tr-TR": "Kategori kartı 7 – Başlık"
-                },
-                "type": "text",
-                "value": "",
-                "editable": true,
-                "block": "vaporBento",
-                "order": 953,
-                "scss": false,
-                "tab": "vaporTabHome"
-            },
-            "vapor-catcard-7-link": {
-                "label": {
-                    "de-DE": "Kategorie-Karte 7 – Link",
-                    "en-GB": "Category card 7 – Link",
-                    "tr-TR": "Kategori kartı 7 – Link"
-                },
-                "type": "text",
-                "value": "",
-                "editable": true,
-                "block": "vaporBento",
-                "order": 954,
-                "scss": false,
-                "tab": "vaporTabHome"
-            },
-            "vapor-catcard-8-img": {
-                "label": {
-                    "de-DE": "Kategorie-Karte 8 – Bild",
-                    "en-GB": "Category card 8 – Image",
-                    "tr-TR": "Kategori kartı 8 – Görsel"
-                },
-                "type": "media",
-                "value": "",
-                "editable": true,
-                "block": "vaporBento",
-                "order": 955,
-                "scss": false,
-                "tab": "vaporTabHome"
-            },
-            "vapor-catcard-8-title": {
-                "label": {
-                    "de-DE": "Kategorie-Karte 8 – Titel",
-                    "en-GB": "Category card 8 – Title",
-                    "tr-TR": "Kategori kartı 8 – Başlık"
-                },
-                "type": "text",
-                "value": "",
-                "editable": true,
-                "block": "vaporBento",
-                "order": 956,
-                "scss": false,
-                "tab": "vaporTabHome"
-            },
-            "vapor-catcard-8-link": {
-                "label": {
-                    "de-DE": "Kategorie-Karte 8 – Link",
-                    "en-GB": "Category card 8 – Link",
-                    "tr-TR": "Kategori kartı 8 – Link"
-                },
-                "type": "text",
-                "value": "",
-                "editable": true,
-                "block": "vaporBento",
-                "order": 957,
+                "order": 969,
                 "scss": false,
                 "tab": "vaporTabHome"
             },

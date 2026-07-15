@@ -375,15 +375,20 @@
                     {% set vaporSecHtml_catslider %}
                     {% block vapor_home_catslider %}
                         {% set catTitle = theme_config('vapor-catslider-title') ?: 'Nach Kategorie einkaufen' %}
-                        {# Manuel kartlar: title doluysa slot çıkar. Görsel + başlık + link kullanıcı panelden girer. #}
+                        {# Manuel kartlar: title doluysa slot çıkar. Ana görsel + 3 mini görsel + başlık + link panelden. #}
                         {% set vaporCatCards = [] %}
-                        {% for i in 1..8 %}
+                        {% for i in 1..6 %}
                             {% set ccTitle = theme_config('vapor-catcard-' ~ i ~ '-title') %}
                             {% if ccTitle %}
                                 {% set vaporCatCards = vaporCatCards|merge([{
                                     title: ccTitle,
                                     img: theme_config('vapor-catcard-' ~ i ~ '-img'),
-                                    link: theme_config('vapor-catcard-' ~ i ~ '-link')
+                                    link: theme_config('vapor-catcard-' ~ i ~ '-link'),
+                                    minis: [
+                                        theme_config('vapor-catcard-' ~ i ~ '-mini1'),
+                                        theme_config('vapor-catcard-' ~ i ~ '-mini2'),
+                                        theme_config('vapor-catcard-' ~ i ~ '-mini3')
+                                    ]
                                 }]) %}
                             {% endif %}
                         {% endfor %}
@@ -398,12 +403,19 @@
                             <div class="vapor-catslider" data-vapor-slider="catslider" data-vapor-dragscroll>
                                 <div class="vapor-catslider__track">
                                     {% if vaporCatCards|length > 0 %}
-                                        {# ---- Manuel: görsel + başlık + link ---- #}
+                                        {# ---- Manuel: ana görsel + 3 mini görsel + başlık + link ---- #}
                                         {% for c in vaporCatCards %}
                                             <a href="{{ c.link ?: '#' }}" class="vapor-catcard">
                                                 <div class="vapor-catcard__media">
                                                     <span class="vapor-catcard__big">
                                                         {% if c.img %}<img src="{{ c.img }}" alt="{{ c.title }}" loading="lazy">{% else %}{{ mediaSvg }}{% endif %}
+                                                    </span>
+                                                    <span class="vapor-catcard__mini">
+                                                        {% for mImg in c.minis %}
+                                                            <span class="vapor-catcard__minicell">
+                                                                {% if mImg %}<img src="{{ mImg }}" alt="" loading="lazy">{% else %}{{ mediaSvg }}{% endif %}
+                                                            </span>
+                                                        {% endfor %}
                                                     </span>
                                                 </div>
                                                 <div class="vapor-catcard__foot">
@@ -415,15 +427,27 @@
                                             </a>
                                         {% endfor %}
                                     {% else %}
-                                        {# ---- Fallback: manuel kart girilmediyse canlı kategori (tek görsel) ---- #}
+                                        {# ---- Fallback: manuel kart girilmediyse canlı kategori (ana + 3 alt kategori görseli) ---- #}
                                         {% for m in vaporNavTree %}
                                             {% set cat = m.category %}
                                             {% set catUrl = seoUrl('frontend.navigation.page', { navigationId: cat.id }) %}
+                                            {% set kids = m.children|default([]) %}
                                             {% set mainMedia = cat.media ?? null %}
                                             <a href="{{ catUrl }}" class="vapor-catcard">
                                                 <div class="vapor-catcard__media">
                                                     <span class="vapor-catcard__big">
                                                         {% if mainMedia %}{% sw_thumbnails 'vapor-catcard-big' with { media: mainMedia, sizes: { default: '260px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                    </span>
+                                                    <span class="vapor-catcard__mini">
+                                                        {% for k in kids|slice(0, 3) %}
+                                                            <span class="vapor-catcard__minicell">
+                                                                {% if k.category.media %}{% sw_thumbnails 'vapor-catcard-mini' with { media: k.category.media, sizes: { default: '90px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                            </span>
+                                                        {% else %}
+                                                            <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
+                                                            <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
+                                                            <span class="vapor-catcard__minicell">{{ mediaSvg }}</span>
+                                                        {% endfor %}
                                                     </span>
                                                 </div>
                                                 <div class="vapor-catcard__foot">
