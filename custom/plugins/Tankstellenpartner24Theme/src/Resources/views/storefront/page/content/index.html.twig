@@ -124,44 +124,72 @@
                     <aside class="vapor-sidebar">
                         <div class="vapor-sidebar__head">Alle Kategorien</div>
                         {% sw_include '@Storefront/storefront/component/vapor/megamenu.html.twig' with { vaporNavTree: vaporNavTree } %}
+
+                        {# (1) IHRE VORTEILE — kategorilerin hemen altında (kullanıcı isteği).
+                           USP listesi (duplicate) KALDIRILDI. Aynı vapor-vorteile-* config. #}
+                        {% set sbVtCards = [] %}
+                        {% for i in 1..3 %}
+                            {% set cTitle = theme_config('vapor-vorteile-' ~ i ~ '-title') %}
+                            {% if cTitle %}
+                                {% set sbVtCards = sbVtCards|merge([{
+                                    icon:  theme_config('vapor-vorteile-' ~ i ~ '-icon') ?: 'shield',
+                                    title: cTitle,
+                                    text:  theme_config('vapor-vorteile-' ~ i ~ '-text')
+                                }]) %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if sbVtCards|length %}
+                            <div class="vapor-sidebar__vorteile">
+                                {% if theme_config('vapor-vorteile-title') %}
+                                    <div class="vapor-sidebar__mini-head">{{ theme_config('vapor-sidebar-vorteile-title') ?: theme_config('vapor-vorteile-title') }}</div>
+                                {% endif %}
+                                {% for c in sbVtCards %}
+                                    <div class="vapor-sidebar__vt-card">
+                                        <span class="vapor-sidebar__vt-ico">{% sw_icon c.icon %}</span>
+                                        <span class="vapor-sidebar__vt-txt">
+                                            <b>{{ c.title }}</b>
+                                            {% if c.text %}<small>{{ c.text }}</small>{% endif %}
+                                        </span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {# (2) Promo görsel — Vorteile'den sonra (yeri değişmedi, sadece sıra) #}
                         <div class="vapor-sidebar__promo">{% if theme_config('vapor-sidebar-promo-img') %}<img src="{{ theme_config('vapor-sidebar-promo-img') }}" alt="" loading="lazy">{% else %}{{ mediaSvg }}{% endif %}</div>
 
-                        {# Dikey kampanya banner — başlık boşsa tüm CTA gizli #}
-                        {% if theme_config('vapor-sidebar-cta-title') or theme_config('vapor-sidebar-cta-btn') %}
-                            <a href="{{ path('frontend.account.register.page') }}" class="vapor-sidebar__cta">
-                                {% if theme_config('vapor-sidebar-cta-eyebrow') %}<span class="vapor-sidebar__cta-eyebrow">{{ theme_config('vapor-sidebar-cta-eyebrow') }}</span>{% endif %}
-                                {% if theme_config('vapor-sidebar-cta-title') %}<span class="vapor-sidebar__cta-title">{{ theme_config('vapor-sidebar-cta-title') }}</span>{% endif %}
-                                {% if theme_config('vapor-sidebar-cta-btn') %}<span class="vapor-sidebar__cta-btn">{{ theme_config('vapor-sidebar-cta-btn') }}</span>{% endif %}
-                            </a>
+                        {# (3) Bestseller mini — Neuheiten'in ÜSTÜNE (canlı ürün, B2B gate) #}
+                        {% set sbBest = page.extensions.vaporBestseller.products ?? [] %}
+                        {% if sbBest|length %}
+                            <div class="vapor-sidebar__mini">
+                                <div class="vapor-sidebar__mini-head">{{ theme_config('vapor-sidebar-best-title') ?: 'Bestseller' }}</div>
+                                <ul class="vapor-sidebar__mini-list">
+                                    {% for product in sbBest|slice(0, 3) %}
+                                        {% set mpName = product.translated.name ?? product.name %}
+                                        {% set mpCover = product.cover.media ?? null %}
+                                        {% set mpPrice = product.calculatedCheapestPrice ?? product.calculatedPrice %}
+                                        {% set mpUrl = path('frontend.detail.page', { productId: product.id }) %}
+                                        <li>
+                                            <a href="{{ mpUrl }}" class="vapor-sidebar__mini-item">
+                                                <span class="vapor-sidebar__mini-img">
+                                                    {% if mpCover %}{% sw_thumbnails 'vapor-mini-img' with { media: mpCover, sizes: { default: '80px' } } %}{% else %}{{ mediaSvg }}{% endif %}
+                                                </span>
+                                                <span class="vapor-sidebar__mini-txt">
+                                                    <b>{{ mpName }}</b>
+                                                    {% if vaporLoggedIn %}
+                                                        <span class="vapor-sidebar__mini-price">{{ mpPrice.unitPrice|currency }}</span>
+                                                    {% else %}
+                                                        <span class="vapor-sidebar__mini-price is-login">{% sw_icon 'lock-closed' %} Login</span>
+                                                    {% endif %}
+                                                </span>
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
                         {% endif %}
 
-                        {# USP listesi — başlığı boş olan madde gizli; hepsi boşsa liste gizli #}
-                        {% set vaporUsps = [] %}
-                        {% for u in [
-                            { i: 'truck', t: theme_config('vapor-usp-1-title'), s: theme_config('vapor-usp-1-sub') },
-                            { i: 'lock-closed', t: theme_config('vapor-usp-2-title'), s: theme_config('vapor-usp-2-sub') },
-                            { i: 'arrow-circle-left', t: theme_config('vapor-usp-3-title'), s: theme_config('vapor-usp-3-sub') },
-                            { i: 'headset', t: theme_config('vapor-usp-4-title'), s: theme_config('vapor-usp-4-sub') }
-                        ] %}
-                            {% if u.t %}{% set vaporUsps = vaporUsps|merge([u]) %}{% endif %}
-                        {% endfor %}
-                        {% if vaporUsps|length %}
-                            <ul class="vapor-sidebar__usp">
-                                {% for usp in vaporUsps %}
-                                    <li class="vapor-sidebar__usp-item">
-                                        <span class="vapor-sidebar__usp-ico">{% sw_icon usp.i %}</span>
-                                        <span class="vapor-sidebar__usp-txt">
-                                            <b>{{ usp.t }}</b>
-                                            {% if usp.s %}<small>{{ usp.s }}</small>{% endif %}
-                                        </span>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-
-                        {# --- Sidebar'ı uzatan ek bloklar (uzun anasayfada yarım kalmasın) --- #}
-
-                        {# (a) Mini "Neuheiten" ürün listesi — canlı ürünler, kompakt, B2B gate #}
+                        {# (4) Neuheiten mini — canlı ürünler, kompakt, B2B gate #}
                         {% set sbNeu = page.extensions.vaporNeu.products ?? [] %}
                         {% if sbNeu|length %}
                             <div class="vapor-sidebar__mini">
@@ -192,7 +220,7 @@
                             </div>
                         {% endif %}
 
-                        {# (b) İkinci promo görsel kutusu (panelden) — boşsa gizli #}
+                        {# (5) İkinci promo görsel (SALE vb.) — Neuheiten'den sonra, mevcut yerinde korundu #}
                         {% if theme_config('vapor-sidebar-promo2-img') %}
                             {% set sbPromo2Link = theme_config('vapor-sidebar-promo2-link') %}
                             {% set sbPromo2Tag = sbPromo2Link ? 'a' : 'div' %}
@@ -201,7 +229,42 @@
                             </{{ sbPromo2Tag }}>
                         {% endif %}
 
-                        {# (c) B2B destek/iletişim kartı — telefon + saat (footer config'inden) #}
+                        {# (6) B2B CTA — Händler werden → Registrieren (ortada) #}
+                        {% if theme_config('vapor-sidebar-cta-title') or theme_config('vapor-sidebar-cta-btn') %}
+                            <a href="{{ path('frontend.account.register.page') }}" class="vapor-sidebar__cta">
+                                {% if theme_config('vapor-sidebar-cta-eyebrow') %}<span class="vapor-sidebar__cta-eyebrow">{{ theme_config('vapor-sidebar-cta-eyebrow') }}</span>{% endif %}
+                                {% if theme_config('vapor-sidebar-cta-title') %}<span class="vapor-sidebar__cta-title">{{ theme_config('vapor-sidebar-cta-title') }}</span>{% endif %}
+                                {% if theme_config('vapor-sidebar-cta-btn') %}<span class="vapor-sidebar__cta-btn">{{ theme_config('vapor-sidebar-cta-btn') }}</span>{% endif %}
+                            </a>
+                        {% endif %}
+
+                        {# (6) Newsletter — kompakt sidebar formu (başlık boşsa gizli) #}
+                        {% if theme_config('vapor-sidebar-nl-title') %}
+                            <div class="vapor-sidebar__nl">
+                                <div class="vapor-sidebar__mini-head">{{ theme_config('vapor-sidebar-nl-title') }}</div>
+                                {% if theme_config('vapor-sidebar-nl-text') %}<p class="vapor-sidebar__nl-text">{{ theme_config('vapor-sidebar-nl-text') }}</p>{% endif %}
+                                <form class="vapor-sidebar__nl-form"
+                                      action="{{ path('frontend.form.newsletter.register.handle') }}"
+                                      method="post"
+                                      data-form-ajax-submit="true"
+                                      data-form-ajax-submit-options='{"replaceSelectors":[".vapor-sidebar__nl-feedback"],"resetForm":true}'>
+                                    <input type="hidden" name="option" value="subscribe">
+                                    <div class="vapor-sidebar__nl-row">
+                                        <input type="email" name="email" required class="vapor-sidebar__nl-input" placeholder="{{ 'newsletter.placeholderMail'|trans|default('E-Mail-Adresse') }}" aria-label="E-Mail">
+                                        <button type="submit" class="vapor-sidebar__nl-btn" aria-label="Anmelden">
+                                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                        </button>
+                                    </div>
+                                    <label class="vapor-sidebar__nl-privacy">
+                                        <input type="checkbox" name="privacy" required>
+                                        <span>Ich habe die {% if dataProtectionPageUrl is defined and dataProtectionPageUrl %}<a href="{{ dataProtectionPageUrl }}" target="_blank">Datenschutzbestimmungen</a>{% else %}Datenschutzbestimmungen{% endif %} gelesen.</span>
+                                    </label>
+                                    <div class="vapor-sidebar__nl-feedback"></div>
+                                </form>
+                            </div>
+                        {% endif %}
+
+                        {# (7) B2B destek/iletişim kartı — telefon + saat (footer config'inden) #}
                         {% if theme_config('vapor-footer-phone') or theme_config('vapor-footer-hours') %}
                             <div class="vapor-sidebar__support">
                                 <span class="vapor-sidebar__support-ico">{% sw_icon 'headset' %}</span>
@@ -210,36 +273,6 @@
                                     {% if theme_config('vapor-footer-phone') %}<a href="tel:{{ theme_config('vapor-footer-phone')|replace({' ': '', '(': '', ')': '', '-': ''}) }}" class="vapor-sidebar__support-phone">{{ theme_config('vapor-footer-phone') }}</a>{% endif %}
                                     {% if theme_config('vapor-footer-hours') %}<small>{{ theme_config('vapor-footer-hours') }}</small>{% endif %}
                                 </div>
-                            </div>
-                        {% endif %}
-
-                        {# (d) Vorteile — sidebar'da ALT ALTA kompakt kartlar (ana koldan taşındı).
-                           Aynı vapor-vorteile-* config; uzun metin gizli, madde listesi kompakt. #}
-                        {% set sbVtCards = [] %}
-                        {% for i in 1..3 %}
-                            {% set cTitle = theme_config('vapor-vorteile-' ~ i ~ '-title') %}
-                            {% if cTitle %}
-                                {% set sbVtCards = sbVtCards|merge([{
-                                    icon:  theme_config('vapor-vorteile-' ~ i ~ '-icon') ?: 'shield',
-                                    title: cTitle,
-                                    text:  theme_config('vapor-vorteile-' ~ i ~ '-text')
-                                }]) %}
-                            {% endif %}
-                        {% endfor %}
-                        {% if sbVtCards|length %}
-                            <div class="vapor-sidebar__vorteile">
-                                {% if theme_config('vapor-vorteile-title') %}
-                                    <div class="vapor-sidebar__mini-head">{{ theme_config('vapor-sidebar-vorteile-title') ?: theme_config('vapor-vorteile-title') }}</div>
-                                {% endif %}
-                                {% for c in sbVtCards %}
-                                    <div class="vapor-sidebar__vt-card">
-                                        <span class="vapor-sidebar__vt-ico">{% sw_icon c.icon %}</span>
-                                        <span class="vapor-sidebar__vt-txt">
-                                            <b>{{ c.title }}</b>
-                                            {% if c.text %}<small>{{ c.text }}</small>{% endif %}
-                                        </span>
-                                    </div>
-                                {% endfor %}
                             </div>
                         {% endif %}
                     </aside>

@@ -7544,115 +7544,45 @@
                 "scss": false,
                 "tab": "vaporTabSidebar"
             },
-            "vapor-usp-1-title": {
+            "vapor-sidebar-best-title": {
                 "label": {
-                    "de-DE": "USP 1 Titel",
-                    "en-GB": "USP 1 title",
-                    "tr-TR": "USP 1 başlık"
+                    "de-DE": "Sidebar: Bestseller Überschrift",
+                    "en-GB": "Sidebar: bestseller title",
+                    "tr-TR": "Sidebar: Bestseller başlık"
                 },
                 "type": "text",
-                "value": "Kostenloser Versand",
+                "value": "Bestseller",
                 "editable": true,
                 "block": "vaporSidebar",
-                "order": 420,
+                "order": 356,
                 "scss": false,
                 "tab": "vaporTabSidebar"
             },
-            "vapor-usp-1-sub": {
+            "vapor-sidebar-nl-title": {
                 "label": {
-                    "de-DE": "USP 1 Untertitel",
-                    "en-GB": "USP 1 subtitle",
-                    "tr-TR": "USP 1 alt"
+                    "de-DE": "Sidebar: Newsletter Überschrift (leer = aus)",
+                    "en-GB": "Sidebar: newsletter title (empty=off)",
+                    "tr-TR": "Sidebar: Newsletter başlık (boş=kapalı)"
                 },
                 "type": "text",
-                "value": "ab 500 € Netto",
+                "value": "Newsletter",
                 "editable": true,
                 "block": "vaporSidebar",
-                "order": 425,
+                "order": 370,
                 "scss": false,
                 "tab": "vaporTabSidebar"
             },
-            "vapor-usp-2-title": {
+            "vapor-sidebar-nl-text": {
                 "label": {
-                    "de-DE": "USP 2 Titel",
-                    "en-GB": "USP 2 title",
-                    "tr-TR": "USP 2 başlık"
+                    "de-DE": "Sidebar: Newsletter Text",
+                    "en-GB": "Sidebar: newsletter text",
+                    "tr-TR": "Sidebar: Newsletter metin"
                 },
                 "type": "text",
-                "value": "Sichere Bezahlung",
+                "value": "Angebote & Neuheiten für Händler – direkt ins Postfach.",
                 "editable": true,
                 "block": "vaporSidebar",
-                "order": 440,
-                "scss": false,
-                "tab": "vaporTabSidebar"
-            },
-            "vapor-usp-2-sub": {
-                "label": {
-                    "de-DE": "USP 2 Untertitel",
-                    "en-GB": "USP 2 subtitle",
-                    "tr-TR": "USP 2 alt"
-                },
-                "type": "text",
-                "value": "PayPal & Kauf auf Rechnung",
-                "editable": true,
-                "block": "vaporSidebar",
-                "order": 445,
-                "scss": false,
-                "tab": "vaporTabSidebar"
-            },
-            "vapor-usp-3-title": {
-                "label": {
-                    "de-DE": "USP 3 Titel",
-                    "en-GB": "USP 3 title",
-                    "tr-TR": "USP 3 başlık"
-                },
-                "type": "text",
-                "value": "Schnelle Lieferung",
-                "editable": true,
-                "block": "vaporSidebar",
-                "order": 460,
-                "scss": false,
-                "tab": "vaporTabSidebar"
-            },
-            "vapor-usp-3-sub": {
-                "label": {
-                    "de-DE": "USP 3 Untertitel",
-                    "en-GB": "USP 3 subtitle",
-                    "tr-TR": "USP 3 alt"
-                },
-                "type": "text",
-                "value": "24–48h Versand",
-                "editable": true,
-                "block": "vaporSidebar",
-                "order": 465,
-                "scss": false,
-                "tab": "vaporTabSidebar"
-            },
-            "vapor-usp-4-title": {
-                "label": {
-                    "de-DE": "USP 4 Titel",
-                    "en-GB": "USP 4 title",
-                    "tr-TR": "USP 4 başlık"
-                },
-                "type": "text",
-                "value": "B2B Support",
-                "editable": true,
-                "block": "vaporSidebar",
-                "order": 480,
-                "scss": false,
-                "tab": "vaporTabSidebar"
-            },
-            "vapor-usp-4-sub": {
-                "label": {
-                    "de-DE": "USP 4 Untertitel",
-                    "en-GB": "USP 4 subtitle",
-                    "tr-TR": "USP 4 alt"
-                },
-                "type": "text",
-                "value": "Mo-Fr, 09:00 - 16:00 Uhr",
-                "editable": true,
-                "block": "vaporSidebar",
-                "order": 485,
+                "order": 371,
                 "scss": false,
                 "tab": "vaporTabSidebar"
             },

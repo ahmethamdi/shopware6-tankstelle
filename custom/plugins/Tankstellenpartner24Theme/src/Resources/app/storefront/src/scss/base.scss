@@ -1763,6 +1763,35 @@ $vapor-radius: 12px;
         b { font-size: .82rem; font-weight: 700; color: $tp-navy; }
         small { font-size: .72rem; color: $tp-muted; line-height: 1.35; }
     }
+
+    // Newsletter — kompakt sidebar formu (footer newsletter'ın küçük kardeşi)
+    &__nl {
+        margin: 1rem; padding-top: 1rem; border-top: 1px solid rgba($tp-ink, 0.07);
+        .vapor-sidebar__mini-head { margin-bottom: .4rem; }
+    }
+    &__nl-text { font-size: .76rem; color: $tp-muted; line-height: 1.4; margin: 0 0 .6rem; }
+    &__nl-row { display: flex; gap: .4rem; }
+    &__nl-input {
+        flex: 1 1 auto; min-width: 0; font-size: .82rem;
+        border: 1px solid $tp-line; border-radius: $tp-radius-sm;
+        padding: .55rem .65rem; color: $tp-ink; background: #fff;
+        &:focus { outline: none; border-color: $tp-primary; box-shadow: 0 0 0 3px $tp-primary-soft; }
+    }
+    &__nl-btn {
+        flex: 0 0 auto; width: 40px; border: none; cursor: pointer;
+        border-radius: $tp-radius-sm; background: $tp-primary; color: #fff;
+        display: grid; place-items: center;
+        transition: background $tp-transition;
+        &:hover { background: $tp-primary-dark; }
+        svg { display: block; }
+    }
+    &__nl-privacy {
+        display: flex; gap: .4rem; align-items: flex-start;
+        font-size: .68rem; color: $tp-muted; line-height: 1.35; margin-top: .5rem;
+        input { flex: 0 0 auto; margin-top: 2px; }
+        a { color: $tp-primary; text-decoration: underline; }
+    }
+    &__nl-feedback:not(:empty) { margin-top: .5rem; font-size: .74rem; }
 }
 
 // Sağ kolon promo görsel kutuları (mockup'ta marka ikonları+banner sonrası 2 geniş kutu)
