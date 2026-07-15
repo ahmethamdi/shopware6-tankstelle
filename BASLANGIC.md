@@ -80,7 +80,7 @@ Doğru yön: e-sigara içeriği + TP24 markası (turuncu) + **Vapor'dan görsel 
 - Shopware 6.7 kurulu + çalışıyor. Anasayfa + admin **HTTP 200**. Git push'lu (`main`).
 - **Font:** Montserrat (Gotham geçici alternatifi). overrides.scss + theme.json `vapor-font-*` + core `sw-font-family-base/headline`.
 - **Logo:** Kullanıcı gerçek logoyu admin `sw-logo-desktop`'a yükledi (damla+pompa+TANKSTELLEN PARTNER 24). Yedek: SVG placeholder `bundles/tankstellenpartner24theme/logo/tp24-logo.svg` (gerçeğe sadık). Renkler: turuncu `#E1523D` + lacivert `#13365A` + mavi `#005984`.
-- **REDESIGN (modern B2B/kurumsal, Vapor'dan ayrı) — 15 commit ("Redesign N/N"), main'de:**
+- **REDESIGN (modern B2B/kurumsal, Vapor'dan ayrı) — 19 commit ("Redesign N/N"), main'de:**
   - Tasarım sistemi: `overrides.scss`'te TP24 token'ları (`$tp-*`: renk/spacing/gölge/radius). base.scss `:root`'ta CSS değişkenleri.
   - **Header** (`layout/header/header.html.twig` + `.tp-header`): **TAM GENİŞLİK** — arka planlar (USP şeridi + navbar) edge-to-edge, İÇERİK container'da (`$tp-container-max`, sayfa gövdesiyle hizalı). Turuncu bant kaldırıldı → beyaz header. `.header-main > .container` full-width, iç container'lar container-width. Logo 60px, header 104px.
   - **Hero** (`.vapor-hero`): lacivert gradient zemin + turuncu vurgu/CTA + eyebrow rozeti.
@@ -96,18 +96,29 @@ Doğru yön: e-sigara içeriği + TP24 markası (turuncu) + **Vapor'dan görsel 
 - **Kategori ağacı KURULDU** (9 ana + 39 alt, vapor-handel.de yapısı) → sidebar/pill/menü/catslider dolu.
 - **14 demo ürün** eklendi (ELFBAR/LOST MARY/AL FAKHER vb.) → Neuheiten/Bestseller/Deals dolu.
 - Katalog kurma scriptleri: `scratchpad/build-cats.php`, `build-products.php` (idempotent, DB'ye yazar).
-- **Ağ paylaşımı hazır**: LAN IP `192.168.1.37:18600` sales_channel_domain'e eklendi, `0.0.0.0`'da dinletince ağdakiler görür (bkz. yukarı "Ağ paylaşımı").
+- **Ağ paylaşımı hazır**: LAN IP `192.168.1.25:18600` sales_channel_domain'e eklendi, `0.0.0.0`'da dinletince ağdakiler görür (bkz. yukarı "Ağ paylaşımı").
+
+### 🆕 Bu oturumda yapılanlar (Redesign 16-19, hepsi main'de push'lu)
+- **16:** Mobil footer-top fix (≤575px tek kolon). **Pill şeridi manuel:** theme.json'a 8 slot (`vapor-pill-1..8-name/-icon/-link`); twig'de manuel varsa img, yoksa canlı-kategori fallback. LAN IP `.37`→`.25` (bkz. Ağ paylaşımı).
+- **17:** **"Nach Kategorie einkaufen" (catslider) TAM MANUEL:** theme.json'a 6 slot (`vapor-catcard-1..6-img/-mini1/-mini2/-mini3/-title/-link`). Her kart = 1 ana görsel + 3 mini görsel + başlık + link. Title doluysa manuel; hiç yoksa canlı kategori fallback (ana+3 alt kat. görseli). Görselleri/linkleri **kullanıcı admin'den girecek** (henüz boş).
+- **18:** **Deals des Tages dikkat-çekici koyu panel (V4):** `.vapor-deals-panel` koyu lacivert `#0E2740` + turuncu/mavi radial glow; başlık beyaz, sayaç turuncu, beyaz kartlar öne çıkıyor. Ürünler dönmeye devam. `overflow:hidden`, mobilde glow küçültüldü.
+- **19:** **Admin edit paneli anasayfa akışına göre düzenlendi.** Tek dev "Startseite" tab'ı → **General · Home basics · Header · Home: Top · Home: Middle · Home: Bottom · Sidebar · Footer**. Bloklar 1..16 numaralı (Deals = "8) Deals des Tages" → Home: Middle). ⚠️ **Shopware admin tab'ları field'ların FİZİKSEL sırasına göre diziyor** (tab.order/block.order yetmez) → theme.json `fields` dict'i fiziksel olarak hedef sırada dizildi. İlk "General" Shopware core'un (dokunulmaz).
 
 ## ⏭️ Sıradaki işler (kaldığımız yer)
 
-- [ ] **Mobil uyumluluk** tam tur kontrolü (Bölüm 4 + footer test edildi; kalan bölümler responsive yazıldı ama tek tek gözden geçirilmeli).
-- [ ] **Görseller:** bento/catslider/hero/ürün/promoduo-bg/footer-trust placeholder — admin'den yüklenince dolacak.
-- [ ] "ALLE KATEGORIEN" sidebar başlığı turuncu görünüyor (base.scss'te 2 `.vapor-sidebar__head` tanımı var, 2.si -orange- kazanıyor) — istenirse laciverte çekilebilir.
+- [ ] **Kullanıcı admin'den dolduracak:** catslider 6 kart (görsel+mini+başlık+link) + pill 8 slot (isim+görsel+link). Panel: **Home: Top → "2) Pills, Bento & Kategori-Slider"**. Doldurunca `theme:compile`+`cache:clear` gerekebilir.
+- [ ] **Mobil uyumluluk:** anasayfa tam tur + footer + Deals paneli test edildi (390/768px, taşma yok). Yeni bölümler eklenirse tekrar bak.
+- [ ] **Görseller:** bento/hero/ürün/promoduo-bg/footer-trust hâlâ placeholder — admin'den yüklenince dolacak.
+- [ ] "ALLE KATEGORIEN" sidebar başlığı turuncu (base.scss'te 2 `.vapor-sidebar__head`, 2.si -orange- kazanıyor) — istenirse laciverte çekilebilir.
 - [ ] Gerekirse VioRepresentativeLogin (B2B temsilci girişi).
 
 ### Ekran görüntüsü alma (age gate'i geç)
-Age gate localStorage anahtarı `vapor_age_verified`. playwright-cli ile:
-`npx --yes --package @playwright/cli@latest playwright-cli open <url>` → `eval "localStorage.setItem('vapor_age_verified','1')"` → `goto <url>` → `screenshot`.
+Age gate: `localStorage vapor_age_verified='1'` VEYA sayfadaki "Ja, ich bin über 18" butonuna tıkla + cookie "Only technically required".
+Wrapper: `scratchpad/pw.sh` (npx playwright-cli sarmalayıcı, session=tp24mob). Örn: `bash scratchpad/pw.sh goto <url>` / `resize W H` / `eval "..."` / `screenshot` / `snapshot` (ref al) / `fill <ref> <val>` / `click <ref>`.
+- **Age gate reload'da tekrar çıkabilir** → goto SONRASI localStorage set + butona tıkla.
+- **`--full-page` `file://`'de çalışmaz**; statik HTML mockup'ı `public/`'e kopyalayıp HTTP'den servis et (dev-router statik html verir), iş bitince sil.
+- **Admin login (playwright):** `snapshot` → `fill <userRef> admin` / `fill <passRef> shopware` / `click <loginRef>`. Reactive Vue value set için `eval` YETMEZ, gerçek `fill`/`click` kullan.
+- **Admin SPA cache'li:** theme.json değişince admin panel eski tab'ları gösterebilir → `reload` + tam `goto` ile hard-refresh şart. Theme config API ile doğrula: `GET /api/_action/theme/<id>/configuration` (Bearer token: `POST /api/oauth/token` client_id=administration).
 
 ## 📝 Vapor referansı
 Vapor projesi hâlâ duruyor: `/Applications/XAMPP/xamppfiles/htdocs/Shopware6` (tema `custom/plugins/VaporTheme`).
