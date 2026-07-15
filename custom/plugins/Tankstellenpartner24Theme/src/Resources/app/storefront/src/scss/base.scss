@@ -1250,6 +1250,8 @@ $vapor-radius: 12px;
         padding: $tp-space-3;
         height: 240px;
     }
+    // Mini görsel yoksa: ana görsel tüm genişliği kaplasın (boş kolon kalmasın)
+    &.is-nomini &__media { grid-template-columns: 1fr; }
     &__big {
         border-radius: $tp-radius; overflow: hidden; background: $tp-surface-2;
         display: grid; place-items: center; color: rgba($tp-navy, 0.2);
