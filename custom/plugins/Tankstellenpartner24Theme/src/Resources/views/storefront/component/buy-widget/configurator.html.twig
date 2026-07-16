@@ -8,8 +8,8 @@
    Eşik: vapor-variant-dropdown-threshold (theme_config), default 5.
 #}
 {% block buy_widget_configurator_group %}
-    {% set tpThreshold = theme_config('vapor-variant-dropdown-threshold')|default(5) %}
-    {% if tpThreshold is empty %}{% set tpThreshold = 5 %}{% endif %}
+    {% set tpThreshold = theme_config('vapor-variant-dropdown-threshold')|default(4) %}
+    {% if tpThreshold is empty %}{% set tpThreshold = 4 %}{% endif %}
     {% set tpForceSelect = group.options|length > tpThreshold %}
 
     {% if group.displayType == 'select' or tpForceSelect %}

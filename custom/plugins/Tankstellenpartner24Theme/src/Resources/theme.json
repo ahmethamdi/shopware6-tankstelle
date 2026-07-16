@@ -789,7 +789,7 @@
                     "tr-TR": "Varyant: kaç seçenekten sonra dropdown"
                 },
                 "type": "text",
-                "value": "5",
+                "value": "4",
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 195,
