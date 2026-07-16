@@ -1175,13 +1175,13 @@ $vapor-radius: 12px;
             "big  big"
             "mid1 mid2"
             "sm1  sm2";
-        .vapor-bento__cell { min-height: 130px; }
-        .vapor-bento__cell.is-big { min-height: 200px; }
-        // Küçük 2×2 kartlarda başlık/CTA kompakt
+        .vapor-bento__cell { min-height: 170px; }
+        .vapor-bento__cell.is-big { min-height: 220px; }
+        // Küçük 2×2 kartlarda başlık/CTA kompakt (kart büyüdü → başlık hafif büyük)
         .is-mid, .is-mid2, .is-sm, .is-sm2 {
-            .vapor-bento__title { font-size: 1rem; }
-            .vapor-bento__body { padding: $tp-space-3; }
-            .vapor-bento__eyebrow { font-size: .62rem; }
+            .vapor-bento__title { font-size: 1.1rem; }
+            .vapor-bento__body { padding: $tp-space-4; }
+            .vapor-bento__eyebrow { font-size: .65rem; }
         }
     }
 
