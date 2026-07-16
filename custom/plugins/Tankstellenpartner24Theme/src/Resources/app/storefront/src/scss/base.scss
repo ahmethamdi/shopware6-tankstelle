@@ -1136,10 +1136,22 @@ $vapor-radius: 12px;
             "sm1 sm2";
     }
     @media (max-width: 575.98px) {
-        grid-template-columns: 1fr;
+        // Mobil: vitrin (big) tam genişlik üstte, diğer 4 kart 2×2 (yer kaplamasın)
+        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
-        grid-template-areas: "big" "mid1" "mid2" "sm1" "sm2";
-        .vapor-bento__cell { min-height: 150px; }
+        gap: $tp-space-3;
+        grid-template-areas:
+            "big  big"
+            "mid1 mid2"
+            "sm1  sm2";
+        .vapor-bento__cell { min-height: 130px; }
+        .vapor-bento__cell.is-big { min-height: 200px; }
+        // Küçük 2×2 kartlarda başlık/CTA kompakt
+        .is-mid, .is-mid2, .is-sm, .is-sm2 {
+            .vapor-bento__title { font-size: 1rem; }
+            .vapor-bento__body { padding: $tp-space-3; }
+            .vapor-bento__eyebrow { font-size: .62rem; }
+        }
     }
 
     &__cell {
@@ -1224,6 +1236,12 @@ $vapor-radius: 12px;
     cursor: grab;
     &.is-dragging { cursor: grabbing; scroll-behavior: auto; }
     &__track { display: flex; gap: $tp-space-4; width: max-content; padding: 2px; }
+    // App tarzı: mobilde karta oturan (snap) kaydırma + kenar boşluğu
+    @media (max-width: 575.98px) {
+        scroll-snap-type: x mandatory; scroll-padding-left: $tp-space-4;
+        .vapor-catcard { scroll-snap-align: start; }
+        &__track { gap: $tp-space-3; }
+    }
 }
 .vapor-catcard {
     flex: 0 0 auto;
@@ -1240,7 +1258,10 @@ $vapor-radius: 12px;
     &:hover { transform: translateY(-4px); box-shadow: $tp-shadow-lg; border-color: rgba($tp-primary, 0.35);
         text-decoration: none; color: $tp-ink;
         .vapor-catcard__btn { background: $tp-primary; color: #fff; } }
-    @media (max-width: 575.98px) { width: 280px; }
+    // Mobil: kart neredeyse tam genişlik (yan kartın ucu görünsün → scroll belli olur)
+    @media (max-width: 575.98px) {
+        width: 86vw; max-width: 340px;
+    }
 
     &__media {
         // Ana büyük görsel + 3 mini görsel kolonu (manuel/panelden)
@@ -1249,12 +1270,17 @@ $vapor-radius: 12px;
         gap: $tp-space-2;
         padding: $tp-space-3;
         height: 240px;
+        @media (max-width: 575.98px) { height: 190px; }   // mobilde daha minify
     }
     &__big {
         border-radius: $tp-radius; overflow: hidden; background: $tp-surface-2;
         display: grid; place-items: center; color: rgba($tp-navy, 0.2);
         img { width: 100%; height: 100%; object-fit: cover; }
         svg { width: 40px; height: 40px; }
+        // Mobilde ana görsel KESİLMESİN → contain (tam sığar, hoş durur)
+        @media (max-width: 575.98px) {
+            img { object-fit: contain; padding: $tp-space-2; }
+        }
     }
     &__mini { display: grid; grid-template-rows: repeat(3, 1fr); gap: $tp-space-2; }
     &__minicell {
