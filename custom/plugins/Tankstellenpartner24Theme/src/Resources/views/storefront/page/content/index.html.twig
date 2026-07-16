@@ -28,12 +28,14 @@
         {% if pBrand %}<div class="vapor-pcard__brand">{{ pBrand }}</div>{% endif %}
         <div class="vapor-pcard__name">{{ pName }}</div>
         <div class="vapor-pcard__foot">
+            {# Kart tümüyle ürün detayına gider; sağdaki işaret 'sepete ekle' değil
+               'ürüne git' oku (→) — sahte quick-add yanılgısını önler (dürüst UX). #}
             {% if loggedIn %}
                 <span class="vapor-pcard__price">{{ pPrice.unitPrice|currency }}</span>
-                <span class="vapor-pcard__add" aria-hidden="true">+</span>
+                <span class="vapor-pcard__go" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             {% else %}
                 <span class="vapor-pcard__price is-login">{% sw_icon 'lock-closed' %} Login</span>
-                <span class="vapor-pcard__add is-login" aria-hidden="true">{% sw_icon 'lock-closed' %}</span>
+                <span class="vapor-pcard__go is-login" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             {% endif %}
         </div>
     </a>

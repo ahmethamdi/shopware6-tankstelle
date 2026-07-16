@@ -722,16 +722,29 @@
         var openItem = null;
         var closeTimer = null;
 
+        // Tetikleyici link'e erişilebilirlik semantiği (klavye + AT için)
+        function triggerOf(item) { return item.querySelector('.vapor-mega__link'); }
+
         function open(item) {
             if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
-            if (openItem && openItem !== item) { openItem.classList.remove('is-open'); }
+            if (openItem && openItem !== item) {
+                openItem.classList.remove('is-open');
+                var pt = triggerOf(openItem); if (pt) { pt.setAttribute('aria-expanded', 'false'); }
+            }
             item.classList.add('is-open');
+            var t = triggerOf(item); if (t) { t.setAttribute('aria-expanded', 'true'); }
             openItem = item;
+        }
+        function closeItem(item) {
+            if (!item) { return; }
+            item.classList.remove('is-open');
+            var t = triggerOf(item); if (t) { t.setAttribute('aria-expanded', 'false'); }
+            if (openItem === item) { openItem = null; }
         }
         function scheduleClose() {
             if (closeTimer) { clearTimeout(closeTimer); }
             closeTimer = setTimeout(function () {
-                if (openItem) { openItem.classList.remove('is-open'); openItem = null; }
+                closeItem(openItem);
                 closeTimer = null;
             }, CLOSE_DELAY);
         }
@@ -740,6 +753,13 @@
         }
 
         items.forEach(function (item) {
+            // ARIA: tetikleyici link açılabilir bir menü kontrolü
+            var trigger = triggerOf(item);
+            if (trigger) {
+                trigger.setAttribute('aria-haspopup', 'true');
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+
             item.addEventListener('mouseenter', function () {
                 if (!desktop.matches) { return; }
                 open(item);
@@ -748,6 +768,20 @@
                 if (!desktop.matches) { return; }
                 scheduleClose(); // panele geçiyor olabilir → gecikmeli kapat
             });
+
+            // KLAVYE: item içindeki herhangi bir öğe focus alınca panel açılır,
+            // focus item dışına çıkınca kapanır (focusin/focusout balonlanır).
+            item.addEventListener('focusin', function () {
+                if (!desktop.matches) { return; }
+                open(item);
+            });
+            item.addEventListener('focusout', function (e) {
+                if (!desktop.matches) { return; }
+                // Yeni focus hedefi hâlâ bu item içindeyse kapatma
+                if (e.relatedTarget && item.contains(e.relatedTarget)) { return; }
+                scheduleClose();
+            });
+
             // Panelin kendisi: fare panelin içindeyken açık kalsın
             var panel = item.querySelector('.vapor-mega__panel');
             if (panel) {
@@ -756,6 +790,15 @@
                     if (!desktop.matches) { return; }
                     scheduleClose();
                 });
+            }
+        });
+
+        // Escape: açık paneli kapat + focus'u tetikleyiciye döndür
+        root.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && openItem) {
+                var t = triggerOf(openItem);
+                closeItem(openItem);
+                if (t) { t.focus(); }
             }
         });
 

@@ -2513,12 +2513,13 @@ $vapor-radius: 12px;
     &__name { font-weight: 700; font-size: .88rem; line-height: 1.3; min-height: 2.3em; margin-bottom: .6rem; }
     &__foot { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
     &__price { font-weight: 800; font-size: 1.05rem; color: $tp-navy; }
-    &__add { width: 38px; height: 38px; border: none; border-radius: $tp-radius-sm;
-        background: $tp-primary; color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer;
-        display: grid; place-items: center;
-        box-shadow: 0 2px 8px rgba($tp-primary, 0.3);
-        transition: background $tp-transition, transform $tp-transition;
-        &:hover { background: $tp-primary-dark; transform: scale(1.08); } }
+    // "Ürüne git" işareti (→) — sepete-ekle DEĞİL. Nötr, ince; kart hover'ında turuncuya döner.
+    &__go { width: 34px; height: 34px; border-radius: $tp-radius-sm;
+        background: $tp-surface-2; color: $tp-navy;
+        display: grid; place-items: center; flex: 0 0 auto;
+        transition: background $tp-transition, color $tp-transition;
+        svg { display: block; } }
+    &:hover &__go { background: $tp-primary; color: #fff; }
 }
 
 // Bestseller grid (gerçek ürünler — subscriber'dan). Kartlar tam genişlikte aksın.
@@ -3156,9 +3157,11 @@ $vapor-radius: 12px;
 // Sidebar kapsayıcıları panelin taşmasına izin vermeli
 .vapor-sidebar, .vapor-cat__aside { overflow: visible; }
 
-// "Alle Kategorien" başlığı — anasayfa + kategori sayfası ortak (mavi başlık)
-.vapor-sidebar__head, .vapor-cat__aside-head {
-    background: $sw-color-brand-primary; color: #fff;
+// "Alle Kategorien" başlığı — anasayfa + kategori sayfası ortak (LACİVERT, kurumsal).
+// Not: .vapor-sidebar__head'in detaylı stili (ikon + lacivert) yukarıda ~1678'de tanımlı;
+// burada turuncu ezme kaldırıldı → sadece .vapor-cat__aside-head'i (kategori sayfası) hizala.
+.vapor-cat__aside-head {
+    background: $tp-navy; color: #fff;
     font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .03em;
     padding: .85rem 1.1rem; border-radius: $vapor-radius $vapor-radius 0 0;
 }
@@ -3207,6 +3210,7 @@ $vapor-radius: 12px;
     // JS yoksa (fallback) saf :hover ile de açılır — ama JS varken banner
     // erişimi için fare çıkışında gecikmeli kapanır (Mike'ın 'banner tıklanamıyor' fix'i).
     &__item.has-children.is-open .vapor-mega__panel,
+    &__item.has-children:focus-within .vapor-mega__panel,
     html:not(.vapor-mega-js) &__item.has-children:hover .vapor-mega__panel {
         opacity: 1; visibility: visible; transform: translateX(0); pointer-events: auto;
     }
@@ -5061,8 +5065,8 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     .icon { width: 14px; height: 14px; margin-bottom: 6px; }
 }
 .vapor-deal__price.is-login .icon svg { color: rgba($vapor-color-ink, 0.45); }
-.vapor-pcard__add.is-login {
-    background: rgba($sw-color-brand-primary, 0.12); color: $sw-color-brand-primary;
+.vapor-pcard__go.is-login {
+    background: $tp-surface-2; color: rgba($tp-navy, 0.55);
     display: inline-flex; align-items: center; justify-content: center;
     .icon { width: 15px; height: 15px; margin-bottom: 13px; }
     .icon svg { color: $sw-color-brand-primary; }
