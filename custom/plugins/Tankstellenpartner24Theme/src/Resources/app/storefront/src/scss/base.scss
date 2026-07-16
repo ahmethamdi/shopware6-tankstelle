@@ -1690,9 +1690,9 @@ $vapor-radius: 12px;
             content: "";
             width: 18px; height: 14px;
             flex: 0 0 auto;
-            background: $tp-primary;
+            background: #fff;
             border-radius: 2px;
-            box-shadow: 0 3px 0 -1px $tp-primary, 0 6px 0 -2px $tp-primary; // 3 çizgi (menü) hissi
+            box-shadow: 0 3px 0 -1px #fff, 0 6px 0 -2px #fff; // 3 çizgi (menü) hissi — beyaz (turuncu başlık üstünde net)
         }
     }
 
