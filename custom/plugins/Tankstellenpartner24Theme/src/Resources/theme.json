@@ -782,6 +782,20 @@
                 "scss": false,
                 "tab": "vaporTabGeneral"
             },
+            "vapor-variant-dropdown-threshold": {
+                "label": {
+                    "de-DE": "Varianten: ab wie vielen Optionen Dropdown (statt Buttons)",
+                    "en-GB": "Variants: dropdown threshold (options count)",
+                    "tr-TR": "Varyant: kaç seçenekten sonra dropdown"
+                },
+                "type": "text",
+                "value": "5",
+                "editable": true,
+                "block": "vaporLayout",
+                "order": 195,
+                "scss": false,
+                "tab": "vaporTabGeneral"
+            },
             "vapor-sec-topmarken-show": {
                 "label": {
                     "de-DE": "Top-Marken-Leiste anzeigen",

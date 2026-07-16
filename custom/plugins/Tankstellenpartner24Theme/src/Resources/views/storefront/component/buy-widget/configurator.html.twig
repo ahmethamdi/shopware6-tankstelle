@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/configurator.html.twig' %}
+
+{#
+   TP24 — Akıllı varyant seçici:
+   Bir grupta seçenek çoksa (> eşik) otomatik DROPDOWN (select),
+   az ise butonlar (pill) kalır. Vapor'daki çok-seçenekli "Geschmack"
+   gibi listeler dağınık görünmesin diye.
+   Eşik: vapor-variant-dropdown-threshold (theme_config), default 5.
+#}
+{% block buy_widget_configurator_group %}
+    {% set tpThreshold = theme_config('vapor-variant-dropdown-threshold')|default(5) %}
+    {% if tpThreshold is empty %}{% set tpThreshold = 5 %}{% endif %}
+    {% set tpForceSelect = group.options|length > tpThreshold %}
+
+    {% if group.displayType == 'select' or tpForceSelect %}
+        <div class="product-detail-configurator-group mb-3{% if tpForceSelect %} is-auto-select{% endif %}">
+            {% sw_include '@Storefront/storefront/component/buy-widget/configurator/select.html.twig' %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
