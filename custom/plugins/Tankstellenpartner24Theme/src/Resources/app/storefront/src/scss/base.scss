@@ -3157,11 +3157,9 @@ $vapor-radius: 12px;
 // Sidebar kapsayıcıları panelin taşmasına izin vermeli
 .vapor-sidebar, .vapor-cat__aside { overflow: visible; }
 
-// "Alle Kategorien" başlığı — anasayfa + kategori sayfası ortak (LACİVERT, kurumsal).
-// Not: .vapor-sidebar__head'in detaylı stili (ikon + lacivert) yukarıda ~1678'de tanımlı;
-// burada turuncu ezme kaldırıldı → sadece .vapor-cat__aside-head'i (kategori sayfası) hizala.
-.vapor-cat__aside-head {
-    background: $tp-navy; color: #fff;
+// "Alle Kategorien" başlığı — anasayfa + kategori sayfası ortak (TURUNCU — kullanıcı tercihi).
+.vapor-sidebar__head, .vapor-cat__aside-head {
+    background: $sw-color-brand-primary; color: #fff;
     font-weight: 700; font-size: .82rem; text-transform: uppercase; letter-spacing: .03em;
     padding: .85rem 1.1rem; border-radius: $vapor-radius $vapor-radius 0 0;
 }
