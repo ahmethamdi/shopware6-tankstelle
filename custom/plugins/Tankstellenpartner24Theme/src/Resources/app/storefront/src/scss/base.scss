@@ -258,6 +258,37 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
+// ---- MOBİL HEADER düzeni: ikonlar taşmasın, düzenli dizilsin ----
+@media (max-width: 767.98px) {
+    .tp-header__inner {
+        gap: $tp-space-3;
+        min-height: 72px;
+        padding: $tp-space-2 $tp-space-3;   // yatay padding daralt (taşma önle)
+    }
+    // "Jetzt registrieren" CTA mobilde gizli (d-none'u override eden display'i geri al)
+    .tp-header__cta { display: none !important; }
+    // Logo ortada, aksiyonlar sağda dengeli
+    .tp-header__logo { margin-right: auto; }
+    .tp-header__actions {
+        gap: $tp-space-1;
+        flex-wrap: nowrap;
+    }
+    // Aksiyon butonları kompakt (44→40) + içindeki metinleri (fiyat/"Close menu") gizle
+    .tp-action {
+        min-width: 40px; height: 40px; padding: 0 $tp-space-1;
+        .tp-action__label, .header-cart-total-price, .top-bar-price { display: none; }
+        .icon { width: 22px; height: 22px; }
+        // İçteki Bootstrap dropdown/btn'i ikon boyutuna indir (account 80px sorunu)
+        .dropdown, .btn {
+            padding: 0; min-width: 0; width: auto; border: none; background: transparent;
+        }
+    }
+}
+@media (max-width: 374.98px) {
+    // Çok dar ekranlarda logo biraz daha küçük
+    .tp-header__logo .header-logo-main-img { height: 34px; }
+}
+
 /* ============================================================
    TP24 NAVBAR + MEGA MENÜ (modern, şık)
    ============================================================ */
@@ -1267,17 +1298,24 @@ $vapor-radius: 12px;
         // Ana büyük görsel + 3 mini görsel kolonu (manuel/panelden)
         display: grid;
         grid-template-columns: 2fr 1fr;
+        grid-template-rows: 1fr;          // tek satır → içerik yüksekliği ezmesin (foot'a taşma önle)
         gap: $tp-space-2;
         padding: $tp-space-3;
         height: 240px;
+        > * { min-height: 0; }            // grid çocukları kutuyu büyütmesin
         @media (max-width: 575.98px) { height: 190px; }   // mobilde daha minify
     }
     &__big {
+        position: relative;                       // img'i hücreye kilitle → taşmasın
         border-radius: $tp-radius; overflow: hidden; background: $tp-surface-2;
         display: grid; place-items: center; color: rgba($tp-navy, 0.2);
-        img { width: 100%; height: 100%; object-fit: cover; }
+        min-height: 0; min-width: 0;              // grid hücresi içeriğe göre büyümesin
+        img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%; object-fit: cover;
+        }
         svg { width: 40px; height: 40px; }
-        // Mobilde ana görsel KESİLMESİN → contain (tam sığar, hoş durur)
+        // Mobilde ana görsel KESİLMESİN → contain (kutuya tam sığar, foot'a taşmaz)
         @media (max-width: 575.98px) {
             img { object-fit: contain; padding: $tp-space-2; }
         }
