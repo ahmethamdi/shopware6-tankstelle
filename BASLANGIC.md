@@ -98,18 +98,29 @@ Doğru yön: e-sigara içeriği + TP24 markası (turuncu) + **Vapor'dan görsel 
 - Katalog kurma scriptleri: `scratchpad/build-cats.php`, `build-products.php` (idempotent, DB'ye yazar).
 - **Ağ paylaşımı hazır**: LAN IP `192.168.1.25:18600` sales_channel_domain'e eklendi, `0.0.0.0`'da dinletince ağdakiler görür (bkz. yukarı "Ağ paylaşımı").
 
-### 🆕 Bu oturumda yapılanlar (Redesign 16-19, hepsi main'de push'lu)
-- **16:** Mobil footer-top fix (≤575px tek kolon). **Pill şeridi manuel:** theme.json'a 8 slot (`vapor-pill-1..8-name/-icon/-link`); twig'de manuel varsa img, yoksa canlı-kategori fallback. LAN IP `.37`→`.25` (bkz. Ağ paylaşımı).
-- **17:** **"Nach Kategorie einkaufen" (catslider) TAM MANUEL:** theme.json'a 6 slot (`vapor-catcard-1..6-img/-mini1/-mini2/-mini3/-title/-link`). Her kart = 1 ana görsel + 3 mini görsel + başlık + link. Title doluysa manuel; hiç yoksa canlı kategori fallback (ana+3 alt kat. görseli). Görselleri/linkleri **kullanıcı admin'den girecek** (henüz boş).
-- **18:** **Deals des Tages dikkat-çekici koyu panel (V4):** `.vapor-deals-panel` koyu lacivert `#0E2740` + turuncu/mavi radial glow; başlık beyaz, sayaç turuncu, beyaz kartlar öne çıkıyor. Ürünler dönmeye devam. `overflow:hidden`, mobilde glow küçültüldü.
-- **19:** **Admin edit paneli anasayfa akışına göre düzenlendi.** Tek dev "Startseite" tab'ı → **General · Home basics · Header · Home: Top · Home: Middle · Home: Bottom · Sidebar · Footer**. Bloklar 1..16 numaralı (Deals = "8) Deals des Tages" → Home: Middle). ⚠️ **Shopware admin tab'ları field'ların FİZİKSEL sırasına göre diziyor** (tab.order/block.order yetmez) → theme.json `fields` dict'i fiziksel olarak hedef sırada dizildi. İlk "General" Shopware core'un (dokunulmaz).
+### Önceki oturum (Redesign 16-19, main'de push'lu)
+- **16:** Mobil footer-top fix. **Pill şeridi manuel** (8 slot `vapor-pill-1..8-*`). LAN IP `.37`→`.25`.
+- **17:** **"Nach Kategorie einkaufen" (catslider) MANUEL** (6 slot `vapor-catcard-1..6-img/-mini1..3/-title/-link`). Title doluysa manuel; yoksa canlı kategori fallback.
+- **18:** Deals des Tages koyu V4 panel (`.vapor-deals-panel`, glow).
+- **19:** Admin edit paneli anasayfa akışına göre tab'landı. ⚠️ **Admin tab'ları field'ların FİZİKSEL sırasına göre diziyor** (theme.json `fields` dict sırası önemli).
+
+### 🆕 Bu oturumda yapılanlar (Redesign 20-24 + mobil + varyant, hepsi main'de push'lu, `af04880`)
+- **20:** **Bestseller bölümü gizlendi** (`vapor-sec-bestseller-show=false`, veri durur) → yerine **Information** bölümü (`.vapor-info`: editorial statement + turuncu rail + 5 madde checklist, panelden `vapor-info-*`, Home: Bottom "12b"). **Top-Marken:** circular `vapor-brandnav` (brands) yerine dönen marquee slider (`vapor-brandslider`/topmarken, 38s, hover-pause) aktif edildi.
+- **21:** **Pill şeridi kendi bloğuna** (`vaporPills`, Home: Top "2)", Hero altı; 8 slot `vaporBento`'dan taşındı). 8 pill kategori isim+SEO-link ile dolduruldu. Bento→"3)", Promoduo→"4)", Vorteile→"5)". `brands-show` tekrar true.
+- **22:** **Sidebar yeniden düzenlendi** — duplicate USP listesi (`vapor-usp-1..4`, theme.json'dan da silindi) kaldırıldı. Yeni sıra: Kategoriler → **IHRE VORTEILE** (kategori altına) → Promo1 → **Bestseller mini** (yeni) → Neuheiten mini → Promo2(SALE) → B2B CTA → **Newsletter** (yeni, `vapor-sidebar-nl-*`) → B2B-Support. İki görsel de korundu.
+- **23-24:** Catslider görsel deneme (placeholder) yapılıp **REVERT edildi** (kullanıcı istemedi). Sonra: catslider **mini hücrelere lacivert border** (`.vapor-catcard__minicell`).
+- **Mobil (app tarzı):** Bento mobilde vitrin(big) tam genişlik + diğer 4 kart **2×2** (min-height 170px). Catslider mobilde kart 86vw + ana görsel `contain`+`grid-template-rows:1fr` (KESİLMİYOR, foot'a taşmıyor) + scroll-snap. **Header mobilde:** "Jetzt registrieren" CTA gizli (`display:none !important`, d-none override bug'ı), account action .btn/.dropdown 40px'e indi, ikonlar taşmasız dizili.
+- **Varyant seçici akıllı mod:** `configurator.html.twig` override — grup seçenek sayısı **eşiği aşarsa dropdown** (select), az ise buton. Eşik `vapor-variant-dropdown-threshold` (General tab, **default 4** → 5+ dropdown, ≤4 buton). displayType=select zaten dropdown. Varyant ürün ekleme: DAL script (kernel boot, `product.repository`+`property_group.repository`; parent+children+configuratorSettings; ⚠️ productNumber suffix `substr($id,-6)` — Shopware UUID'leri timestamp-sıralı, ilk 6 char çakışır).
+- **USP metinleri:** Header infobar 1-4 (`vapor-infobar-1..4`, 5=18+ korundu) + ürün detay buy-widget USP (hardcoded 4) → "Kostenlose Lieferung für Händler / Über 4.000 zufriedene Partner / Bundesweites Vertriebsnetz / Persönlicher Kundenservice".
+- **Test ürünleri (DB'de, git'e girmez):** TP24 Test-Liquid (3 varyant→buton), TP24 Test-Aroma (5→dropdown), TP24 Test-Pods (11→dropdown). Hepsi Liquids kategorisinde.
 
 ## ⏭️ Sıradaki işler (kaldığımız yer)
 
-- [ ] **Kullanıcı admin'den dolduracak:** catslider 6 kart (görsel+mini+başlık+link) + pill 8 slot (isim+görsel+link). Panel: **Home: Top → "2) Pills, Bento & Kategori-Slider"**. Doldurunca `theme:compile`+`cache:clear` gerekebilir.
-- [ ] **Mobil uyumluluk:** anasayfa tam tur + footer + Deals paneli test edildi (390/768px, taşma yok). Yeni bölümler eklenirse tekrar bak.
-- [ ] **Görseller:** bento/hero/ürün/promoduo-bg/footer-trust hâlâ placeholder — admin'den yüklenince dolacak.
-- [ ] "ALLE KATEGORIEN" sidebar başlığı turuncu (base.scss'te 2 `.vapor-sidebar__head`, 2.si -orange- kazanıyor) — istenirse laciverte çekilebilir.
+- [ ] **Cart/checkout sayfası kontrol edilmedi** — mobilde bakılacaktı, sıradaki.
+- [ ] **Kullanıcı admin'den dolduracak:** catslider kartları (görsel+mini+link) + bento/hero/promoduo-bg görselleri. ⚠️ **Media-field upload persist sorunu:** catcard görsel yükleme DB'ye kaydolmuyordu (`img=None`, sadece title kaydoldu) — kök neden araştırılmadı; kod tarafı OK (hero/promo aynı pattern çalışıyor).
+- [ ] Test varyant ürünleri (3) işi bitince silinebilir.
+- [ ] **Footer USP** (title+sub, `vapor-footer-usp-1..4`) hâlâ eski metin (Versand/Bezahlung/Lieferung/Support) — istenirse 4 yeni USP metnine çevrilir.
+- [ ] "ALLE KATEGORIEN" sidebar başlığı turuncu — istenirse laciverte çekilebilir.
 - [ ] Gerekirse VioRepresentativeLogin (B2B temsilci girişi).
 
 ### Ekran görüntüsü alma (age gate'i geç)
