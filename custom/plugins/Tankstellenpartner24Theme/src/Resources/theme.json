@@ -981,7 +981,7 @@
                     "tr-TR": "Metin 1"
                 },
                 "type": "text",
-                "value": "Kostenlose Lieferung ab 500 € Netto",
+                "value": "Kostenlose Lieferung für Händler",
                 "editable": true,
                 "block": "vaporInfobar",
                 "order": 100,
@@ -995,7 +995,7 @@
                     "tr-TR": "Metin 2"
                 },
                 "type": "text",
-                "value": "über 4.000 zufriedene Händler",
+                "value": "Über 4.000 zufriedene Partner",
                 "editable": true,
                 "block": "vaporInfobar",
                 "order": 200,
@@ -1009,7 +1009,7 @@
                     "tr-TR": "Metin 3"
                 },
                 "type": "text",
-                "value": "Jetzt Neuheiten entdecken",
+                "value": "Bundesweites Vertriebsnetz",
                 "editable": true,
                 "block": "vaporInfobar",
                 "order": 300,
@@ -1023,7 +1023,7 @@
                     "tr-TR": "Metin 4"
                 },
                 "type": "text",
-                "value": "Sichere Bezahlung mit PayPal",
+                "value": "Persönlicher Kundenservice",
                 "editable": true,
                 "block": "vaporInfobar",
                 "order": 400,
