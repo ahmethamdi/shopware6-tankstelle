@@ -2782,6 +2782,11 @@ $vapor-radius: 12px;
     .cms-element-product-listing-actions { padding: 0 0 1rem !important; margin: 0 !important; }
     // boş cms text/image bloklarını gizle (home'daki gibi)
     .cms-block-text, .cms-block-image-text { display: none !important; }
+    // ÇİFT BAŞLIK FIX: CMS layout'un otomatik kategori-adı başlığını (category-head /
+    // category-heading bloğu, .cms-element-category-name-headline) gizle — tema zaten
+    // kendi .vapor-cat__title'ını basıyor, ikisi birden çıkınca başlık 2 kez görünüyordu.
+    .cms-block-category-head, .cms-block-category-heading,
+    .cms-element-category-name-headline { display: none !important; }
     .cms-section, .cms-block, .cms-block-container { padding: 0 !important; margin: 0 !important; }
 }
 
