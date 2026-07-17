@@ -113,14 +113,34 @@ Doğru yön: e-sigara içeriği + TP24 markası (turuncu) + **Vapor'dan görsel 
 - **Varyant seçici akıllı mod:** `configurator.html.twig` override — grup seçenek sayısı **eşiği aşarsa dropdown** (select), az ise buton. Eşik `vapor-variant-dropdown-threshold` (General tab, **default 4** → 5+ dropdown, ≤4 buton). displayType=select zaten dropdown. Varyant ürün ekleme: DAL script (kernel boot, `product.repository`+`property_group.repository`; parent+children+configuratorSettings; ⚠️ productNumber suffix `substr($id,-6)` — Shopware UUID'leri timestamp-sıralı, ilk 6 char çakışır).
 - **USP metinleri:** Header infobar 1-4 (`vapor-infobar-1..4`, 5=18+ korundu) + ürün detay buy-widget USP (hardcoded 4) → "Kostenlose Lieferung für Händler / Über 4.000 zufriedene Partner / Bundesweites Vertriebsnetz / Persönlicher Kundenservice".
 - **Test ürünleri (DB'de, git'e girmez):** TP24 Test-Liquid (3 varyant→buton), TP24 Test-Aroma (5→dropdown), TP24 Test-Pods (11→dropdown). Hepsi Liquids kategorisinde.
+- **Mega menü 3. seviye doğrulandı:** kod zaten 3 seviye destekliyordu (alt kat=grup başlığı, alt-alt=liste), veri yoktu. Test için "Elfliq by Elf Bar" altına 5 alt-alt kategori (Fruchtig/Menthol/Cola/Dessert/Tabak) eklendi — DB'de, kalıcı.
 
-## ⏭️ Sıradaki işler (kaldığımız yer)
+### 🔬 5-Ajan Denetimi + 4 Kritik Fix (bu oturum sonu)
+5 uzman ajan paralel çalıştırıldı (UI/UX · accessibility · kod kalitesi · fonksiyonel · SEO). **Fonksiyonel test 9/9 PASS, kritik hata yok** (sayfalar 200, login-gate, varyant seçici, sepet, arama, 64 mega link, 0 JS hatası, mobil taşma yok). Bulunan 4 kritik iyileştirme düzeltildi:
+- **K1 Mega menü klavye erişimi** (WCAG): main.js focusin/focusout + Escape + aria-haspopup/expanded + CSS :focus-within. Klavye ile alt kategorilere ulaşılıyor.
+- **K2 JSON-LD schema:** `JSON_LD_DATA` feature flag açıldı → Organization/WebSite/Product/ProductGroup/Offer/BreadcrumbList render ediliyor. ⚠️ **`.env.local`'de (git'e GİRMEZ) → yeni ortamda tekrar eklenmeli:** `JSON_LD_DATA=1` satırı + `bin/console cache:clear`. B2B fiyat-gate nedeniyle guest'te Offer fiyatsız kalır (ileride Product JSON-LD'yi guest için offers'sız üretmek daha temiz).
+- **K4 Sahte "+" buton:** ürün kartındaki `.vapor-pcard__add` (sepete-ekle yanılgısı) → `.vapor-pcard__go` (ürüne git oku →). Dürüst UX.
+- **Sidebar başlık:** K3'te laciverte çevrildi ama kullanıcı **turuncuyu tercih etti → geri alındı**. Başlık ikonu (☰) bozuk box-shadow'du (dolu kare) → linear-gradient 3-çizgi beyaz hamburger ikonu yapıldı.
 
-- [ ] **Cart/checkout sayfası kontrol edilmedi** — mobilde bakılacaktı, sıradaki.
-- [ ] **Kullanıcı admin'den dolduracak:** catslider kartları (görsel+mini+link) + bento/hero/promoduo-bg görselleri. ⚠️ **Media-field upload persist sorunu:** catcard görsel yükleme DB'ye kaydolmuyordu (`img=None`, sadece title kaydoldu) — kök neden araştırılmadı; kod tarafı OK (hero/promo aynı pattern çalışıyor).
-- [ ] Test varyant ürünleri (3) işi bitince silinebilir.
-- [ ] **Footer USP** (title+sub, `vapor-footer-usp-1..4`) hâlâ eski metin (Versand/Bezahlung/Lieferung/Support) — istenirse 4 yeni USP metnine çevrilir.
-- [ ] "ALLE KATEGORIEN" sidebar başlığı turuncu — istenirse laciverte çekilebilir.
+## ⏭️ Sıradaki işler (kaldığımız yer) — YENİ SOHBET BURADAN DEVAM ETSİN
+
+**Denetimden kalan bulgular (öncelik sırası):**
+- [ ] **Y1 Kontrast:** turuncu #E1523D beyaz üstünde 3.84:1 → küçük metin AA (4.5:1) sağlamıyor. Text-on-white yerlerde `darken($sw-color-brand-primary,10%)` (#c23c29, 5.29:1) kullan; buton/dekoratif turuncu kalabilir.
+- [ ] **Y2 Hero h1:** hero başlığı boşsa sayfada hiç `h1` yok (`index.html.twig:71` koşullu) → her zaman (sr-only fallback ile) bir h1 render et.
+- [ ] **Y3 Hero LCP:** hero büyük görselinde `loading="lazy"` var → `eager` + `fetchpriority="high"` yap (Core Web Vitals). Alt-fold görseller lazy kalsın.
+- [ ] **Y4 Ürün havuzu tekrarı:** Angebote=Deals=Bestseller üçü de `page.extensions.vaporBestseller` → aynı ürünler 3 kez. Birini kapat/farklılaştır.
+- [ ] **Y5 Google Fonts:** `base.scss:10` external `@import` (GDPR + render-block) → self-host (`@font-face` bloğu 12-24'te hazır yorumlu).
+- [ ] **Cleanup:** ölü CSS (`.vapor-topbar/-usp-bar/-marketing-banner/-social-bar/-topmenu/-header-pays/-shortcuts/-net-price-hint` ~birkaç yüz satır) + ölü theme.json config (`vapor-neu-category`, `vapor-bestseller-category` subscriber okumuyorsa, `vapor-show-net-prices`, `vapor-deal-text-color`, `vapor-sidebar-vorteile-title` tanımsız). Google Fonts self-host.
+- [ ] **ARIA orta:** newsletter feedback + age-gate blocked'a `aria-live`/`role=alert`; footer başlıkları `<div>` → `<h2>`; footer sahte `role=list` kaldır.
+- [ ] **og:image + favicon** hâlâ placeholder SVG → gerçek raster (1200×630 PNG) + favicon set.
+- [ ] **Age-gate redirect** hardcoded `google.com` (`base.html.twig:15`) → nötr/yasal sayfa veya config.
+- [ ] **Configurator eşik** `vapor-variant-dropdown-threshold` theme.json'da `type:text` → `type:int` olmalı (minör).
+
+**Önceki kalanlar:**
+- [ ] **Cart/checkout sayfası** mobilde kontrol edilmedi.
+- [ ] **Media-field upload persist sorunu:** catcard görsel yükleme DB'ye kaydolmuyordu (`img=None`, title kaydoldu) — kök neden araştırılmadı; kod OK (hero/promo aynı pattern çalışıyor).
+- [ ] Test varyant ürünleri (3) + Elfliq alt-alt kategoriler işi bitince silinebilir.
+- [ ] **Footer USP** (`vapor-footer-usp-1..4`) hâlâ eski metin — istenirse 4 yeni USP'ye çevrilir.
 - [ ] Gerekirse VioRepresentativeLogin (B2B temsilci girişi).
 
 ### Ekran görüntüsü alma (age gate'i geç)
