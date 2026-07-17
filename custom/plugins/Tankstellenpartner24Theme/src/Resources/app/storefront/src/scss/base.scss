@@ -4625,9 +4625,12 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
 
 // --- Minimal header (confirm/finish/address sayfaları) ---
 .header-minimal {
-    background: $sw-color-brand-primary;
+    // Beyaz zemin (ana site header'ıyla aynı) → logo (koyu metin) net okunur.
+    // Turuncu zeminde logo metni okunmuyordu + mobilde kırpılıyordu.
+    background: #fff;
     padding: .85rem 0;
-    box-shadow: 0 4px 18px rgba($vapor-color-ink, 0.12);
+    box-shadow: 0 2px 12px rgba($vapor-color-ink, 0.08);
+    border-bottom: 3px solid $sw-color-brand-primary;
     margin-bottom: 2rem;
 
     .header-minimal-row { align-items: center; }
@@ -4635,14 +4638,14 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     .header-minimal-logo img { max-height: 36px; width: auto; }
 
     .header-minimal-contact {
-        text-align: center; color: rgba(#fff, 0.92);
+        text-align: center; color: rgba($vapor-color-ink, 0.75);
         font-size: .9rem; font-weight: 600;
     }
     .header-minimal-back-to-shop { text-align: right; }
     .header-minimal-back-to-shop-button {
-        background: #fff; border: none; color: $sw-color-brand-primary;
+        background: $sw-color-brand-primary; border: none; color: #fff;
         font-weight: 700; border-radius: 10px; padding: .5rem 1rem;
-        &:hover { background: rgba(#fff, 0.9); color: darken($sw-color-brand-primary, 8%); }
+        &:hover { background: darken($sw-color-brand-primary, 8%); color: #fff; }
     }
 }
 
