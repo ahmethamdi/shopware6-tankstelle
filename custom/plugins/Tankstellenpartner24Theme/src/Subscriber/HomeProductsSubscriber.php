@@ -65,9 +65,17 @@ class HomeProductsSubscriber implements EventSubscriberInterface
             new FieldSorting('createdAt', FieldSorting::DESCENDING),
             new FieldSorting('id', FieldSorting::DESCENDING),
         ]);
+        // Deals des Tages: KENDİ havuzu (fiyata göre artan → gerçekten "uygun" ürünler).
+        // Bestseller/Angebote (sales sıralı) ile örtüşmesin diye ayrı sort — üçü de
+        // açıksa aynı ürünler tekrar etmez. Az ürün varsa doğal olarak kesişebilir.
+        $deals = $this->loadProducts($context, $homeId, [
+            new FieldSorting('cheapestPrice', FieldSorting::ASCENDING),
+            new FieldSorting('id', FieldSorting::ASCENDING),
+        ]);
 
         $page->addExtension('vaporBestseller', new ArrayStruct(['products' => $bestseller]));
         $page->addExtension('vaporNeu', new ArrayStruct(['products' => $neu]));
+        $page->addExtension('vaporDeals', new ArrayStruct(['products' => $deals]));
     }
 
     /**

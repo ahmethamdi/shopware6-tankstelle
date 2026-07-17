@@ -788,8 +788,8 @@
                     "en-GB": "Variants: dropdown threshold (options count)",
                     "tr-TR": "Varyant: kaç seçenekten sonra dropdown"
                 },
-                "type": "text",
-                "value": "4",
+                "type": "int",
+                "value": 4,
                 "editable": true,
                 "block": "vaporLayout",
                 "order": 195,
@@ -4829,25 +4829,6 @@
                 "scss": false,
                 "tab": "vaporTabHomeMid"
             },
-            "vapor-deal-text-color": {
-                "label": {
-                    "de-DE": "Deal Textfarbe (Marke + Titel)",
-                    "en-GB": "Deal text color (brand + title)",
-                    "tr-TR": "Deal yazı rengi (marka + başlık)"
-                },
-                "helpText": {
-                    "de-DE": "Farbe für 'POWERED BY ...' Badge und Deal-Titel (z. B. -10% ...). Leer = Standardfarbe (Lila).",
-                    "en-GB": "Color for the 'POWERED BY ...' badge and deal title. Empty = default (purple).",
-                    "tr-TR": "'POWERED BY ...' rozeti ve deal başlığı rengi. Boş = varsayılan (mor)."
-                },
-                "type": "color",
-                "value": "",
-                "editable": true,
-                "block": "vaporDeals",
-                "order": 55,
-                "scss": false,
-                "tab": "vaporTabHomeMid"
-            },
             "vapor-deal-1-name": {
                 "label": {
                     "de-DE": "Deal 1 Produktname",
@@ -5157,20 +5138,6 @@
                 "scss": false,
                 "tab": "vaporTabHomeMid"
             },
-            "vapor-neu-category": {
-                "label": {
-                    "de-DE": "Neuheiten Kategorie-ID (leer = Standard)",
-                    "en-GB": "New arrivals category ID",
-                    "tr-TR": "Yeni gelenler kategori ID"
-                },
-                "type": "text",
-                "value": "",
-                "editable": true,
-                "block": "vaporNeu",
-                "order": 100,
-                "scss": false,
-                "tab": "vaporTabHomeBot"
-            },
             "vapor-neu-title": {
                 "label": {
                     "de-DE": "Neuheiten Überschrift",
@@ -5372,20 +5339,6 @@
                 "editable": true,
                 "block": "vaporShowcase",
                 "order": 2680,
-                "scss": false,
-                "tab": "vaporTabHomeBot"
-            },
-            "vapor-bestseller-category": {
-                "label": {
-                    "de-DE": "Bestseller Kategorie-ID (leer = Standard)",
-                    "en-GB": "Bestseller category ID",
-                    "tr-TR": "Bestseller kategori ID"
-                },
-                "type": "text",
-                "value": "",
-                "editable": true,
-                "block": "vaporBestseller",
-                "order": 100,
                 "scss": false,
                 "tab": "vaporTabHomeBot"
             },
@@ -6241,19 +6194,6 @@
                 "block": "vaporB2bBanner",
                 "order": 685,
                 "scss": false,
-                "tab": "vaporTabHomeBot"
-            },
-            "vapor-show-net-prices": {
-                "label": {
-                    "de-DE": "Netto-Hinweis auf Produktkarten",
-                    "en-GB": "Show net hint",
-                    "tr-TR": "KDV hariç ipucu"
-                },
-                "type": "switch",
-                "value": true,
-                "editable": true,
-                "block": "vaporB2b",
-                "order": 100,
                 "tab": "vaporTabHomeBot"
             },
             "vapor-free-1-show": {

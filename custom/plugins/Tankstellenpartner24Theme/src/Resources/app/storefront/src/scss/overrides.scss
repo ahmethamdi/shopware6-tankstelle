@@ -62,6 +62,7 @@ $link-hover-decoration: underline;
 // Marka renk türevleri (hesaplanmış — SCSS fonksiyonlarıyla)
 $tp-primary:        $sw-color-brand-primary;              // #E1523D
 $tp-primary-dark:   darken($sw-color-brand-primary, 10%);
+$tp-primary-text:  #c23c29;  // AA-safe (5.29:1) orange for TEXT on white/light backgrounds
 $tp-primary-soft:   rgba($sw-color-brand-primary, 0.08);  // açık turuncu zemin
 $tp-navy:           $sw-color-brand-secondary;             // #13365A (logo koyu lacivert)
 $tp-navy-dark:      darken($sw-color-brand-secondary, 4%);

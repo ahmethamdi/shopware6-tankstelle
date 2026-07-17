@@ -6,8 +6,21 @@ Renk/font değişkenleri overrides.scss + theme.json config'ten gelir.
 */
 
 // TP24 branding fontu: Gotham (geçici alternatif Montserrat — Gotham'a en yakın geometrik sans).
-// Gerçek Gotham gelince: bu @import'u sil, aşağıdaki @font-face bloğunu doldur.
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+// SELF-HOSTED (GDPR + render-block yok): Google Fonts @import KALDIRILDI, Montserrat variable
+// woff2 dosyaları assets/fonts/ altında (100–900 tek dosya). Weight'ler theme'de 400-800 kullanılıyor.
+// Gerçek Gotham gelince: aşağıdaki @font-face family'sini Gotham .woff2'lerine çevir.
+@font-face {
+    font-family: "Montserrat";
+    src: url("#{$app-css-relative-asset-path}/fonts/montserrat-latin.woff2") format("woff2");
+    font-weight: 100 900; font-style: normal; font-display: swap;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Montserrat";
+    src: url("#{$app-css-relative-asset-path}/fonts/montserrat-latin-ext.woff2") format("woff2");
+    font-weight: 100 900; font-style: normal; font-display: swap;
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
 /* Gerçek Gotham .woff2 dosyaları geldiğinde bu bloğu aç ve dosyaları
    app/storefront/src/assets/fonts/ altına koy (theme.json asset klasörü):
@@ -391,7 +404,7 @@ h1, h2, h3, h4, h5, h6,
     padding-bottom: $tp-space-2;
     margin-bottom: $tp-space-2;
     border-bottom: 2px solid $tp-primary-soft;
-    &:hover { color: $tp-primary; text-decoration: none; }
+    &:hover { color: $tp-primary-text; text-decoration: none; }
 }
 .tp-mega__list { list-style: none; margin: 0; padding: 0; }
 .tp-mega__list li { margin: 0; }
@@ -402,7 +415,7 @@ h1, h2, h3, h4, h5, h6,
     font-size: .875rem;
     transition: color $tp-transition, padding $tp-transition;
     &:hover {
-        color: $tp-primary;
+        color: $tp-primary-text;
         padding-left: 4px;
         text-decoration: none;
     }
@@ -511,7 +524,7 @@ h1, h2, h3, h4, h5, h6,
         .btn, a, svg { color: $vapor-color-ink; }
         .header-cart-total, .header-cart-btn { color: $vapor-color-ink; }
         .header-cart-badge, .badge { background: $vapor-color-sale; color: #fff; }
-        .btn:hover, a:hover { color: $sw-color-brand-primary; }
+        .btn:hover, a:hover { color: $tp-primary-text; }
     }
 
     // Login'liyken hesap ikonu yerine baş harf avatarı (yuvarlak)
@@ -561,7 +574,7 @@ h1, h2, h3, h4, h5, h6,
 
     // dropdown flyout içi normal (beyaz zemin) kalsın
     .dropdown-menu { color: $vapor-color-ink; }
-    .dropdown-menu .navigation-flyout-link { color: $vapor-color-ink !important; &:hover { color: $sw-color-brand-primary !important; } }
+    .dropdown-menu .navigation-flyout-link { color: $vapor-color-ink !important; &:hover { color: $tp-primary-text !important; } }
 }
 
 // Logo: biraz daha büyük, dikey ortalı
@@ -610,7 +623,7 @@ h1, h2, h3, h4, h5, h6,
         .btn,
         a {
             color: $vapor-color-ink;
-            &:hover { color: $sw-color-brand-primary; }
+            &:hover { color: $tp-primary-text; }
         }
     }
 }
@@ -620,7 +633,7 @@ h1, h2, h3, h4, h5, h6,
     .header-cart-btn,
     .header-cart-total {
         font-weight: 700;
-        color: $sw-color-brand-primary;
+        color: $tp-primary-text;
     }
 
     .header-cart-icon-wrapper {
@@ -656,24 +669,6 @@ h1, h2, h3, h4, h5, h6,
         box-shadow: 0 0 0 2px #fff;
         pointer-events: none;
     }
-}
-
-// --- B2B: KDV hariç fiyat ipucu (theme.json switch'i kapalıysa gizle) ---
-.vapor-net-price-hint {
-    display: inline-block;
-    font-size: .75rem;
-    font-weight: 600;
-    color: $sw-color-brand-secondary;
-    margin-top: .15rem;
-}
-
-// --- Top bar (B2B servis vurgusu / iletişim) ---
-.vapor-topbar {
-    background: $vapor-color-ink;
-    color: #fff;
-    font-size: .8125rem;
-
-    a { color: rgba(#fff, 0.85); &:hover { color: #fff; } }
 }
 
 // --- Üst USP bilgi şeridi (REDESIGN: koyu lacivert, kurumsal) ---
@@ -712,24 +707,6 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
-// --- Sade üst menü (beyaz pill içinde — koyu linkler, mockup) ---
-.vapor-topmenu {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-left: 1.5rem;
-    &__link {
-        color: $vapor-color-ink;
-        font-weight: 600;
-        font-size: .95rem;
-        text-decoration: none;
-        padding: .35rem 0;
-        border-bottom: 2px solid transparent;
-        transition: border-color .15s ease, color .15s ease;
-        &:hover { color: $sw-color-brand-primary; border-bottom-color: $sw-color-brand-primary; text-decoration: none; }
-    }
-}
-
 // --- Header CTA butonu ("Jetzt einkaufen →") ---
 // actions-col içindeki genel .btn beyaz kuralını ezmek için !important
 .header-main .header-actions-col a.vapor-header-cta {
@@ -754,18 +731,6 @@ h1, h2, h3, h4, h5, h6,
         .header-logo-col .header-logo-main { max-height: 44px; margin: 0; }
         .header-actions-col { margin-left: auto; flex: 0 0 auto; }
     }
-    // Kullanıcı: menü SOLA çekilsin (logoya yaklaşsın) — desktop
-    .vapor-topmenu { margin-left: .5rem; gap: 1.25rem; }
-}
-
-// Ödeme logoları — search ikonunun SOLUNDA (SADECE DESKTOP, panelden)
-.vapor-header-pays {
-    display: flex; align-items: center; gap: .55rem;
-    margin: 0 .5rem 0 .35rem;
-    &__item {
-        display: inline-flex; align-items: center;
-        img { display: block; height: 30px; width: auto; object-fit: contain; border-radius: 4px; }
-    }
 }
 
 // KÜÇÜK/ORTA LAPTOP (992–1399px): içerik tek satıra sığmıyordu →
@@ -775,11 +740,7 @@ h1, h2, h3, h4, h5, h6,
     // CTA butonu + onu saran col'u gizle
     .vapor-header-cta,
     .vapor-header-row > .col-auto:has(> .vapor-header-cta) { display: none !important; }
-    .vapor-topmenu { gap: 1rem; margin-left: .5rem; }
-    .vapor-topmenu__link { font-size: .9rem; }
     .vapor-header-pill .header-actions-col { gap: .35rem; }
-    // Bu dar aralıkta ödeme logoları yer açmak için gizli (1400px+ görünür)
-    .vapor-header-pays { display: none !important; }
 }
 
 // 1400px+ tam görünüm: CTA pill'in sağ kenarına BİTİŞİK duruyordu (bozukluk hissi) →
@@ -877,8 +838,8 @@ h1, h2, h3, h4, h5, h6,
     .search-suggest-product { border-radius: 10px;
         &:hover, &.is-active { background: rgba($sw-color-brand-primary, 0.07); } }
     .search-suggest-product-link { padding: .6rem .75rem; display: block; text-decoration: none; color: $vapor-color-ink; }
-    .search-suggest-product-price { color: $sw-color-brand-primary; font-weight: 700; }
-    .search-suggest-total { padding: .6rem .75rem; font-weight: 600; color: $sw-color-brand-primary;
+    .search-suggest-product-price { color: $tp-primary-text; font-weight: 700; }
+    .search-suggest-total { padding: .6rem .75rem; font-weight: 600; color: $tp-primary-text;
         &:hover { background: rgba($sw-color-brand-primary, 0.07); border-radius: 10px; } }
 }
 @keyframes vapor-search-pop {
@@ -887,86 +848,6 @@ h1, h2, h3, h4, h5, h6,
 }
 // Arama ikonu (header'da, beyaz pill içinde) koyu
 .header-main .header-actions-col .search-toggle-btn svg { color: $vapor-color-ink; }
-
-// --- Üst marketing banner (gradient kampanya şeridi) ---
-.vapor-marketing-banner {
-    background: linear-gradient(90deg, $sw-color-brand-primary 0%, $sw-color-brand-secondary 100%);
-    color: #fff;
-    text-align: center;
-    padding: .5rem 0;
-    font-size: .8125rem;
-    font-weight: 500;
-    letter-spacing: .01em;
-
-    &__text { display: inline-block; }
-}
-
-// --- Sosyal + iletişim barı (koyu zemin) ---
-.vapor-social-bar {
-    background: $vapor-color-ink;
-    color: rgba(#fff, 0.85);
-    font-size: .8125rem;
-    padding: .4rem 0;
-
-    &__link {
-        color: rgba(#fff, 0.8);
-        display: inline-flex;
-        align-items: center;
-        gap: .35rem;
-        text-decoration: none;
-        &:hover { color: #fff; text-decoration: none; }
-    }
-
-    &__sep { color: rgba(#fff, 0.3); }
-
-    &__icon {
-        width: 28px;
-        height: 28px;
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: rgba(#fff, 0.08);
-        color: rgba(#fff, 0.85);
-        transition: background .15s ease, color .15s ease;
-        &:hover { background: $sw-color-brand-primary; color: #fff; }
-    }
-
-    // Dil/para widget'larını koyu barda okunur yap
-    .top-bar-nav { color: rgba(#fff, 0.85); }
-    .top-bar-nav a,
-    .top-bar-nav .btn { color: rgba(#fff, 0.85) !important; }
-
-    // icon svg boyutlandırma fallback
-    svg { width: 14px; height: 14px; }
-}
-
-// --- Servis vurgu kutuları (kargo/iade/destek) ---
-.vapor-usp-bar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    padding: 1.5rem 0;
-
-    .vapor-usp {
-        display: flex;
-        align-items: center;
-        gap: .75rem;
-
-        .vapor-usp-icon {
-            flex: 0 0 auto;
-            width: 44px;
-            height: 44px;
-            display: grid;
-            place-items: center;
-            border-radius: 50%;
-            background: rgba($sw-color-brand-primary, 0.1);
-            color: $sw-color-brand-primary;
-        }
-
-        .vapor-usp-title { font-weight: 600; font-size: .95rem; }
-        .vapor-usp-sub { font-size: .8rem; color: rgba($vapor-color-ink, 0.6); }
-    }
-}
 
 // =====================================================================
 // ANASAYFA (spec): hero tam genişlik → marka nav → promo → sidebar+vitrin
@@ -1126,7 +1007,7 @@ $vapor-radius: 12px;
         transform: translateY(-2px);
         box-shadow: $tp-shadow-sm;
         border-color: rgba($tp-primary, 0.4);
-        color: $tp-primary;
+        color: $tp-primary-text;
         text-decoration: none;
         .vapor-pill__ico { background: $tp-primary; color: #fff; }
     }
@@ -1223,41 +1104,9 @@ $vapor-radius: 12px;
     &__eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: rgba(#fff, 0.85); }
     &__title { font-family: $vapor-font-headline; font-weight: 800; font-size: 1.25rem; line-height: 1.15; }
     .is-big &__title { font-size: 1.7rem; }
-    &__cta { margin-top: $tp-space-2; font-size: .85rem; font-weight: 600; color: $tp-primary;
+    &__cta { margin-top: $tp-space-2; font-size: .85rem; font-weight: 600; color: $tp-primary-text;
         background: #fff; align-self: flex-start; padding: .35rem .8rem; border-radius: $tp-radius-pill; }
 }
-
-/* ---- YENİ: 6 kısayol kartı (bento altı) ---- */
-.vapor-shortcuts {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: $tp-space-3;
-    margin-top: $tp-space-4;
-    @media (max-width: 991.98px) { grid-template-columns: repeat(3, 1fr); }
-    @media (max-width: 575.98px) { grid-template-columns: repeat(2, 1fr); }
-}
-.vapor-shortcut {
-    display: flex; flex-direction: column; align-items: center; gap: $tp-space-2;
-    background: $tp-surface; border: 1px solid $tp-line; border-radius: $tp-radius;
-    padding: $tp-space-4 $tp-space-2; text-decoration: none; color: $tp-ink;
-    box-shadow: $tp-shadow-xs; text-align: center; position: relative;
-    transition: transform $tp-transition, box-shadow $tp-transition, border-color $tp-transition;
-    &:hover { transform: translateY(-3px); box-shadow: $tp-shadow-md; border-color: rgba($tp-primary, 0.4);
-        text-decoration: none; color: $tp-primary;
-        .vapor-shortcut__ico { background: $tp-primary; color: #fff; }
-        .vapor-shortcut__arrow { color: $tp-primary; transform: translateX(2px); } }
-    &__ico { width: 48px; height: 48px; border-radius: 50%; background: $tp-primary-soft; color: $tp-primary;
-        display: grid; place-items: center; transition: background $tp-transition, color $tp-transition;
-        .icon { width: 22px; height: 22px; } .icon svg { color: currentColor; }
-        img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; } }
-    &__name { font-size: .82rem; font-weight: 600; line-height: 1.2; }
-    &__arrow { position: absolute; top: $tp-space-2; right: $tp-space-3; color: $tp-muted; font-size: 1.1rem;
-        transition: color $tp-transition, transform $tp-transition; }
-    // Marka rozeti: logo yoksa baş-harfler (brandnav ile aynı dil)
-    &__initials { font-family: $vapor-font-headline; font-weight: 700; font-size: 1rem; letter-spacing: .01em; }
-}
-// Marka kısayolları başlığı — bento kısayol şeridinin hemen üstünde ferah dursun
-.vapor-shortcuts-head { margin-top: $tp-space-5; margin-bottom: 0; }
 
 /* ---- YENİ: Kategori slider (büyük + 3 küçük mozaik kartlar) ---- */
 .vapor-catslider {
@@ -1451,12 +1300,12 @@ $vapor-radius: 12px;
         border-radius: $vapor-radius; padding: 1.1rem .75rem; text-decoration: none;
         color: $vapor-color-ink; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
         user-select: none;
-        &:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba($vapor-color-ink, 0.08); border-color: rgba($sw-color-brand-primary, 0.4); color: $sw-color-brand-primary; text-decoration: none; }
+        &:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba($vapor-color-ink, 0.08); border-color: rgba($sw-color-brand-primary, 0.4); color: $tp-primary-text; text-decoration: none; }
     }
     &__circle {
         width: 56px; height: 56px; display: grid; place-items: center; border-radius: 50%;
         background: rgba($sw-color-brand-primary, 0.22);
-        color: $sw-color-brand-primary; font-family: $vapor-font-headline; font-weight: 700; font-size: 1.05rem;
+        color: $tp-primary-text; font-family: $vapor-font-headline; font-weight: 700; font-size: 1.05rem;
     }
     &__name { font-size: .85rem; font-weight: 600; text-align: center; }
 }
@@ -1764,7 +1613,7 @@ $vapor-radius: 12px;
         padding: .5rem; border-radius: $tp-radius; text-decoration: none;
         transition: background $tp-transition;
         &:hover { background: $tp-primary-soft; text-decoration: none;
-            .vapor-sidebar__mini-txt b { color: $tp-primary; } }
+            .vapor-sidebar__mini-txt b { color: $tp-primary-text; } }
     }
     &__mini-img {
         flex: 0 0 auto; width: 48px; height: 48px; border-radius: $tp-radius-sm;
@@ -1778,7 +1627,7 @@ $vapor-radius: 12px;
             display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
             transition: color $tp-transition; }
     }
-    &__mini-price { font-size: .8rem; font-weight: 700; color: $tp-primary;
+    &__mini-price { font-size: .8rem; font-weight: 700; color: $tp-primary-text;
         &.is-login { color: $tp-muted; font-weight: 600; display: inline-flex; align-items: center; gap: 3px;
             .icon { width: 12px; height: 12px; } .icon svg { color: $tp-muted; } }
     }
@@ -1806,7 +1655,7 @@ $vapor-radius: 12px;
     &__support-txt { display: flex; flex-direction: column; line-height: 1.35; min-width: 0;
         b { font-size: .82rem; font-weight: 700; color: $tp-navy; }
     }
-    &__support-phone { font-size: .92rem; font-weight: 700; color: $tp-primary; text-decoration: none;
+    &__support-phone { font-size: .92rem; font-weight: 700; color: $tp-primary-text; text-decoration: none;
         &:hover { text-decoration: underline; }
     }
     &__support-txt small { font-size: .72rem; color: $tp-muted; }
@@ -1859,7 +1708,7 @@ $vapor-radius: 12px;
         display: flex; gap: .4rem; align-items: flex-start;
         font-size: .68rem; color: $tp-muted; line-height: 1.35; margin-top: .5rem;
         input { flex: 0 0 auto; margin-top: 2px; }
-        a { color: $tp-primary; text-decoration: underline; }
+        a { color: $tp-primary-text; text-decoration: underline; }
     }
     &__nl-feedback:not(:empty) { margin-top: .5rem; font-size: .74rem; }
 }
@@ -1919,7 +1768,7 @@ $vapor-radius: 12px;
         }
     }
     &__link {
-        color: $tp-primary; font-weight: 600; font-size: .9rem; text-decoration: none;
+        color: $tp-primary-text; font-weight: 600; font-size: .9rem; text-decoration: none;
         display: inline-flex; align-items: center; gap: 4px;
         &::after { content: "→"; }
         &:hover { color: $tp-primary-dark; text-decoration: none; }
@@ -2031,7 +1880,7 @@ $vapor-radius: 12px;
     &__name { font-weight: 700; font-size: .98rem; line-height: 1.25; margin: .15rem 0 .7rem; color: $tp-navy;
         display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.5em; }
     &__foot { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-top: auto; }
-    &__price { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.2rem; color: $tp-primary; }
+    &__price { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.2rem; color: $tp-primary-text; }
     &__btn {
         background: $tp-primary; color: #fff;
         padding: .45rem .8rem; border-radius: $tp-radius-pill; font-weight: 600; font-size: .8rem;
@@ -2074,7 +1923,7 @@ $vapor-radius: 12px;
         color: rgba($vapor-color-ink, 0.55);
         transition: color .15s ease, border-color .15s ease, box-shadow .15s ease;
         &:hover {
-            color: $sw-color-brand-primary;
+            color: $tp-primary-text;
             border-color: rgba($sw-color-brand-primary, 0.35);
             box-shadow: 0 6px 18px rgba($sw-color-brand-primary, 0.12);
         }
@@ -2100,7 +1949,7 @@ $vapor-radius: 12px;
     box-shadow: $tp-shadow-xs;
     transition: transform $tp-transition, box-shadow $tp-transition, border-color $tp-transition;
     &:hover { transform: translateY(-3px); box-shadow: $tp-shadow-md;
-        border-color: rgba($tp-primary, 0.35); text-decoration: none; color: $tp-primary;
+        border-color: rgba($tp-primary, 0.35); text-decoration: none; color: $tp-primary-text;
         .vapor-cattile__img { background: $tp-primary; color: #fff; } }
     &__img {
         flex: 0 0 auto; width: 52px; height: 52px; border-radius: $tp-radius-sm;
@@ -2376,7 +2225,7 @@ $vapor-radius: 12px;
 
         p { margin: 0 0 1.1rem; }
         a {
-            color: $sw-color-brand-primary;
+            color: $tp-primary-text;
             text-decoration: underline;
             text-underline-offset: 2px;
             &:hover { color: #3f72b8; }
@@ -2412,7 +2261,7 @@ $vapor-radius: 12px;
         // ===== FAQ accordion (<details>/<summary>) =====
         .vapor-faq__group {
             margin-top: 2.5rem;
-            color: $sw-color-brand-primary;
+            color: $tp-primary-text;
             font-size: 1.05rem; text-transform: uppercase; letter-spacing: .04em;
             &:first-of-type { margin-top: 1rem; }
         }
@@ -2437,7 +2286,7 @@ $vapor-radius: 12px;
             color: $vapor-color-ink;
             user-select: none;
             transition: color .15s ease;
-            &:hover { color: $sw-color-brand-primary; }
+            &:hover { color: $tp-primary-text; }
         }
         // + / − ikon
         .vapor-faq__icon {
@@ -2628,7 +2477,7 @@ $vapor-radius: 12px;
     &__head { max-width: 720px; margin-bottom: $tp-space-5; }
     &__eyebrow {
         display: inline-block; font-size: .74rem; font-weight: 700;
-        text-transform: uppercase; letter-spacing: .08em; color: $tp-primary;
+        text-transform: uppercase; letter-spacing: .08em; color: $tp-primary-text;
         margin-bottom: $tp-space-2;
     }
     &__title {
@@ -2691,7 +2540,7 @@ $vapor-radius: 12px;
 
     &__eyebrow {
         display: inline-block; font-size: .72rem; font-weight: 700;
-        text-transform: uppercase; letter-spacing: .09em; color: $tp-primary;
+        text-transform: uppercase; letter-spacing: .09em; color: $tp-primary-text;
         margin-bottom: $tp-space-3;
     }
     &__body {
@@ -2789,7 +2638,7 @@ $vapor-radius: 12px;
     &__info { min-width: 0; }
     &__brand { font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: rgba($vapor-color-ink, 0.5); }
     &__name { display: block; font-weight: 700; font-size: 1.02rem; color: $vapor-color-ink; text-decoration: none; line-height: 1.3; margin: .1rem 0 .25rem;
-        &:hover { color: $sw-color-brand-primary; text-decoration: none; } }
+        &:hover { color: $tp-primary-text; text-decoration: none; } }
     &__stars { font-size: .82rem; letter-spacing: 1px; color: rgba($vapor-color-ink, 0.2); margin-bottom: .3rem;
         span.is-full { color: #FFB400; } }
     &__desc { font-size: .82rem; color: rgba($vapor-color-ink, 0.55); line-height: 1.45; margin: 0;
@@ -2799,7 +2648,7 @@ $vapor-radius: 12px;
     &__price { text-align: right; white-space: nowrap;
         @media (max-width: 991.98px) { text-align: left; } }
     &__from { display: block; font-size: .7rem; color: rgba($vapor-color-ink, 0.5); }
-    &__amount { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.35rem; color: $sw-color-brand-primary; }
+    &__amount { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.35rem; color: $tp-primary-text; }
     &__tax { display: block; font-size: .68rem; color: rgba($vapor-color-ink, 0.45); }
 
     // Menge + Warenkorb — qty stepper ve buton AYNI yükseklik + dikey ortalı
@@ -2812,7 +2661,7 @@ $vapor-radius: 12px;
         display: inline-flex; align-items: center; gap: .45rem; white-space: nowrap; cursor: pointer;
         .icon { width: 16px; height: 16px; } .icon svg { color: #fff; }
         &:hover { background: darken($sw-color-brand-primary, 8%); color: #fff; }
-        &.is-detail { background: transparent; color: $sw-color-brand-primary; border: 1px solid rgba($sw-color-brand-primary, 0.4);
+        &.is-detail { background: transparent; color: $tp-primary-text; border: 1px solid rgba($sw-color-brand-primary, 0.4);
             &:hover { background: rgba($sw-color-brand-primary, 0.08); } }
     }
     // Bu satırdaki qty stepper da 44px (butonla aynı hiza)
@@ -2828,7 +2677,7 @@ $vapor-radius: 12px;
     &__btn {
         width: 36px; height: 42px; border: none; background: rgba($vapor-color-ink, 0.04);
         font-size: 1.25rem; line-height: 1; color: $vapor-color-ink; cursor: pointer;
-        &:hover { background: rgba($sw-color-brand-primary, 0.12); color: $sw-color-brand-primary; }
+        &:hover { background: rgba($sw-color-brand-primary, 0.12); color: $tp-primary-text; }
     }
     &__input {
         width: 48px; height: 42px; border: none; text-align: center; font-weight: 700; font-size: .95rem;
@@ -2897,9 +2746,9 @@ $vapor-radius: 12px;
         font-size: .85rem; font-weight: 600;
         transition: background .12s ease, color .12s ease;
         &::after { content: "›"; color: rgba($vapor-color-ink, 0.3); font-size: 1.1rem; }
-        &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $sw-color-brand-primary; text-decoration: none;
+        &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $tp-primary-text; text-decoration: none;
             &::after { color: $sw-color-brand-primary; } }
-        &.is-active { background: rgba($sw-color-brand-primary, 0.1); color: $sw-color-brand-primary; font-weight: 700;
+        &.is-active { background: rgba($sw-color-brand-primary, 0.1); color: $tp-primary-text; font-weight: 700;
             border-left: 3px solid $sw-color-brand-primary; }
     }
 }
@@ -3020,13 +2869,13 @@ $vapor-radius: 12px;
     // Fiyat — büyük, marka mavisi
     .product-detail-price {
         font-family: $vapor-font-headline; font-weight: 700;
-        font-size: 1.9rem; color: $sw-color-brand-primary;
+        font-size: 1.9rem; color: $tp-primary-text;
     }
     // B2B fiyat kademesi tablosu — vurgulu
     .product-block-prices {
         margin: .5rem 0 1rem;
         .product-block-prices-row { font-size: .9rem; }
-        .product-block-prices-cell.price { font-weight: 700; color: $sw-color-brand-primary; }
+        .product-block-prices-cell.price { font-weight: 700; color: $tp-primary-text; }
     }
     .product-detail-tax-container { margin-bottom: 1rem; }
 
@@ -3185,8 +3034,8 @@ $vapor-radius: 12px;
         padding: .8rem 1.1rem; color: $vapor-color-ink; text-decoration: none;
         font-size: .85rem; font-weight: 600;
         transition: background .12s ease, color .12s ease;
-        &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $sw-color-brand-primary; text-decoration: none; }
-        &.is-active { background: rgba($sw-color-brand-primary, 0.1); color: $sw-color-brand-primary; font-weight: 700;
+        &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $tp-primary-text; text-decoration: none; }
+        &.is-active { background: rgba($sw-color-brand-primary, 0.1); color: $tp-primary-text; font-weight: 700;
             border-left: 3px solid $sw-color-brand-primary; }
     }
     &__caret { color: rgba($vapor-color-ink, 0.35); font-size: 1.15rem; line-height: 1; transition: transform .15s ease, color .15s ease; }
@@ -3230,7 +3079,7 @@ $vapor-radius: 12px;
         border-bottom: 2px solid rgba($sw-color-brand-primary, 0.15);
     }
     &__heading { font-family: $vapor-font-headline; font-weight: 700; font-size: 1.15rem; color: $vapor-color-ink; }
-    &__all { color: $sw-color-brand-primary; font-weight: 700; font-size: .85rem; text-decoration: none;
+    &__all { color: $tp-primary-text; font-weight: 700; font-size: .85rem; text-decoration: none;
         &:hover { text-decoration: underline; } }
 
     // çok kolonlu marka/alt-kategori grid'i
@@ -3261,7 +3110,7 @@ $vapor-radius: 12px;
         color: $vapor-color-ink; text-decoration: none;
         border-bottom: 2px solid rgba($sw-color-brand-primary, 0.25);
         transition: color .12s ease;
-        &:hover { color: $sw-color-brand-primary; text-decoration: none; }
+        &:hover { color: $tp-primary-text; text-decoration: none; }
     }
 
     // 3. seviye: alt kategori = grup başlığı, altında alt-alt kategoriler. Grup kolonda bölünmez.
@@ -3275,7 +3124,7 @@ $vapor-radius: 12px;
         padding: .35rem .2rem .3rem; margin-bottom: .25rem;
         border-bottom: 2px solid rgba($sw-color-brand-primary, 0.25);
         transition: color .12s ease;
-        &:hover { color: $sw-color-brand-primary; text-decoration: none; }
+        &:hover { color: $tp-primary-text; text-decoration: none; }
     }
     &__sublist {
         list-style: none; margin: 0; padding: 0;
@@ -3298,7 +3147,7 @@ $vapor-radius: 12px;
         font-size: .8rem; font-weight: 400;
         color: rgba($vapor-color-ink, 0.66); text-decoration: none;
         transition: color .12s ease, padding-left .12s ease;
-        &:hover { color: $sw-color-brand-primary; padding-left: .8rem; text-decoration: none; }
+        &:hover { color: $tp-primary-text; padding-left: .8rem; text-decoration: none; }
     }
 
     // sağ görsel promo kolonu
@@ -3317,7 +3166,7 @@ $vapor-radius: 12px;
         background: rgba($sw-color-brand-primary, 0.1); color: rgba($sw-color-brand-primary, 0.5);
         display: grid; place-items: center;
     }
-    &__promo-cap { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: $sw-color-brand-primary; }
+    &__promo-cap { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: $tp-primary-text; }
     &__promo-sub { font-weight: 700; font-size: .9rem; color: $vapor-color-ink; line-height: 1.2; }
 
     // Mobilde panel'i alta aç (sonra mobil turunda JS toggle)
@@ -3980,7 +3829,7 @@ body.vapor-age-gate--open { overflow: hidden !important; touch-action: none; }
     .vapor-cat__mbtn {
         display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
         background: #fff; border: 1px solid rgba($sw-color-brand-primary, 0.35);
-        color: $sw-color-brand-primary; font-weight: 700; font-size: .92rem;
+        color: $tp-primary-text; font-weight: 700; font-size: .92rem;
         border-radius: 12px; padding: .8rem 1rem; cursor: pointer;
         box-shadow: 0 2px 8px rgba($vapor-color-ink, 0.06);
         .icon { width: 18px; height: 18px; } .icon svg { color: $sw-color-brand-primary; }
@@ -4079,11 +3928,11 @@ body.vapor-age-gate--open { overflow: hidden !important; touch-action: none; }
 // Canlı stepper: sepette olunca vurgulu, işlem sırasında "busy"
 .vapor-qty--live {
     transition: border-color .15s ease, box-shadow .15s ease;
-    .vapor-qty__btn[data-cartqty="plus"] { color: $sw-color-brand-primary; font-weight: 700; }
+    .vapor-qty__btn[data-cartqty="plus"] { color: $tp-primary-text; font-weight: 700; }
     &.is-in-cart {
         border-color: rgba($sw-color-brand-primary, 0.6);
         box-shadow: 0 0 0 1px rgba($sw-color-brand-primary, 0.3);
-        .vapor-qty__input { color: $sw-color-brand-primary; font-weight: 700; }
+        .vapor-qty__input { color: $tp-primary-text; font-weight: 700; }
     }
     &.is-busy { opacity: .65; pointer-events: none; }
 }
@@ -4110,7 +3959,7 @@ body.vapor-age-gate--open { overflow: hidden !important; touch-action: none; }
     &__info {
         display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap;
         font-size: .95rem; color: $vapor-color-ink;
-        b { font-family: $vapor-font-headline; font-size: 1.15rem; color: $sw-color-brand-primary; }
+        b { font-family: $vapor-font-headline; font-size: 1.15rem; color: $tp-primary-text; }
     }
     &__sep { color: rgba($vapor-color-ink, 0.3); }
     &__total { font-weight: 700; color: rgba($vapor-color-ink, 0.6); font-size: .9rem; }
@@ -4152,7 +4001,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     &__head { text-align: center; margin-bottom: 2rem; }
     &__eyebrow {
         display: inline-block; background: rgba($sw-color-brand-primary, 0.1);
-        color: $sw-color-brand-primary; font-weight: 700; font-size: .8rem;
+        color: $tp-primary-text; font-weight: 700; font-size: .8rem;
         padding: .4rem 1rem; border-radius: 999px; margin-bottom: .85rem;
     }
     &__title { font-family: $vapor-font-headline; font-weight: 700; font-size: 2.1rem;
@@ -4185,7 +4034,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
         &:focus { border-color: $sw-color-brand-primary; box-shadow: 0 0 0 .2rem rgba($sw-color-brand-primary, 0.15); }
     }
     .login-form-description { color: rgba($vapor-color-ink, 0.6); font-size: .9rem; margin-bottom: 1.1rem; }
-    .login-password-recover a { color: $sw-color-brand-primary; font-weight: 600; font-size: .88rem; text-decoration: none;
+    .login-password-recover a { color: $tp-primary-text; font-weight: 600; font-size: .88rem; text-decoration: none;
         &:hover { text-decoration: underline; } }
 
     // Butonlar → mavi tema (yazı beyaz)
@@ -4238,9 +4087,9 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
         .btn { border-radius: 10px; }
         .btn-primary { flex: 1 1 auto; }
         .btn-outline-secondary {
-            color: $sw-color-brand-primary; border-color: rgba($sw-color-brand-primary, 0.4);
+            color: $tp-primary-text; border-color: rgba($sw-color-brand-primary, 0.4);
             font-weight: 600;
-            &:hover { background: rgba($sw-color-brand-primary, 0.06); color: $sw-color-brand-primary; }
+            &:hover { background: rgba($sw-color-brand-primary, 0.06); color: $tp-primary-text; }
         }
     }
     // Sağ bilgi kartı recover'da sticky değil, içeriğe yapışsın
@@ -4290,7 +4139,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
         border: none !important; border-radius: 10px; margin-bottom: .2rem;
         padding: .7rem .85rem; font-weight: 600; font-size: .92rem; color: $vapor-color-ink;
         background: transparent; transition: background .12s ease, color .12s ease;
-        &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $sw-color-brand-primary; }
+        &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $tp-primary-text; }
         &.is-active {
             background: $sw-color-brand-primary !important; color: #fff !important;
             box-shadow: 0 4px 12px rgba($sw-color-brand-primary, 0.3);
@@ -4335,7 +4184,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
             border: none !important; border-radius: 10px; margin-bottom: .2rem;
             padding: .7rem .85rem; font-weight: 600; font-size: .92rem; color: $vapor-color-ink;
             background: transparent; transition: background .12s ease, color .12s ease;
-            &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $sw-color-brand-primary; }
+            &:hover { background: rgba($sw-color-brand-primary, 0.07); color: $tp-primary-text; }
             &.is-active {
                 background: $sw-color-brand-primary !important; color: #fff !important;
                 box-shadow: 0 4px 12px rgba($sw-color-brand-primary, 0.3);
@@ -4357,7 +4206,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     margin-bottom: 1.75rem;
     &__eyebrow {
         display: inline-block; background: rgba($sw-color-brand-primary, 0.1);
-        color: $sw-color-brand-primary; font-weight: 700; font-size: .78rem;
+        color: $tp-primary-text; font-weight: 700; font-size: .78rem;
         padding: .35rem .9rem; border-radius: 999px; margin-bottom: .7rem;
     }
     &__title { font-family: $vapor-font-headline; font-weight: 700; font-size: 2rem; color: $vapor-color-ink; margin: 0 0 .4rem; }
@@ -4391,7 +4240,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
         margin-bottom: 1.5rem;
     }
 
-    a { color: $sw-color-brand-primary; &:hover { color: darken($sw-color-brand-primary, 10%); } }
+    a { color: $tp-primary-text; &:hover { color: darken($sw-color-brand-primary, 10%); } }
 
     // Form alanları tema
     .form-label { font-weight: 600; font-size: .85rem; color: rgba($vapor-color-ink, 0.75); }
@@ -4407,8 +4256,8 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
         &:hover, &:focus, &:active { background: darken($sw-color-brand-primary, 8%); border-color: darken($sw-color-brand-primary, 8%); color: #fff; }
     }
     .btn-outline-primary, .btn-light {
-        border-radius: 10px; font-weight: 700; border-color: rgba($sw-color-brand-primary, 0.4); color: $sw-color-brand-primary;
-        &:hover { background: rgba($sw-color-brand-primary, 0.08); color: $sw-color-brand-primary; }
+        border-radius: 10px; font-weight: 700; border-color: rgba($sw-color-brand-primary, 0.4); color: $tp-primary-text;
+        &:hover { background: rgba($sw-color-brand-primary, 0.08); color: $tp-primary-text; }
     }
 
     // PROFİL sayfası: form'u kart hissi ver (default kartsızdı)
@@ -4448,7 +4297,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     }
     // Standard rozeti: text-bg-info (turkuaz) → mavi tema, küçük pill
     .address-item-default-badge {
-        background: rgba($sw-color-brand-primary, 0.12) !important; color: $sw-color-brand-primary !important;
+        background: rgba($sw-color-brand-primary, 0.12) !important; color: $tp-primary-text !important;
         font-size: .72rem !important; font-weight: 700 !important;
         padding: .3rem .8rem !important; border-radius: 999px !important;
     }
@@ -4492,10 +4341,10 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     .order-hide-btn, .order-view-btn {
         background: #fff !important; border: 1px solid rgba($sw-color-brand-primary, 0.35) !important;
         border-radius: 10px !important; padding: .45rem .9rem !important;
-        color: $sw-color-brand-primary !important;
+        color: $tp-primary-text !important;
         &:hover { background: rgba($sw-color-brand-primary, 0.07) !important; }
     }
-    .order-view-btn-text, .order-hide-btn-text { color: $sw-color-brand-primary; font-weight: 600; }
+    .order-view-btn-text, .order-hide-btn-text { color: $tp-primary-text; font-weight: 600; }
     // sipariş tekrar / detay butonları
     .account-orders .btn-primary { background: $sw-color-brand-primary; border-color: $sw-color-brand-primary; }
 
@@ -4529,14 +4378,14 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     // DHL takip = mavi outline. İkon mavi (currentColor=mavi)
     .vapor-order-btn--track {
         background: #fff !important; border: 1px solid rgba($sw-color-brand-primary, 0.45) !important;
-        color: $sw-color-brand-primary !important;
+        color: $tp-primary-text !important;
         &:hover { background: rgba($sw-color-brand-primary, 0.07) !important; }
     }
     // Details = açık/outline mavi. İkon mavi
     .vapor-order-btn--details {
         background: #fff !important; border: 1px solid rgba($sw-color-brand-primary, 0.35) !important;
-        color: $sw-color-brand-primary !important;
-        .order-view-btn-text, .order-hide-btn-text { color: $sw-color-brand-primary !important; }
+        color: $tp-primary-text !important;
+        .order-view-btn-text, .order-hide-btn-text { color: $tp-primary-text !important; }
         &:hover { background: rgba($sw-color-brand-primary, 0.07) !important; }
     }
 
@@ -4571,16 +4420,16 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     .vapor-topprod__name {
         display: block; font-weight: 700; font-size: .95rem; color: $vapor-color-ink;
         text-decoration: none; line-height: 1.3;
-        &:hover { color: $sw-color-brand-primary; }
+        &:hover { color: $tp-primary-text; }
     }
     .vapor-topprod__stats { margin-top: .25rem; display: flex; flex-wrap: wrap; gap: .5rem; }
     .vapor-topprod__stat {
-        font-size: .72rem; font-weight: 600; color: $sw-color-brand-primary;
+        font-size: .72rem; font-weight: 600; color: $tp-primary-text;
         background: rgba($sw-color-brand-primary, 0.1); padding: .15rem .5rem; border-radius: 999px;
         &--muted { color: rgba($vapor-color-ink, 0.55); background: rgba($vapor-color-ink, 0.06); }
     }
     .vapor-topprod__price {
-        font-weight: 700; color: $sw-color-brand-primary; white-space: nowrap; text-align: right;
+        font-weight: 700; color: $tp-primary-text; white-space: nowrap; text-align: right;
         small { display: block; font-size: .66rem; font-weight: 500; color: rgba($vapor-color-ink, 0.5); }
         @media (max-width: 767.98px) { grid-column: 2; text-align: left; }
     }
@@ -4650,7 +4499,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     }
     .vapor-quick__addrow {
         display: inline-flex; align-items: center; gap: .4rem; border-radius: 10px !important;
-        font-weight: 600; color: $sw-color-brand-primary !important;
+        font-weight: 600; color: $tp-primary-text !important;
         border: 1px dashed rgba($sw-color-brand-primary, 0.4) !important; background: #fff !important;
         .icon { width: 15px; height: 15px; } svg { display: block; }
         &:hover { background: rgba($sw-color-brand-primary, 0.06) !important; }
@@ -4835,7 +4684,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
 
 // adres değiştir / bağlantılar
 .is-ctl-checkout {
-    .confirm-address a, .checkout-card a { color: $sw-color-brand-primary; font-weight: 600; }
+    .confirm-address a, .checkout-card a { color: $tp-primary-text; font-weight: 600; }
     .confirm-address a:hover, .checkout-card a:hover { color: darken($sw-color-brand-primary, 10%); }
 
     // Ödeme/teslimat radio seçenekleri
@@ -4844,7 +4693,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
         padding: .5rem 0;
     }
     .custom-control-input:checked ~ .custom-control-label,
-    input[type="radio"]:checked + label { color: $sw-color-brand-primary; font-weight: 700; }
+    input[type="radio"]:checked + label { color: $tp-primary-text; font-weight: 700; }
 }
 
 // --- ÖZET kutusu (sağ aside) — cart + confirm ortak ---
@@ -4872,7 +4721,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
     .checkout-aside-summary-total .checkout-aside-summary-value {
         font-weight: 800; font-size: 1.15rem; color: $vapor-color-ink;
     }
-    .checkout-aside-summary-value { color: $sw-color-brand-primary; }
+    .checkout-aside-summary-value { color: $tp-primary-text; }
 
     // Gutscheincode + Zur Kasse: özetin altında ayrı dursun (binmesin)
     .checkout-aside-action { margin: 0; }
@@ -4919,7 +4768,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
         border-radius: 10px; border: 1px solid rgba($vapor-color-ink, 0.08);
     }
     .line-item-total-price, .cart-item-total-price,
-    .line-item-price { color: $sw-color-brand-primary; font-weight: 700; }
+    .line-item-price { color: $tp-primary-text; font-weight: 700; }
     // ⭐ Miktar stepper FIX (cart sayfası) — drawer'daki ile aynı dil.
     // Sorun: input width 4.875px'e sıkışıp sayı görünmüyordu.
     .line-item-quantity-group.quantity-selector-group,
@@ -5104,7 +4953,7 @@ body.has-vapor-bulkbar { padding-bottom: 80px; }
             &:hover { background: darken($sw-color-brand-primary, 8%); }
         }
         &.is-ghost {
-            background: #fff; color: $sw-color-brand-primary !important;
+            background: #fff; color: $tp-primary-text !important;
             border: 1px solid rgba($sw-color-brand-primary, 0.4);
             &:hover { background: rgba($sw-color-brand-primary, 0.08); }
         }

@@ -70,7 +70,7 @@
                 <section class="vapor-hero">
                     <div class="vapor-hero__content">
                         {% if theme_config('vapor-hero-eyebrow') %}<span class="vapor-hero__eyebrow">{{ theme_config('vapor-hero-eyebrow') }}</span>{% endif %}
-                        {% if theme_config('vapor-hero-title') %}<h1 class="vapor-hero__title">{{ theme_config('vapor-hero-title')|raw }}</h1>{% endif %}
+                        {% if theme_config('vapor-hero-title') %}<h1 class="vapor-hero__title">{{ theme_config('vapor-hero-title')|raw }}</h1>{% else %}<h1 class="visually-hidden">{{ config('core.basicInformation.shopName') ?: 'Tankstellenpartner 24' }}</h1>{% endif %}
                         {% if theme_config('vapor-hero-subtitle') %}<p class="vapor-hero__subtitle">{{ theme_config('vapor-hero-subtitle') }}</p>{% endif %}
                         {% set heroLogo1 = theme_config('vapor-hero-logo-1') %}
                         {% set heroLogo2 = theme_config('vapor-hero-logo-2') %}
@@ -100,8 +100,8 @@
 
                         {% set heroBigTag = heroBigLink ? 'a' : 'div' %}
                         <{{ heroBigTag }}{% if heroBigLink %} href="{{ heroBigLink }}"{% endif %} class="vapor-hero__media-big{% if heroBigMob %} has-mobile{% endif %}">
-                            {% if heroBig %}<img class="vapor-hero__img vapor-hero__img--desktop" src="{{ heroBig }}" alt="" loading="lazy">{% elseif not heroBigMob %}{{ mediaSvg }}{% endif %}
-                            {% if heroBigMob %}<img class="vapor-hero__img vapor-hero__img--mobile" src="{{ heroBigMob }}" alt="" loading="lazy">{% endif %}
+                            {% if heroBig %}<img class="vapor-hero__img vapor-hero__img--desktop" src="{{ heroBig }}" alt="" loading="eager" fetchpriority="high">{% elseif not heroBigMob %}{{ mediaSvg }}{% endif %}
+                            {% if heroBigMob %}<img class="vapor-hero__img vapor-hero__img--mobile" src="{{ heroBigMob }}" alt="" loading="eager" fetchpriority="high">{% endif %}
                         </{{ heroBigTag }}>
                         {% set heroS1Tag = heroSmall1Link ? 'a' : 'div' %}
                         <{{ heroS1Tag }}{% if heroSmall1Link %} href="{{ heroSmall1Link }}"{% endif %} class="vapor-hero__media-small{% if heroSmall1Mob %} has-mobile{% endif %}">
@@ -660,7 +660,7 @@
                            bir pencere kaydırır → her gün farklı deal seti. Sayaç gece
                            yarısına (ortak deadline) sayar; 00:00'da JS sayfayı yeniler →
                            yeni günün seti gelir. Login-gate ürün kartıyla aynı. #}
-                        {% set dealPool = page.extensions.vaporBestseller.products ?? [] %}
+                        {% set dealPool = page.extensions.vaporDeals.products ?? page.extensions.vaporBestseller.products ?? [] %}
                         {% set dealCount = (theme_config('vapor-deals-count') ?: 4)|round %}
                         {% if dealCount < 1 %}{% set dealCount = 1 %}{% elseif dealCount > 8 %}{% set dealCount = 8 %}{% endif %}
                         {% if dealPool|length %}
