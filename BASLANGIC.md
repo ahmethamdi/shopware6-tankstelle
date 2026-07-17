@@ -122,23 +122,29 @@ Doğru yön: e-sigara içeriği + TP24 markası (turuncu) + **Vapor'dan görsel 
 - **K4 Sahte "+" buton:** ürün kartındaki `.vapor-pcard__add` (sepete-ekle yanılgısı) → `.vapor-pcard__go` (ürüne git oku →). Dürüst UX.
 - **Sidebar başlık:** K3'te laciverte çevrildi ama kullanıcı **turuncuyu tercih etti → geri alındı**. Başlık ikonu (☰) bozuk box-shadow'du (dolu kare) → linear-gradient 3-çizgi beyaz hamburger ikonu yapıldı.
 
+### 🆕 Bu oturumda yapılanlar (denetim Y1-Y5 + checkout mobil, main'de push'lu `5c1de30`)
+- **Y1 Kontrast (WCAG AA):** yeni token `$tp-primary-text: #c23c29` (5.29:1, overrides.scss:65). base.scss'te **69 text-on-light** turuncu kullanımı bu token'a çevrildi (fiyat/link/etiket/eyebrow). Koyu zeminler (hero/footer/deals-panel) parlak `$tp-primary` kaldı; ikon/dekoratif/hover-on-dark dokunulmadı. `.vapor-info__eyebrow` tarayıcıda `rgb(194,60,41)` doğrulandı.
+- **Y2 Hero h1:** başlık boşsa artık `<h1 class="visually-hidden">{{ shopName }}</h1>` fallback → sayfada her zaman tam 1 h1.
+- **Y3 Hero LCP:** büyük hero görseli `loading="eager" fetchpriority="high"` (küçük görsel + logolar lazy kaldı).
+- **Y4 Ürün havuzu:** Deals des Tages artık **kendi havuzu** — `HomeProductsSubscriber` yeni `vaporDeals` extension (cheapestPrice ASC). Twig `dealPool = vaporDeals ?? vaporBestseller`. Bestseller (sales DESC) ile örtüşmüyor (render'da doğrulandı).
+- **Y5a Fonts self-host:** base.scss'ten Google Fonts `@import` KALDIRILDI → Montserrat variable woff2 (latin + latin-ext) `assets/fonts/`'a indirildi, `@font-face` (weight 100-900) ile self-host. Aktif storefront CSS'inde **0 googleapis**, woff2 HTTP 200. ⚠️ Diğer sales-channel'ların eski compiled CSS'inde googleapis kalıntısı olabilir — onlar da compile olunca temizlenir.
+- **Y5b Cleanup:** ölü CSS silindi (`.vapor-topbar/-topmenu/-header-pays/-net-price-hint/-marketing-banner/-social-bar/-usp-bar/-shortcut*` ~200 satır, hepsi 0 twig/js). Ölü theme.json config silindi (`vapor-neu-category/-bestseller-category/-show-net-prices/-deal-text-color`). **NOT:** `vapor-sidebar-vorteile-title` aslında KULLANILIYOR (1 twig+1 php) → korundu. Configurator eşiği `type:text→int` + twig `|round` hardening.
+- **Checkout header fix:** `header-minimal` turuncu zemindeydi → logo (koyu metin) mobilde okunmuyor/kırpılıyordu. **Beyaz zemine** çekildi (alt turuncu 3px aksan), "Back to shop" turuncu. Cart→confirm mobil akışı **test edildi** (390px, yatay taşma yok).
+- **B2B test müşterisi** (dev, git'e girmez): `tp24test@example.com` / `Test1234!` (`scratchpad/make-test-customer.php`, idempotent). Login→fiyat görünür→sepet→checkout çalışıyor.
+- **Media-upload persist bug incelendi → REPRODUCE EDİLEMİYOR.** Catcard 1-4 slot'larının hepsinde img+mini+title DB'de SET, sayfada render oluyor (elf/lostmary/flerbar/crystalbar). Save yolu çalışıyor; eski semptom muhtemelen bilinen **admin-SPA-cache staleness**'ti (save sonrası hard-refresh şart).
+
 ## ⏭️ Sıradaki işler (kaldığımız yer) — YENİ SOHBET BURADAN DEVAM ETSİN
 
 **Denetimden kalan bulgular (öncelik sırası):**
-- [ ] **Y1 Kontrast:** turuncu #E1523D beyaz üstünde 3.84:1 → küçük metin AA (4.5:1) sağlamıyor. Text-on-white yerlerde `darken($sw-color-brand-primary,10%)` (#c23c29, 5.29:1) kullan; buton/dekoratif turuncu kalabilir.
-- [ ] **Y2 Hero h1:** hero başlığı boşsa sayfada hiç `h1` yok (`index.html.twig:71` koşullu) → her zaman (sr-only fallback ile) bir h1 render et.
-- [ ] **Y3 Hero LCP:** hero büyük görselinde `loading="lazy"` var → `eager` + `fetchpriority="high"` yap (Core Web Vitals). Alt-fold görseller lazy kalsın.
-- [ ] **Y4 Ürün havuzu tekrarı:** Angebote=Deals=Bestseller üçü de `page.extensions.vaporBestseller` → aynı ürünler 3 kez. Birini kapat/farklılaştır.
-- [ ] **Y5 Google Fonts:** `base.scss:10` external `@import` (GDPR + render-block) → self-host (`@font-face` bloğu 12-24'te hazır yorumlu).
-- [ ] **Cleanup:** ölü CSS (`.vapor-topbar/-usp-bar/-marketing-banner/-social-bar/-topmenu/-header-pays/-shortcuts/-net-price-hint` ~birkaç yüz satır) + ölü theme.json config (`vapor-neu-category`, `vapor-bestseller-category` subscriber okumuyorsa, `vapor-show-net-prices`, `vapor-deal-text-color`, `vapor-sidebar-vorteile-title` tanımsız). Google Fonts self-host.
+- [x] ~~Y1 Kontrast~~ · [x] ~~Y2 Hero h1~~ · [x] ~~Y3 Hero LCP~~ · [x] ~~Y4 Ürün havuzu~~ · [x] ~~Y5 Fonts self-host + cleanup~~ · [x] ~~Configurator eşik int~~ (hepsi bu oturumda yapıldı)
 - [ ] **ARIA orta:** newsletter feedback + age-gate blocked'a `aria-live`/`role=alert`; footer başlıkları `<div>` → `<h2>`; footer sahte `role=list` kaldır.
 - [ ] **og:image + favicon** hâlâ placeholder SVG → gerçek raster (1200×630 PNG) + favicon set.
 - [ ] **Age-gate redirect** hardcoded `google.com` (`base.html.twig:15`) → nötr/yasal sayfa veya config.
 - [ ] **Configurator eşik** `vapor-variant-dropdown-threshold` theme.json'da `type:text` → `type:int` olmalı (minör).
 
 **Önceki kalanlar:**
-- [ ] **Cart/checkout sayfası** mobilde kontrol edilmedi.
-- [ ] **Media-field upload persist sorunu:** catcard görsel yükleme DB'ye kaydolmuyordu (`img=None`, title kaydoldu) — kök neden araştırılmadı; kod OK (hero/promo aynı pattern çalışıyor).
+- [x] ~~**Cart/checkout mobil kontrol**~~ — yapıldı (checkout header beyaz-fix dahil), test müşterisiyle 390px'de doğrulandı.
+- [x] ~~**Media-field upload persist**~~ — reproduce edilemedi, catcard 1-4 img DB'de + render OK; muhtemelen admin-SPA-cache staleness'tı.
 - [ ] Test varyant ürünleri (3) + Elfliq alt-alt kategoriler işi bitince silinebilir.
 - [ ] **Footer USP** (`vapor-footer-usp-1..4`) hâlâ eski metin — istenirse 4 yeni USP'ye çevrilir.
 - [ ] Gerekirse VioRepresentativeLogin (B2B temsilci girişi).
