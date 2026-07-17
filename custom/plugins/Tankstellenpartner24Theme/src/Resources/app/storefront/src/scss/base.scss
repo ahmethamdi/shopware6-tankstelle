@@ -1686,13 +1686,18 @@ $vapor-radius: 12px;
         letter-spacing: .04em;
         text-transform: uppercase;
         padding: $tp-space-4 $tp-space-4;
+        // ☰ menü ikonu — 3 net beyaz çizgi (linear-gradient: çizgi/boşluk/çizgi/boşluk/çizgi)
         &::before {
             content: "";
             width: 18px; height: 14px;
             flex: 0 0 auto;
-            background: #fff;
-            border-radius: 2px;
-            box-shadow: 0 3px 0 -1px #fff, 0 6px 0 -2px #fff; // 3 çizgi (menü) hissi — beyaz (turuncu başlık üstünde net)
+            background: linear-gradient(
+                #fff 0, #fff 2px,
+                transparent 2px, transparent 6px,
+                #fff 6px, #fff 8px,
+                transparent 8px, transparent 12px,
+                #fff 12px, #fff 14px
+            );
         }
     }
 
