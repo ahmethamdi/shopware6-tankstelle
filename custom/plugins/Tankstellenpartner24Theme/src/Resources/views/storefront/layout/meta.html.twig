@@ -12,3 +12,34 @@
         <link rel="icon" type="image/svg+xml" href="{{ asset('bundles/tankstellenpartner24theme/logo/tp24-favicon.svg') }}">
     {% endif %}
 {% endblock %}
+
+{# ---- TP24 SEO: boş meta description/title'a marka fallback ----
+   Boş description = kötü arama snippet'i + düşük CTR. Boş metaTitle = sadece marka.
+   og:image core'da zaten theme_config('sw-logo-desktop') (kullanıcının yüklediği gerçek
+   TP24 logosu). Dil/shop-adı DB'den düzeltildi (de-DE + Tankstellenpartner 24). #}
+{% set tpShopName = config('core.basicInformation.shopName') ?: 'Tankstellenpartner 24' %}
+{% set tpDefaultDesc = 'Tankstellenpartner 24 – Ihr B2B-Großhandel für E-Zigaretten, Vapes, Liquids & Zubehör. Großhandelspreise, schnelle Lieferung und persönlicher Service für Fachhändler.' %}
+{% set tpMetaDesc = page.metaInformation.metaDescription|striptags|trim %}
+{% set tpMetaTitle = page.metaInformation.metaTitle|striptags|trim %}
+
+{% block layout_head_meta_tags_description %}{{ tpMetaDesc ?: tpDefaultDesc }}{% endblock %}
+{% block layout_head_meta_tags_description_og %}{{ tpMetaDesc ?: tpDefaultDesc }}{% endblock %}
+{% block layout_head_meta_tags_description_twitter %}{{ tpMetaDesc ?: tpDefaultDesc }}{% endblock %}
+
+{% block layout_head_title_inner %}{% if tpMetaTitle %}{{ tpMetaTitle }} | {{ tpShopName }}{% else %}{{ tpShopName }}{% endif %}{% endblock %}
+{% block layout_head_meta_tags_title_og %}{% if tpMetaTitle %}{{ tpMetaTitle }} | {{ tpShopName }}{% else %}{{ tpShopName }}{% endif %}{% endblock %}
+{% block layout_head_meta_tags_title_twitter %}{% if tpMetaTitle %}{{ tpMetaTitle }} | {{ tpShopName }}{% else %}{{ tpShopName }}{% endif %}{% endblock %}
+
+{# Twitter: logo yerine büyük kart daha iyi görünür #}
+{% block layout_head_meta_tags_card_twitter %}summary_large_image{% endblock %}
+
+{# og:image / twitter:image — sw-logo-desktop boşsa (bu ortamda NULL → Shopware demo
+   logosu 'demostore-logo.png' düşüyordu) TP24 logosuna fallback.
+   ⚠️ SVG sosyal platformlarda ideal değil; gerçek çözüm admin'e 1200×630 PNG yükleyip
+   sw-logo-share/sw-logo-desktop'a atamak (kullanıcı işi). Yine de demo-logodan iyi. #}
+{% set tpOgImage = theme_config('sw-logo-share') ?: theme_config('sw-logo-desktop') %}
+{% if not tpOgImage or 'demostore' in tpOgImage %}
+    {% set tpOgImage = asset('bundles/tankstellenpartner24theme/logo/tp24-logo.svg') %}
+{% endif %}
+{% block layout_head_meta_tags_image_og %}{{ tpOgImage }}{% endblock %}
+{% block layout_head_meta_tags_image_twitter %}{{ tpOgImage }}{% endblock %}

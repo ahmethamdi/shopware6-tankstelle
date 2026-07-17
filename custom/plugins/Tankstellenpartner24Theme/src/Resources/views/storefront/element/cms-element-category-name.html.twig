@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-category-name.html.twig' %}
+
+{# TP24: ÇİFT BAŞLIK FIX (SEO). Tema kategori sayfasında kendi <h1 class="vapor-cat__title">'ını
+   basıyor. CMS layout'un category-name elementi de ikinci bir <h1> basıyordu → sayfada 2 h1
+   (hem görsel çift başlık hem SEO'da çoklu-h1 sorunu). Bu elementin çıktısını tamamen boşalt
+   → DOM'dan kalkar (SCSS display:none crawler'ı kandırmaz, gerçekten kaldırmak gerekir). #}
+{% block element_category_name %}{% endblock %}
